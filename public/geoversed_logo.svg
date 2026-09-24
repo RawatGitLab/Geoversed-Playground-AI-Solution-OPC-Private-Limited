@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 72" width="100%" height="100%">
+  <!-- GEOVERSED Official Logo - Exact Match to Brand Identity -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800&amp;display=swap');
+      .brand-title {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 800;
+        font-size: 32px;
+        fill: #162E52;
+        letter-spacing: 0.04em;
+      }
+      .brand-subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+        font-size: 15.5px;
+        fill: #946E44;
+        letter-spacing: 0.01em;
+      }
+    </style>
+  </defs>
+
+  <!-- Left Emblem (Height: ~60px, Width: ~64px) -->
+  <g transform="translate(4, 5)">
+    <!-- Stylized "A" / Mountain Peak Geometry -->
+    
+    <!-- Left Wing (Dark Slate Navy #162E52) -->
+    <path 
+      d="M 6 56 L 2 56 L 19 25 L 25 36 L 17 50 L 21 56 L 6 56 Z" 
+      fill="#162E52" 
+    />
+    
+    <!-- Upper Peak and Right Leg (Rich Warm Bronze #946E44) -->
+    <path 
+      d="M 28 4 L 34 4 L 58 56 L 44 56 L 39 45 L 26 45 L 23 51 L 28 51 L 24 56 L 15 56 L 30 26 L 34 26 L 25 40 L 37 40 L 31 27 L 28 4 Z" 
+      fill="#946E44" 
+    />
+
+    <!-- Geospatial Crosshair / Target Reticle -->
+    <!-- Positioned over the upper-right shoulder at center (46, 21) -->
+    <g transform="translate(46, 21)">
+      <!-- Outer Bronze Circle -->
+      <circle cx="0" cy="0" r="14" fill="none" stroke="#946E44" stroke-width="2.6" />
+      
+      <!-- Crosshair Ticks (Top, Bottom, Left, Right) -->
+      <line x1="0" y1="-18" x2="0" y2="-12" stroke="#946E44" stroke-width="2.2" stroke-linecap="square" />
+      <line x1="0" y1="12" x2="0" y2="18" stroke="#946E44" stroke-width="2.2" stroke-linecap="square" />
+      <line x1="-18" y1="0" x2="-12" y2="0" stroke="#946E44" stroke-width="2.2" stroke-linecap="square" />
+      <line x1="12" y1="0" x2="18" y2="0" stroke="#946E44" stroke-width="2.2" stroke-linecap="square" />
+
+      <!-- Inner Navy Circle -->
+      <circle cx="0" cy="0" r="9.5" fill="none" stroke="#162E52" stroke-width="2.4" />
+      
+      <!-- Central Target Bullseye Dot -->
+      <circle cx="0" cy="0" r="3.2" fill="#162E52" />
+    </g>
+  </g>
+
+  <!-- Typography Block on the Right -->
+  <g transform="translate(78, 0)">
+    <!-- Top Line: GEOVERSED -->
+    <text x="0" y="36" class="brand-title">GEOVERSED</text>
+    <!-- Bottom Line: Smart Solution Pvt. Ltd. -->
+    <text x="1" y="58" class="brand-subtitle">Smart Solution Pvt. Ltd.</text>
+  </g>
+</svg>

@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Global Theme Variables - GEOVERSED Smart Solution OPC Pvt. Ltd.
+   ========================================================================== */
+:root {
+  --primary-navy: #0F2042;
+  --primary-navy-dark: #091329;
+  --primary-navy-light: #162c5c;
+  --secondary-gold: #B3864B;
+  --secondary-gold-hover: #9c733d;
+  --secondary-gold-light: #f5eedf;
+  --bg-white: #FFFFFF;
+  --bg-card: #F8F9FA;
+  --text-dark: #0F2042;
+  --text-muted: #64748B;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Smooth transition defaults requested */
+a, button, .transition-smooth {
+  transition: all 0.3s ease;
+}
+
+/* Custom button classes adhering to prompt design specifications */
+.btn-gold {
+  background-color: var(--secondary-gold);
+  color: #ffffff;
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.btn-gold:hover {
+  background-color: var(--secondary-gold-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(179, 134, 75, 0.3);
+}
+
+.btn-outline-white {
+  background-color: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  padding: 0.625rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+.btn-outline-white:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Service Card Badge */
+.service-badge {
+  background-color: var(--secondary-gold);
+  color: #ffffff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+  display: inline-block;
+}
