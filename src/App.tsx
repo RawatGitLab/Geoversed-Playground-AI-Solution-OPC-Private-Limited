@@ -1,4 +1,4 @@
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CoreServices } from './components/CoreServices';
@@ -22,12 +22,37 @@ const ServiceDetailModal = lazy(() =>
 const ReportModal = lazy(() =>
   import('./components/ReportModal').then((m) => ({ default: m.ReportModal }))
 );
+const PrivacyPolicyModal = lazy(() =>
+  import('./components/PrivacyPolicyModal').then((m) => ({
+    default: m.PrivacyPolicyModal,
+  }))
+);
+const TermsOfServiceModal = lazy(() =>
+  import('./components/TermsOfServiceModal').then((m) => ({
+    default: m.TermsOfServiceModal,
+  }))
+);
 
 export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [detailService, setDetailService] = useState<ServiceItem | null>(null);
   const [isReportOpen, setIsReportOpen] = useState(false);
+  const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
+  const [isTermsOpen, setIsTermsOpen] = useState(false);
+
+  useEffect(() => {
+    const handleHash = () => {
+      if (window.location.hash === '#privacy') {
+        setIsPrivacyOpen(true);
+      } else if (window.location.hash === '#terms') {
+        setIsTermsOpen(true);
+      }
+    };
+    handleHash();
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   // Handlers
   const handleOpenQuote = (service?: ServiceItem) => {
@@ -99,7 +124,10 @@ export default function App() {
       </main>
 
       {/* 8. Footer Section */}
-      <Footer />
+      <Footer
+        onOpenPrivacy={() => setIsPrivacyOpen(true)}
+        onOpenTerms={() => setIsTermsOpen(true)}
+      />
 
       {/* Quote Request Modal */}
       {isQuoteOpen && (
@@ -129,6 +157,26 @@ export default function App() {
           <ReportModal
             isOpen={isReportOpen}
             onClose={() => setIsReportOpen(false)}
+          />
+        </Suspense>
+      )}
+
+      {/* Privacy Policy Modal */}
+      {isPrivacyOpen && (
+        <Suspense fallback={null}>
+          <PrivacyPolicyModal
+            isOpen={isPrivacyOpen}
+            onClose={() => setIsPrivacyOpen(false)}
+          />
+        </Suspense>
+      )}
+
+      {/* Terms of Service Modal */}
+      {isTermsOpen && (
+        <Suspense fallback={null}>
+          <TermsOfServiceModal
+            isOpen={isTermsOpen}
+            onClose={() => setIsTermsOpen(false)}
           />
         </Suspense>
       )}

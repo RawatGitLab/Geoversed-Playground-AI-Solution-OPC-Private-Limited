@@ -3,7 +3,12 @@ import { MapPin, Phone, Mail, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
 import { NAV_LINKS, COMPANY_INFO } from '../data/servicesData';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenPrivacy?: () => void;
+  onOpenTerms?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -85,7 +90,7 @@ export const Footer: React.FC = () => {
               </a>
             </div>
 
-            {/* ✉️ Email link text: info@geoversed.com */}
+            {/* ✉️ Email link text: geoversedmailbox@gmail.com */}
             <div className="flex items-center md:justify-end gap-2.5 text-sm text-slate-200">
               <Mail className="w-4 h-4 text-[#B3864B] shrink-0" />
               <a
@@ -104,8 +109,27 @@ export const Footer: React.FC = () => {
         <div className="mt-14 pt-8 border-t border-[#162c5c]/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
+            <a
+              href="#privacy"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenPrivacy?.();
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Privacy Policy
+            </a>
+            <a
+              id="footer-terms-link"
+              href="#terms"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenTerms?.();
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Terms of Service
+            </a>
             <button
               onClick={scrollToTop}
               className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors cursor-pointer ml-2"

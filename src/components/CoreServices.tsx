@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, CheckCircle2, Search } from 'lucide-react';
+import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { ServiceItem } from '../types';
 import { CORE_SERVICES } from '../data/servicesData';
 
@@ -12,7 +12,6 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
   onSelectServiceForQuote,
   onOpenDetails,
 }) => {
-  const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = [
@@ -24,30 +23,25 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
     'AI & Capacity Building',
   ];
 
-  // Filter logic while keeping all cards readily accessible
+  // Filter logic based on category
   const filteredServices = CORE_SERVICES.filter((service) => {
-    const matchesSearch =
-      service.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      service.id.includes(searchQuery);
-
-    if (selectedCategory === 'All') return matchesSearch;
+    if (selectedCategory === 'All') return true;
     if (selectedCategory === 'Digital Geospatial') {
-      return matchesSearch && ['01', '02', '03'].includes(service.id);
+      return ['01', '02', '03'].includes(service.id);
     }
     if (selectedCategory === 'Planning & Governance') {
-      return matchesSearch && ['03', '04'].includes(service.id);
+      return ['03', '04'].includes(service.id);
     }
     if (selectedCategory === 'Hydrology & Environment') {
-      return matchesSearch && ['05', '06', '07'].includes(service.id);
+      return ['05', '06', '07'].includes(service.id);
     }
     if (selectedCategory === 'Climate & Settlements') {
-      return matchesSearch && ['07', '08', '09'].includes(service.id);
+      return ['07', '08', '09'].includes(service.id);
     }
     if (selectedCategory === 'AI & Capacity Building') {
-      return matchesSearch && ['10', '11', '12'].includes(service.id);
+      return ['10', '11', '12'].includes(service.id);
     }
-    return matchesSearch;
+    return true;
   });
 
   return (
@@ -69,36 +63,21 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
           </p>
         </div>
 
-        {/* Optional quick search & filter toolbar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-10 pb-4 border-b border-slate-100">
-          {/* Quick Category Badges */}
-          <div className="flex items-center gap-2 overflow-x-auto w-full sm:w-auto py-1 scrollbar-none">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`text-xs sm:text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
-                  selectedCategory === cat
-                    ? 'bg-[#0F2042] text-white shadow-sm'
-                    : 'bg-[#F8F9FA] text-slate-600 hover:bg-slate-200'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
-          {/* Quick Search Input */}
-          <div className="relative w-full sm:w-64">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search services..."
-              className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-sm bg-[#F8F9FA] border border-slate-200 rounded-full focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B] transition-colors"
-            />
-          </div>
+        {/* Category Badges Toolbar */}
+        <div className="flex items-center justify-center gap-2 overflow-x-auto w-full py-1 mb-10 pb-4 border-b border-slate-100 scrollbar-none">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`text-xs sm:text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                selectedCategory === cat
+                  ? 'bg-[#0F2042] text-white shadow-sm'
+                  : 'bg-[#F8F9FA] text-slate-600 hover:bg-slate-200'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
         </div>
 
         {/* Grid Layout: Responsive 3-column CSS Grid (collapsing to 1-column on mobile) */}
@@ -175,15 +154,12 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
 
         {filteredServices.length === 0 && (
           <div className="text-center py-12 text-slate-500">
-            No services found matching "{searchQuery}".
+            No services found in this category.
             <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('All');
-              }}
+              onClick={() => setSelectedCategory('All')}
               className="ml-2 text-[#B3864B] font-semibold underline cursor-pointer"
             >
-              Reset filters
+              Show all services
             </button>
           </div>
         )}
