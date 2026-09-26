@@ -15,7 +15,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
       region: 'Kumaon & Garhwal Catchments',
       category: 'Hydrology',
       tag: 'Water Security',
-      summary: 'Delineating recharge zones and creating participatory 3D GIS models for 150+ drying perennial springs in Almora and Pithoragarh districts.',
+      summary: 'Delineating recharge zones and creating participatory 3D GIS models for 20+ drying perennial springs in Almora districts.',
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
       region: 'Uttarakhand Regional Planning',
       category: 'Web-GIS',
       tag: 'Digital Governance',
-      summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, and disaster mitigation dashboards.',
+      summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, Flood Risk Zoning Layers and disaster mitigation dashboards.',
     },
   ];
 

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChevronRight, Layers } from 'lucide-react';
-import heroBgImage from '../assets/images/himalayan_peaks_sharp_1789732575223.jpg';
+import heroBgWebp from '../assets/images/himalayan_peaks_sharp_1789732575223.webp';
+import heroBgJpg from '../assets/images/himalayan_peaks_sharp_1789732575223.jpg';
 
 interface HeroProps {
   onExploreServices: () => void;
@@ -8,6 +9,8 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <section
       id="home"
@@ -15,12 +18,22 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
     >
       {/* Background Image: Snow-capped Himalayan Mountain Peaks with Pine Trees */}
       <div className="absolute inset-0 z-0 bg-[#0F2042]">
-        <img
-          src={heroBgImage}
-          alt="Snow-capped Himalayan mountain peaks with pine trees"
-          className="w-full h-full object-cover object-center opacity-55 transition-opacity duration-300 filter-none"
-          referrerPolicy="no-referrer"
-        />
+        <picture>
+          <source srcSet={heroBgWebp} type="image/webp" />
+          <source srcSet={heroBgJpg} type="image/jpeg" />
+          <img
+            src={heroBgWebp}
+            alt="Snow-capped Himalayan mountain peaks with pine trees"
+            className={`w-full h-full object-cover object-center transition-opacity duration-700 filter-none ${
+              isLoaded ? 'opacity-55' : 'opacity-20'
+            }`}
+            loading="eager"
+            fetchPriority="high"
+            decoding="async"
+            onLoad={() => setIsLoaded(true)}
+            referrerPolicy="no-referrer"
+          />
+        </picture>
         {/* Transparent dark gradient layer without any blur to maintain text contrast */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0F2042]/40 via-transparent to-[#0F2042]/60 pointer-events-none" />
       </div>

@@ -65,7 +65,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
             id="services-section-subtext"
             className="text-slate-500 text-base sm:text-lg leading-relaxed font-normal"
           >
-            Advanced geoscience and GIS solutions engineered specifically for the intricate geological and developmental challenges of Himalayan regions and fragile ecological landscapes.
+            Advanced geoscience and GIS solutions engineered specifically for the intricate geography and developmental challenges of Himalayan regions and fragile ecological landscapes.
           </p>
         </div>
 
@@ -196,7 +196,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
               Tailored Himalayan Solutions
             </div>
             <h4 className="text-xl sm:text-2xl font-bold text-[#0F2042] font-['Poppins']">
-              Need a customized geospatial or geological survey?
+              Need a customized geospatial or geomorphological or geographical survey?
             </h4>
             <p className="text-slate-500 text-sm mt-1 max-w-xl">
               Our multidisciplinary team delivers precision mapping, field data acquisition, and spatial analytics for public agencies and research institutions.

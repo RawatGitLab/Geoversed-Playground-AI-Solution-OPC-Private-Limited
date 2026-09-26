@@ -208,11 +208,11 @@ export const AboutSection: React.FC = () => {
                   <span>The GEOVERSED Story &amp; Vision</span>
                 </div>
                 <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins'] leading-snug">
-                  Transforming Geoscience with Artificial Intelligence from the Central Himalayas
+                  Transforming Geospatial science with Artificial Intelligence from the Central Himalayas
                 </h3>
                 <p className="text-slate-600 text-sm leading-relaxed">
                   Headquartered in <strong>Almora, Uttarakhand</strong>, <strong>GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED</strong> was 
-                  founded to close the crucial divide between empirical on-ground geology and cutting-edge digital computing. 
+                  founded to close the crucial divide between empirical on-ground Geography and cutting-edge digital computing. 
                   We operate where the fragile Himalayan terrain demands highest accuracy and ethical environmental stewardship.
                 </p>
                 <p className="text-slate-600 text-sm leading-relaxed">
@@ -318,7 +318,7 @@ export const AboutSection: React.FC = () => {
                 {
                   icon: Mountain,
                   title: 'Himalayan Field Expertise',
-                  desc: 'Decades of ground-truthed geological explorations and hydrological surveys across remote Himalayan basins.',
+                  desc: 'Decades of ground-truthed Geographical explorations and hydrological surveys across remote Himalayan basins.',
                 },
                 {
                   icon: Cpu,

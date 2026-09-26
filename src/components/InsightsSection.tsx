@@ -8,25 +8,31 @@ interface InsightsSectionProps {
 export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight }) => {
   const articles = [
     {
-      title: 'Springshed Hydrogeology in Lesser Himalayas: Recharge Zone Dynamics',
-      date: 'September 2024',
-      category: 'Research Bulletin',
-      readTime: '6 min read',
-      excerpt: 'Analyzing isotope signatures and rainfall infiltration patterns to delineate critical recharge zones for natural mountain Naulas in Almora.',
+      id: 'dhargad-rejuvenation-report',
+      title: 'Rejuvenation Strategy of Dying Springs and Naulas in Dhargad Watershed (Jaigan Valley, District Bageshwar)',
+      date: 'January 2026',
+      category: 'Report',
+      readTime: 'Full Technical Report',
+      excerpt: 'Phase-I Rejuvenation of Springs & Naulas of Jatha & Pass Villages — Official GIScience-based micro-plans for groundwater augmentation (Towards Aviral Ganga) by Prof. J.S. Rawat, Er. Varun Rawat, Dr. N.C. Pant.',
+      buttonText: 'Report',
     },
     {
+      id: 'urban-carrying-capacity',
       title: 'Urban Carrying Capacity Frameworks for Hill Settlements',
       date: 'August 2024',
       category: 'Whitepaper',
       readTime: '8 min read',
       excerpt: 'Methodological synthesis of slope factor of safety, foundation overburden, and municipal drinking water constraints in tourist-dense towns.',
+      buttonText: 'Read Article',
     },
     {
+      id: 'landslide-hazard-mapping',
       title: 'GIS and Remote Sensing in Post-Monsoon Landslide Hazard Mapping',
       date: 'July 2024',
       category: 'Technical Note',
       readTime: '5 min read',
       excerpt: 'Integrating high-resolution LiDAR with multi-temporal Sentinel-2 imagery for slope deformation tracking and early warning systems.',
+      buttonText: 'Read Article',
     },
   ];
 
@@ -77,10 +83,15 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight 
               <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between">
                 <span className="text-xs text-slate-400">{item.readTime}</span>
                 <button
-                  onClick={() => onReadInsight(item.title)}
-                  className="text-xs font-semibold text-[#0F2042] hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors group/link"
+                  onClick={() => onReadInsight(item.id || item.title)}
+                  className={`text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-all group/link ${
+                    idx === 0
+                      ? 'px-3.5 py-1.5 rounded-lg bg-[#0F2042] text-white hover:bg-[#B3864B] shadow-xs hover:shadow-sm'
+                      : 'text-[#0F2042] hover:text-[#B3864B]'
+                  }`}
                 >
-                  <span>Read Article</span>
+                  {idx === 0 && <FileText className="w-3.5 h-3.5 text-[#E5B574]" />}
+                  <span>{item.buttonText}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
                 </button>
               </div>

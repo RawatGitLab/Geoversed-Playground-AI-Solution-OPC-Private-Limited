@@ -52,18 +52,18 @@ import {
   Award,
 } from 'lucide-react';
 import { ServiceItem } from '../types';
-import service1Banner from '../assets/images/service_1_banner_1789822361499.jpg';
-import service2Banner from '../assets/images/service_2_banner_1789920757626.jpg';
-import service3Banner from '../assets/images/service_3_banner_1789921059747.jpg';
-import service4Banner from '../assets/images/service_4_banner_1789921283127.jpg';
-import service5Banner from '../assets/images/service_5_banner_1789921414372.jpg';
-import service6Banner from '../assets/images/service_6_banner_1789921648768.jpg';
-import service7Banner from '../assets/images/service_7_banner_1789921828579.jpg';
-import service8Banner from '../assets/images/service_8_banner_1790052418156.jpg';
-import service9Banner from '../assets/images/service_9_banner_1790053167291.jpg';
-import service10Banner from '../assets/images/service_10_banner_1790053408029.jpg';
-import service11Banner from '../assets/images/service_11_banner_1790053697808.jpg';
-import service12Banner from '../assets/images/service_12_banner_1790054191491.jpg';
+import service1Banner from '../assets/images/service_1_banner_1789822361499.webp';
+import service2Banner from '../assets/images/service_2_banner_1789920757626.webp';
+import service3Banner from '../assets/images/service_3_banner_1789921059747.webp';
+import service4Banner from '../assets/images/service_4_banner_1789921283127.webp';
+import service5Banner from '../assets/images/service_5_banner_1789921414372.webp';
+import service6Banner from '../assets/images/service_6_banner_1789921648768.webp';
+import service7Banner from '../assets/images/service_7_banner_1789921828579.webp';
+import service8Banner from '../assets/images/service_8_banner_1790052418156.webp';
+import service9Banner from '../assets/images/service_9_banner_1790053167291.webp';
+import service10Banner from '../assets/images/service_10_banner_1790053408029.webp';
+import service11Banner from '../assets/images/service_11_banner_1790053697808.webp';
+import service12Banner from '../assets/images/service_12_banner_1790054191491.webp';
 
 interface ServiceDetailModalProps {
   service: ServiceItem | null;
@@ -274,6 +274,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-01-banner-img"
                   src={service1Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="Service 01 GIS and Web-GIS Development"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -412,6 +414,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-02-banner-img"
                   src={service2Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="Service 02 Application of GIS in Education and Research"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -547,6 +551,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-03-banner-img"
                   src={service3Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="Service 03 Application of GIS and Web-GIS for Developing g-Governance"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -692,6 +698,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-04-banner-img"
                   src={service4Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="Service 04 Urban and Rural Planning"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -835,6 +843,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-05-banner-img"
                   src={service5Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="Service 05 Springs and River Rejuvenation"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -978,6 +988,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-06-banner-img"
                   src={service6Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="06 Environmental Impact Assessment GEOVERSED Almora"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -1121,6 +1133,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-07-banner-img"
                   src={service7Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="07 Climate Change Studies GEOVERSED Almora"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -1274,6 +1288,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <img
                   id="service-08-banner-img"
                   src={service8Banner}
+                  loading="lazy"
+                  decoding="async"
                   alt="08 Carrying Capacity of Hill Cities and Towns GEOVERSED Almora"
                   className="w-full h-auto block"
                   referrerPolicy="no-referrer"
@@ -1424,6 +1440,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <div className="relative w-full overflow-hidden bg-slate-950">
                   <img
                     src={service9Banner}
+                    loading="lazy"
+                    decoding="async"
                     alt="Natural and Human Resource Mapping - GEOVERSED Smart Solution Almora"
                     className="w-full h-auto object-contain max-h-[380px] sm:max-h-[440px] mx-auto group-hover:scale-[1.01] transition-transform duration-500"
                     referrerPolicy="no-referrer"
@@ -1865,6 +1883,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <div className="relative w-full overflow-hidden bg-[#090e1d]">
                   <img
                     src={service10Banner}
+                    loading="lazy"
+                    decoding="async"
                     alt="10 AI-Empowered Services - GEOVERSED Smart Solution Almora"
                     className="w-full h-auto object-contain max-h-[380px] sm:max-h-[440px] mx-auto group-hover:scale-[1.01] transition-transform duration-500"
                     referrerPolicy="no-referrer"
@@ -2230,6 +2250,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <div className="relative w-full overflow-hidden bg-slate-950">
                   <img
                     src={service11Banner}
+                    loading="lazy"
+                    decoding="async"
                     alt="11 Capacity Building of Stakeholders - GEOVERSED Smart Solution Almora"
                     className="w-full h-auto object-contain max-h-[380px] sm:max-h-[440px] mx-auto group-hover:scale-[1.01] transition-transform duration-500"
                     referrerPolicy="no-referrer"
@@ -2261,7 +2283,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                       Professional Geospatial Capacity Building
                     </div>
                     <p className="text-[#0F2042] font-medium text-xs sm:text-sm leading-relaxed">
-                      "Training for govt officers, teachers, students, NGOs on GIS, GPS, drone survey, and data analysis."
+                      "Training for govt officers, teachers, students, NGOs on GIS, Web-GIS, GPS, and data analysis."
                     </p>
                     <p className="text-slate-500 text-xs mt-1">
                       Conducted as 3-day to 15-day residential trainings at Almora with recognized certifications and course handouts.
@@ -2557,6 +2579,8 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                 <div className="relative w-full overflow-hidden bg-slate-950">
                   <img
                     src={service12Banner}
+                    loading="lazy"
+                    decoding="async"
                     alt="12 Curriculum Designing and Dissertation Supervising - GEOVERSED Smart Solution"
                     className="w-full h-auto object-contain max-h-[380px] sm:max-h-[440px] mx-auto group-hover:scale-[1.01] transition-transform duration-500"
                     referrerPolicy="no-referrer"
@@ -2597,7 +2621,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
                         Academic Curriculum Design
                       </div>
                       <p className="text-[#0F2042] font-semibold text-xs leading-relaxed italic">
-                        "We design UG/PG/Diploma curricula in Geoinformatics, Geography, and Environmental Science aligned strictly with NEP 2020 outcome-based frameworks."
+                        "We design UG/PG/Diploma curriculam in Geography, and Environmental Science aligned strictly with NEP 2020 outcome-based frameworks."
                       </p>
                     </div>
                   </div>
