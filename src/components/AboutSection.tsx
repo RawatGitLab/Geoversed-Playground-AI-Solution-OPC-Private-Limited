@@ -21,6 +21,8 @@ import {
   ChevronRight,
   TrendingUp,
   Landmark,
+  Target,
+  Eye,
 } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
@@ -122,10 +124,280 @@ export const AboutSection: React.FC = () => {
     },
   ];
 
+  const [objectsFilter, setObjectsFilter] = useState<'all' | 'main' | 'furtherance'>('all');
+
+  const mainObjects = [
+    {
+      id: 1,
+      title: 'SaaS Platforms & Enterprise Software Solutions',
+      text: 'To carry on the business of designing, developing, implementing, maintaining, and operating software, Software-as-a-Service (SaaS) platforms, cloud-based applications, and enterprise software solutions.',
+    },
+    {
+      id: 2,
+      title: 'Artificial Intelligence, ML & Decision-Support Systems',
+      text: 'To undertake the business of development and application of Artificial Intelligence (AI), Machine Learning (ML), data analytics, automation systems, and decision-support systems.',
+    },
+    {
+      id: 3,
+      title: 'GIS, Remote Sensing, Drone & LiDAR Surveys',
+      text: 'To carry on the business of Geographic Information Systems (GIS), Remote Sensing, Geospatial Technology, Drone Survey, LiDAR Survey, mapping, surveying, and allied services.',
+    },
+    {
+      id: 4,
+      title: 'Satellite Image Processing & 3D Terrain Modeling',
+      text: 'To provide services in GIS mapping, satellite image processing, spatial data analysis, 3D terrain modeling, watershed mapping, and geospatial data management.',
+    },
+    {
+      id: 5,
+      title: 'Web GIS, Mobile GIS & Spatial Visualization',
+      text: 'To design, develop, and implement Web GIS, Mobile GIS applications, digital mapping platforms, and data visualization systems.',
+    },
+    {
+      id: 6,
+      title: 'IT Consulting, System Integration & Cybersecurity',
+      text: 'To provide information technology services including IT consulting, system integration, DevOps services, cybersecurity services, and digital transformation solutions.',
+    },
+    {
+      id: 7,
+      title: 'Consultancy, DPRs & Natural Resource Infrastructure',
+      text: 'To undertake consultancy services, preparation of Detailed Project Reports (DPRs), project planning, execution, and monitoring in the fields of water resources, river rejuvenation, forestry, agriculture, rural development, environment, and infrastructure.',
+    },
+    {
+      id: 8,
+      title: 'National Flagship Programs & Public Implementing Agency',
+      text: 'To act as technical consultants, service providers, or implementing agencies for government departments, public sector undertakings, private organizations, and other institutions for projects including but not limited to PM Gati-Shakti, SARRA, Jal Jeevan Mission, MGNREGA, CAMPA, Namami Gange, Smart Cities, Disaster Management, and similar programmes.',
+    },
+    {
+      id: 9,
+      title: 'Software Products, Platform Deals & APIs',
+      text: 'To develop, own, license, sell, lease, or otherwise deal in software products, applications, platforms, and application programming interfaces (APIs).',
+    },
+  ];
+
+  const furtheranceObjects = [
+    {
+      id: 1,
+      title: 'Collaborations & Joint Ventures',
+      text: 'To enter into agreements, collaborations, joint ventures, or partnerships with government authorities, companies, firms, institutions, or individuals for carrying out the business of the Company.',
+    },
+    {
+      id: 2,
+      title: 'Funding, Borrowing & Financial Assistance',
+      text: 'To borrow, raise, or secure funds, and to obtain financial assistance, loans, grants, or investments from banks, financial institutions, investors, or other lawful sources, in accordance with applicable laws.',
+    },
+    {
+      id: 3,
+      title: 'R&D Centers & Technical Institutions',
+      text: 'To establish, maintain, and operate research and development centers, training centers, and technical institutions related to the business of the Company.',
+    },
+    {
+      id: 4,
+      title: 'Intellectual Property Rights & Commercialization',
+      text: 'To acquire, register, protect, use, and commercialize intellectual property rights including patents, copyrights, trademarks, designs, software, and proprietary technologies.',
+    },
+    {
+      id: 5,
+      title: 'Talent Acquisition & Technical Capacity Building',
+      text: 'To recruit, employ, train, and retain professionals, consultants, and technical personnel for the efficient conduct of the business.',
+    },
+    {
+      id: 6,
+      title: 'Incidental & Conducive Lawful Acts',
+      text: 'To do all such other lawful acts, deeds, and things as are incidental or conducive to the attainment of the above objects.',
+    },
+  ];
+
   return (
     <section id="about" className="py-20 lg:py-24 bg-[#F8F9FA] border-y border-slate-200/70">
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
+        {/* Mission, Vision & 5. Object Section */}
+        <div id="mission-vision-objects" className="mb-16 space-y-8">
+          
+          {/* Top Row: Vision & Mission */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+            
+            {/* 4. VISION Card */}
+            <div className="bg-[#0F2042] text-white rounded-2xl border border-slate-800 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D4A366] text-xs font-bold uppercase tracking-wider font-['Poppins']">
+                    <Eye className="w-3.5 h-3.5 text-[#B3864B]" />
+                    <span> VISION</span>
+                  </div>
+                  <span className="text-[11px] font-semibold text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
+                    Global Leadership
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-['Poppins'] mb-3 leading-snug">
+                  Category-Defining Global Technology Enterprise
+                </h3>
+                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed text-justify">
+                  To build a category-defining global technology enterprise at the intersection of SaaS, AI, and geospatial intelligence—delivering scalable, high-impact platforms that drive digital transformation, unlock operational efficiency, and generate long-term enterprise and institutional value. We aim to lead the global evolution of data-driven governance and intelligent infrastructure by enabling smarter cities, resilient ecosystems, and sustainable resource management, positioning ourselves as a strategic force in shaping the future of digital economies while delivering sustained growth, innovation, and market leadership worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* MISSION Card */}
+            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#B3864B]/40 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#B3864B]/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
+              <div>
+                <div className="flex items-center justify-between gap-3 mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0F2042]/5 border border-[#0F2042]/10 text-[#0F2042] text-xs font-bold uppercase tracking-wider font-['Poppins']">
+                    <Target className="w-3.5 h-3.5 text-[#B3864B]" />
+                    <span>MISSION</span>
+                  </div>
+                  <span className="text-[11px] font-semibold text-[#B3864B] bg-[#B3864B]/10 px-2.5 py-0.5 rounded-full border border-[#B3864B]/20">
+                    g-Governance &amp; Digital India
+                  </span>
+                </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-[#0F2042] font-['Poppins'] mb-3 leading-snug">
+                  Transforming e-Governance into Intelligent g-Governance
+                </h3>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
+                  Our mission is to design, develop, and scale enterprise-grade SaaS platforms and AI-driven software solutions that empower businesses, governments, and institutions to automate operations, unlock data intelligence, and accelerate digital transformation. By integrating GIS and Remote Sensing, we transform conventional e-Governance into intelligent g-Governance — improving transparency, efficiency, and decision-making across water resources, disaster management, urban planning, and infrastructure. In line with Digital India, we deliver scalable, high-impact technology solutions for sustainable growth. Aligned with the vision of Digital India, our approach focuses on delivering scalable innovation, fostering inclusive growth, and creating long-term value for stakeholders while driving measurable socio-economic impact through technology excellence.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+          {/* 5. OBJECT Container */}
+          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+            {/* Object Header */}
+            <div className="p-6 sm:p-8 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-2">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Statutory Corporate Memorandum</span>
+                </div>
+                <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins']">
+                   OBJECTIVE
+                </h3>
+                <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
+                  Chartered under Section 4 and Schedule I of the Companies Act, 2013 (INC-33 e-MOA).
+                </p>
+              </div>
+
+              {/* Filter Tabs */}
+              <div className="inline-flex p-1 bg-white rounded-xl border border-slate-200 shadow-sm text-xs font-['Poppins']">
+                <button
+                  type="button"
+                  onClick={() => setObjectsFilter('all')}
+                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                    objectsFilter === 'all'
+                      ? 'bg-[#0F2042] text-white shadow-sm'
+                      : 'text-slate-600 hover:text-[#0F2042]'
+                  }`}
+                >
+                  All (15)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setObjectsFilter('main')}
+                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                    objectsFilter === 'main'
+                      ? 'bg-[#0F2042] text-white shadow-sm'
+                      : 'text-slate-600 hover:text-[#0F2042]'
+                  }`}
+                >
+                  A. Main Objective (9)
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setObjectsFilter('furtherance')}
+                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                    objectsFilter === 'furtherance'
+                      ? 'bg-[#0F2042] text-white shadow-sm'
+                      : 'text-slate-600 hover:text-[#0F2042]'
+                  }`}
+                >
+                  B. Furtherance (6)
+                </button>
+              </div>
+            </div>
+
+            {/* Objects Content */}
+            <div className="p-6 sm:p-8 space-y-8">
+              
+              {/* Part A: Main Objects */}
+              {(objectsFilter === 'all' || objectsFilter === 'main') && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#B3864B]"></span>
+                    <h4 className="font-bold text-base sm:text-lg text-[#0F2042] font-['Poppins']">
+                      A. MAIN OBJECTS
+                    </h4>
+                    <span className="text-xs text-slate-400 font-medium ml-auto">9 Primary Clauses</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {mainObjects.map((obj) => (
+                      <div
+                        key={obj.id}
+                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/70 hover:border-[#B3864B]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#0F2042]/5 group-hover:bg-[#0F2042] text-[#0F2042] group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
+                              {obj.id}
+                            </span>
+                          </div>
+                          <h5 className="text-xs font-bold text-[#0F2042] font-['Poppins'] mb-1.5 group-hover:text-[#B3864B] transition-colors">
+                            {obj.title}
+                          </h5>
+                          <p className="text-slate-600 text-xs leading-relaxed">
+                            {obj.text}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* Part B: Matters Necessary for Furtherance of Objects */}
+              {(objectsFilter === 'all' || objectsFilter === 'furtherance') && (
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#0F2042]"></span>
+                    <h4 className="font-bold text-base sm:text-lg text-[#0F2042] font-['Poppins']">
+                      B. MATTERS WHICH ARE NECESSARY FOR FURTHERANCE OF THE OBJECTS
+                    </h4>
+                    <span className="text-xs text-slate-400 font-medium ml-auto">6 Incidental Clauses</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {furtheranceObjects.map((obj) => (
+                      <div
+                        key={obj.id}
+                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/70 hover:border-[#0F2042]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#B3864B]/10 group-hover:bg-[#B3864B] text-[#B3864B] group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
+                              {obj.id}
+                            </span>
+                          </div>
+                          <h5 className="text-xs font-bold text-[#0F2042] font-['Poppins'] mb-1.5 group-hover:text-[#B3864B] transition-colors">
+                            {obj.title}
+                          </h5>
+                          <p className="text-slate-600 text-xs leading-relaxed">
+                            {obj.text}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+            </div>
+          </div>
+
+        </div>
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-3">
