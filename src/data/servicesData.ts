@@ -73,13 +73,13 @@ export const CORE_SERVICES: ServiceItem[] = [
   {
     id: '11',
     title: 'Capacity Building of Stakeholders',
-    description: 'Training for govt officers, teachers, students, NGOs on GIS, GPS, drone survey, and data analysis.',
+    description: 'Training for govt officers, teachers, students, NGOs on GIS, Web-GIS and GPS and data analysis.',
     category: 'Stakeholder Training & Capacity',
   },
   {
     id: '12',
     title: 'Curriculum Designing and Dissertation Supervising',
-    description: 'We design UG/PG/Diploma curricula in Geoinformatics, Geography, Environmental Science and supervise dissertations/thesis for all levels.',
+    description: 'We design UG/PG/Diploma curricula in Digital Cartography, Climate Change Science, Geography, Environmental Science and supervise dissertations/thesis for all levels.',
     category: 'Curriculum & Dissertation Supervising',
   },
 ];

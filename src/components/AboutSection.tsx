@@ -224,7 +224,7 @@ export const AboutSection: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D4A366] text-xs font-bold uppercase tracking-wider font-['Poppins']">
                     <Eye className="w-3.5 h-3.5 text-[#B3864B]" />
-                    <span> VISION</span>
+                    <span>OUR VISION</span>
                   </div>
                   <span className="text-[11px] font-semibold text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
                     Global Leadership
@@ -246,7 +246,7 @@ export const AboutSection: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0F2042]/5 border border-[#0F2042]/10 text-[#0F2042] text-xs font-bold uppercase tracking-wider font-['Poppins']">
                     <Target className="w-3.5 h-3.5 text-[#B3864B]" />
-                    <span>MISSION</span>
+                    <span> OUR MISSION</span>
                   </div>
                   <span className="text-[11px] font-semibold text-[#B3864B] bg-[#B3864B]/10 px-2.5 py-0.5 rounded-full border border-[#B3864B]/20">
                     g-Governance &amp; Digital India
@@ -273,7 +273,7 @@ export const AboutSection: React.FC = () => {
                   <span>Statutory Corporate Memorandum</span>
                 </div>
                 <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins']">
-                   OBJECTIVE
+                  OUR OBJECTIVE
                 </h3>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
                   Chartered under Section 4 and Schedule I of the Companies Act, 2013 (INC-33 e-MOA).
