@@ -93,6 +93,8 @@ export const COMPANY_INFO = {
   location: 'Khatyari, Manoj Vihar, Almora, Uttarakhand 263601, India',
   phone: '8273753398',
   phoneDisplay: 'Ph: 8273753398',
+  phone2: '7533983533',
+  phone2Display: 'Ph: 7533983533',
   email: 'geoversedmailbox@gmail.com',
   servicesSubheading: 'Comprehensive geospatial and geological intelligence solutions tailored for Himalayan ecology, sustainable infrastructure, and resilient regional governance.',
 };

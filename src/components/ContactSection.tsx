@@ -58,7 +58,7 @@ export const ContactSection: React.FC = () => {
             Get In Touch
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F2042] font-['Poppins'] tracking-tight">
-            Connect With Our Geoscience Team
+            Connect With Our Geoversed Team
           </h2>
           <p className="text-slate-500 text-sm sm:text-base mt-2">
             Located in Almora, Uttarakhand. Reach out for research collaborations, GIS consultancy, or government technical partnerships.
@@ -91,12 +91,20 @@ export const ContactSection: React.FC = () => {
                   </div>
                   <div>
                     <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Telephone</div>
-                    <a
-                      href={`tel:${COMPANY_INFO.phone}`}
-                      className="text-sm font-medium text-slate-100 hover:text-[#B3864B] transition-colors mt-0.5 block"
-                    >
-                      {COMPANY_INFO.phoneDisplay}
-                    </a>
+                    <div className="space-y-1 mt-0.5">
+                      <a
+                        href={`tel:${COMPANY_INFO.phone}`}
+                        className="text-sm font-medium text-slate-100 hover:text-[#B3864B] transition-colors block"
+                      >
+                        {COMPANY_INFO.phoneDisplay}
+                      </a>
+                      <a
+                        href={`tel:${COMPANY_INFO.phone2}`}
+                        className="text-sm font-medium text-slate-100 hover:text-[#B3864B] transition-colors block"
+                      >
+                        {COMPANY_INFO.phone2Display}
+                      </a>
+                    </div>
                   </div>
                 </div>
 

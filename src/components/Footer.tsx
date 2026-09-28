@@ -78,16 +78,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
               <span id="footer-location-text">{COMPANY_INFO.location}</span>
             </div>
 
-            {/* 📞 Phone link text: Ph: 8273753398 */}
-            <div className="flex items-center md:justify-end gap-2.5 text-sm text-slate-200">
-              <Phone className="w-4 h-4 text-[#B3864B] shrink-0" />
-              <a
-                id="footer-phone-link"
-                href={`tel:${COMPANY_INFO.phone}`}
-                className="hover:text-white hover:underline transition-colors"
-              >
-                {COMPANY_INFO.phoneDisplay}
-              </a>
+            {/* 📞 Phone link text: Ph: 8273753398 / 7533983533 */}
+            <div className="flex items-start md:justify-end gap-2.5 text-sm text-slate-200">
+              <Phone className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
+              <div className="flex flex-col md:items-end space-y-0.5">
+                <a
+                  id="footer-phone-link"
+                  href={`tel:${COMPANY_INFO.phone}`}
+                  className="hover:text-white hover:underline transition-colors"
+                >
+                  {COMPANY_INFO.phoneDisplay}
+                </a>
+                <a
+                  id="footer-phone-link-2"
+                  href={`tel:${COMPANY_INFO.phone2}`}
+                  className="hover:text-white hover:underline transition-colors text-xs text-slate-300"
+                >
+                  {COMPANY_INFO.phone2Display}
+                </a>
+              </div>
             </div>
 
             {/* ✉️ Email link text: geoversedmailbox@gmail.com */}
