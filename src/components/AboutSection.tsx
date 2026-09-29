@@ -472,32 +472,34 @@ export const AboutSection: React.FC = () => {
         {/* Tab 1: Corporate Overview & Identity */}
         {activeTab === 'profile' && (
           <div className="space-y-8 animate-fadeIn">
-            {/* Top 2-Column Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Top 2-Column Overview (Equal Size & Length) */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
               
               {/* Left Column: Narrative */}
-              <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-5">
-                <div className="flex items-center gap-2 text-xs font-bold text-[#B3864B] uppercase tracking-wider font-['Poppins']">
-                  <Mountain className="w-4 h-4" />
-                  <span>The GEOVERSED Story &amp; Vision</span>
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-5 flex flex-col justify-between h-full">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-xs font-bold text-[#B3864B] uppercase tracking-wider font-['Poppins']">
+                    <Mountain className="w-4 h-4" />
+                    <span>The GEOVERSED Story &amp; Vision</span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins'] leading-snug">
+                    Transforming Geospatial science with Artificial Intelligence from the Central Himalayas
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    Headquartered in <strong>Almora, Uttarakhand</strong>, <strong>GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED</strong> was 
+                    founded to close the crucial divide between empirical on-ground Geography and cutting-edge digital computing. 
+                    We operate where the fragile Himalayan terrain demands highest accuracy and ethical environmental stewardship.
+                  </p>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    Our multidisciplinary team unites geologists, GIS architects, AI software engineers, environmental scientists, 
+                    and regional planners. Pursuant to our statutory Memorandum of Association, we develop scalable software products, 
+                    AI models, and comprehensive Detailed Project Reports (DPRs) that empower government departments, private enterprises, 
+                    and academic institutions to thrive.
+                  </p>
                 </div>
-                <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins'] leading-snug">
-                  Transforming Geospatial science with Artificial Intelligence from the Central Himalayas
-                </h3>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Headquartered in <strong>Almora, Uttarakhand</strong>, <strong>GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED</strong> was 
-                  founded to close the crucial divide between empirical on-ground Geography and cutting-edge digital computing. 
-                  We operate where the fragile Himalayan terrain demands highest accuracy and ethical environmental stewardship.
-                </p>
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  Our multidisciplinary team unites geologists, GIS architects, AI software engineers, environmental scientists, 
-                  and regional planners. Pursuant to our statutory Memorandum of Association, we develop scalable software products, 
-                  AI models, and comprehensive Detailed Project Reports (DPRs) that empower government departments, private enterprises, 
-                  and academic institutions to thrive.
-                </p>
 
                 {/* Key Metrics Ribbon */}
-                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
+                <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100 mt-auto">
                   <div>
                     <span className="block text-2xl font-bold text-[#0F2042] font-['Poppins']">13</span>
                     <span className="text-xs text-slate-500">Districts Covered</span>
@@ -514,87 +516,89 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Right Column: Official MCA Incorporation Card */}
-              <div className="lg:col-span-5 bg-[#0F2042] text-white rounded-2xl p-6 sm:p-7 shadow-lg border border-slate-800 space-y-5">
-                <div className="flex items-center justify-between pb-3 border-b border-white/10">
-                  <div className="flex items-center gap-2">
-                    <ShieldCheck className="w-5 h-5 text-[#B3864B]" />
-                    <span className="font-bold text-xs uppercase tracking-wider text-slate-200 font-['Poppins']">
-                      Official Incorporation Data
+              <div className="bg-[#0F2042] text-white rounded-2xl p-6 sm:p-7 shadow-lg border border-slate-800 space-y-5 flex flex-col justify-between h-full">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-white/10">
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck className="w-5 h-5 text-[#B3864B]" />
+                      <span className="font-bold text-xs uppercase tracking-wider text-slate-200 font-['Poppins']">
+                        Official Incorporation Data
+                      </span>
+                    </div>
+                    <span className="text-[10px] font-semibold bg-[#B3864B]/20 text-[#B3864B] px-2 py-0.5 rounded border border-[#B3864B]/30">
+                      Govt. of India
                     </span>
                   </div>
-                  <span className="text-[10px] font-semibold bg-[#B3864B]/20 text-[#B3864B] px-2 py-0.5 rounded border border-[#B3864B]/30">
-                    Govt. of India
-                  </span>
-                </div>
 
-                <div className="space-y-3.5 text-xs">
-                  <div>
-                    <span className="text-slate-400 block text-[11px] font-medium">Corporate Legal Entity</span>
-                    <strong className="text-white text-sm font-['Poppins'] leading-tight block mt-0.5">
-                      GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED
-                    </strong>
-                  </div>
+                  <div className="space-y-3.5 text-xs">
+                    <div>
+                      <span className="text-slate-400 block text-[11px] font-medium">Corporate Legal Entity</span>
+                      <strong className="text-white text-sm font-['Poppins'] leading-tight block mt-0.5">
+                        GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED
+                      </strong>
+                    </div>
 
-                  <div className="grid grid-cols-2 gap-3 pt-1">
-                    <div>
-                      <span className="text-slate-400 block text-[11px] font-medium">Company Structure</span>
-                      <span className="text-slate-200 font-semibold">One Person Company (OPC)</span>
-                      <span className="text-[10px] text-slate-400 block">Limited by Shares</span>
-                    </div>
-                    <div>
-                      <span className="text-slate-400 block text-[11px] font-medium">Statutory Forms</span>
-                      <span className="text-slate-200 font-semibold">INC-33 (e-MOA)</span>
-                      <span className="text-[10px] text-slate-400 block">INC-34 (e-AOA)</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3 pt-1">
-                    <div>
-                      <span className="text-slate-400 block text-[11px] font-medium">State of Incorporation</span>
-                      <span className="text-slate-200 font-semibold flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5 text-[#B3864B]" /> Uttarakhand
-                      </span>
-                    </div>
-                    <div>
-                      <span className="text-slate-400 block text-[11px] font-medium">Certificate of Incorporation</span>
-                      <span className="text-slate-200 font-semibold flex items-center gap-1">
-                        <a
-                          href="/reports/incorporation_certificate.pdf"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 text-slate-200 hover:text-[#B3864B] transition-colors group/cert"
-                          title="Open Official Certificate of Incorporation (PDF)"
-                        >
-                          <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" />
-                          <span className="underline underline-offset-2 decoration-[#B3864B]/40 group-hover/cert:decoration-[#B3864B]">
-                            Certificate
-                          </span>
-                          <ExternalLink className="w-3 h-3 text-slate-400 group-hover/cert:text-[#B3864B]" />
-                        </a>
-                      </span>
-                      <span className="text-[10px] text-slate-400 block">MCA Govt. of India</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-2 border-t border-white/10">
-                    <span className="text-slate-400 block text-[11px] font-medium">Founder &amp; First Director</span>
-                    <div className="flex items-center gap-2 mt-1">
-                      <div className="w-7 h-7 rounded-full bg-[#B3864B]/20 flex items-center justify-center text-[#B3864B]">
-                        <UserCheck className="w-4 h-4" />
+                    <div className="grid grid-cols-2 gap-3 pt-1">
+                      <div>
+                        <span className="text-slate-400 block text-[11px] font-medium">Company Structure</span>
+                        <span className="text-slate-200 font-semibold">One Person Company (OPC)</span>
+                        <span className="text-[10px] text-slate-400 block">Limited by Shares</span>
                       </div>
                       <div>
-                        <strong className="text-white text-xs font-['Poppins']">Varun Rawat</strong>
-                        <span className="text-slate-400 text-[10px] block">Director &amp; Chief Geospatial Architect</span>
+                        <span className="text-slate-400 block text-[11px] font-medium">Statutory Forms</span>
+                        <span className="text-slate-200 font-semibold">INC-33 (e-MOA)</span>
+                        <span className="text-[10px] text-slate-400 block">INC-34 (e-AOA)</span>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-3 pt-1">
+                      <div>
+                        <span className="text-slate-400 block text-[11px] font-medium">State of Incorporation</span>
+                        <span className="text-slate-200 font-semibold flex items-center gap-1">
+                          <MapPin className="w-3.5 h-3.5 text-[#B3864B]" /> Uttarakhand
+                        </span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 block text-[11px] font-medium">Certificate of Incorporation</span>
+                        <span className="text-slate-200 font-semibold flex items-center gap-1">
+                          <a
+                            href="/reports/incorporation_certificate.pdf"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-slate-200 hover:text-[#B3864B] transition-colors group/cert"
+                            title="Open Official Certificate of Incorporation (PDF)"
+                          >
+                            <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" />
+                            <span className="underline underline-offset-2 decoration-[#B3864B]/40 group-hover/cert:decoration-[#B3864B]">
+                              Certificate
+                            </span>
+                            <ExternalLink className="w-3 h-3 text-slate-400 group-hover/cert:text-[#B3864B]" />
+                          </a>
+                        </span>
+                        <span className="text-[10px] text-slate-400 block">MCA Govt. of India</span>
+                      </div>
+                    </div>
+
+                    <div className="pt-2 border-t border-white/10">
+                      <span className="text-slate-400 block text-[11px] font-medium">Founder &amp; First Director</span>
+                      <div className="flex items-center gap-2 mt-1">
+                        <div className="w-7 h-7 rounded-full bg-[#B3864B]/20 flex items-center justify-center text-[#B3864B]">
+                          <UserCheck className="w-4 h-4" />
+                        </div>
+                        <div>
+                          <strong className="text-white text-xs font-['Poppins']">Varun Rawat</strong>
+                          <span className="text-slate-400 text-[10px] block">Director &amp; Chief Geospatial Architect</span>
+                        </div>
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  <div className="pt-2 border-t border-white/10">
-                    <span className="text-slate-400 block text-[11px] font-medium">Registered Office Address</span>
-                    <p className="text-slate-300 text-[11px] leading-relaxed mt-0.5">
-                      Khatyari, Manoj Vihar, Almora, Uttarakhand – 263601, India
-                    </p>
-                  </div>
+                <div className="pt-3 border-t border-white/10 text-xs mt-auto">
+                  <span className="text-slate-400 block text-[11px] font-medium">Registered Office Address</span>
+                  <p className="text-slate-300 text-[11px] leading-relaxed mt-0.5">
+                    Khatyari, Manoj Vihar, Almora, Uttarakhand – 263601, India
+                  </p>
                 </div>
               </div>
 

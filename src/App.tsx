@@ -103,6 +103,7 @@ export default function App() {
 
         {/* 6. Insights Section */}
         <InsightsSection
+          onOpenQuote={() => handleOpenQuote()}
           onReadInsight={() => {
             handleOpenDetails(CORE_SERVICES[0]);
           }}

@@ -9,10 +9,15 @@ interface ProjectsSectionProps {
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote }) => {
   const [activeFilter, setActiveFilter] = useState('All');
 
+  // The first three project divs were moved to section#insights (Knowledge Hub / Publications)
+  const remainingProjects = PROJECTS_DATA.slice(3);
+
   const filteredProjects =
     activeFilter === 'All'
-      ? PROJECTS_DATA
-      : PROJECTS_DATA.filter((p) => p.category === activeFilter);
+      ? remainingProjects
+      : remainingProjects.filter((p) => p.category === activeFilter);
+
+  const filterCategories = ['All', 'Infrastructure', 'Hydrology', 'Environment'];
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -34,7 +39,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
 
           {/* Filter Pills */}
           <div className="flex items-center gap-2 flex-wrap">
-            {['All', 'Hydrology', 'Urban Planning', 'Web-GIS', 'Infrastructure', 'Environment'].map((filter) => (
+            {filterCategories.map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
@@ -50,7 +55,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
           </div>
         </div>
 
-        {/* Project Cards Grid */}
+        {/* Project Cards Grid (Remaining Engagements) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredProjects.map((item) => (
             <div
@@ -66,7 +71,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                   </span>
                 </div>
 
-                {/* 📄 Clickable Technical Report Button at Annotated Position */}
                 {item.reportUrl && (
                   <div className="mb-3">
                     <a

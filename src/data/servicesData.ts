@@ -119,7 +119,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 3,
     title: ' Rejuvenation strategy of rainfed jamakhal stream in the lessor himalayan region district Dehradun (Uttarakhand)',
-    region: 'Kotimycheck and Thana Danda Villages of the Jamankhal Watershed',
+    region: 'Kotimycheck and Thana Jamankhal Watershed',
     category: 'Web-GIS',
     tag: 'Digital Governance',
     summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, Flood Risk Zoning Layers and disaster mitigation dashboards.',
