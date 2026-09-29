@@ -23,10 +23,12 @@ import {
   Landmark,
   Target,
   Eye,
+  X,
 } from 'lucide-react';
 
 export const AboutSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'profile' | 'objects' | 'missions' | 'governance'>('profile');
+  const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
 
   // National Flagship Programs from Clause 3(a)(10) of INC-33
   const nationalMissions = [
@@ -553,10 +555,16 @@ export const AboutSection: React.FC = () => {
                         <MapPin className="w-3.5 h-3.5 text-[#B3864B]" /> Uttarakhand
                       </span>
                     </div>
-                    <div>
-                      <span className="text-slate-400 block text-[11px] font-medium">Authorized Capital</span>
-                      <span className="text-slate-200 font-semibold">₹1,00,000 INR</span>
-                      <span className="text-[10px] text-slate-400 block">10,000 Equity Shares</span>
+                    <div
+                      onClick={() => setIsCertificateModalOpen(true)}
+                      className="cursor-pointer group/cert"
+                      title="Click to view Certificate of Incorporation"
+                    >
+                      <span className="text-slate-400 block text-[11px] font-medium">Certificate of Incorporation</span>
+                      <span className="text-slate-200 group-hover/cert:text-[#B3864B] font-semibold flex items-center gap-1 transition-colors">
+                        <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" /> Certificate
+                      </span>
+                      <span className="text-[10px] text-slate-400 block">MCA Govt. of India</span>
                     </div>
                   </div>
 
@@ -825,6 +833,96 @@ export const AboutSection: React.FC = () => {
         )}
 
       </div>
+
+      {/* Certificate of Incorporation Modal */}
+      {isCertificateModalOpen && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-fadeIn"
+          onClick={() => setIsCertificateModalOpen(false)}
+        >
+          <div
+            className="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative max-h-[90vh] overflow-y-auto text-left"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsCertificateModalOpen(false)}
+              className="absolute top-4 right-4 p-1.5 text-slate-400 hover:text-[#0F2042] hover:bg-slate-100 rounded-full transition-colors cursor-pointer"
+              aria-label="Close modal"
+            >
+              <X className="w-5 h-5" />
+            </button>
+
+            {/* Header with National Emblem / MCA Branding */}
+            <div className="text-center pb-5 border-b border-slate-200">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#0F2042]/5 text-[#0F2042] mb-3">
+                <Landmark className="w-6 h-6 text-[#B3864B]" />
+              </div>
+              <div className="text-[11px] font-bold tracking-widest text-[#B3864B] uppercase font-['Poppins']">
+                Government of India • Ministry of Corporate Affairs
+              </div>
+              <h3 className="text-lg sm:text-xl font-bold text-[#0F2042] font-['Poppins'] mt-1">
+                Certificate of Incorporation
+              </h3>
+              <p className="text-[11px] text-slate-500 mt-1">
+                [Pursuant to sub-section (2) of section 7 and sub-section (1) of section 8 of the Companies Act, 2013 and rule 18 of the Companies (Incorporation) Rules, 2014]
+              </p>
+            </div>
+
+            {/* Certificate Body */}
+            <div className="py-5 space-y-4 text-xs sm:text-sm text-slate-700 leading-relaxed">
+              <p>
+                I hereby certify that <strong>GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED</strong> is incorporated on this date under the Companies Act, 2013 and that the company is a <strong>One Person Company</strong> limited by shares.
+              </p>
+
+              <div className="bg-[#F8F9FA] rounded-xl p-4 border border-slate-200/80 space-y-2.5 text-xs">
+                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                  <span className="text-slate-500">Corporate Entity:</span>
+                  <span className="font-semibold text-[#0F2042] text-right">GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                  <span className="text-slate-500">Company Category:</span>
+                  <span className="font-semibold text-[#0F2042]">One Person Company (OPC)</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                  <span className="text-slate-500">State / RoC:</span>
+                  <span className="font-semibold text-[#0F2042]">RoC - Uttarakhand</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                  <span className="text-slate-500">Registered Office:</span>
+                  <span className="font-semibold text-[#0F2042] text-right">Khatyari, Manoj Vihar, Almora, Uttarakhand 263601</span>
+                </div>
+                <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
+                  <span className="text-slate-500">Founder &amp; Director:</span>
+                  <span className="font-semibold text-[#0F2042]">Varun Rawat</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Statutory Charters:</span>
+                  <span className="font-semibold text-[#0F2042]">Form INC-33 (e-MOA) &amp; Form INC-34 (e-AOA)</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 p-3 bg-emerald-50 text-emerald-800 border border-emerald-200/60 rounded-lg text-xs">
+                <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+                <span>Statutory compliance active and attested under MCA Central Registration Centre provisions.</span>
+              </div>
+            </div>
+
+            {/* Modal Actions */}
+            <div className="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
+              <button
+                type="button"
+                onClick={() => setIsCertificateModalOpen(false)}
+                className="px-4 py-2 bg-[#0F2042] text-white text-xs font-semibold rounded-lg hover:bg-[#1a3365] transition-colors cursor-pointer"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };

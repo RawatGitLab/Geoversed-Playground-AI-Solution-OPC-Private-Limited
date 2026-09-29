@@ -1,40 +1,13 @@
 import React from 'react';
 import { Calendar, ArrowRight } from 'lucide-react';
+import { INSIGHTS_ARTICLES } from '../data/servicesData';
 
 interface InsightsSectionProps {
   onReadInsight: (title: string) => void;
 }
 
 export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight }) => {
-  const articles = [
-    {
-      id: 'hydrogeology-springshed-modelling',
-      title: 'Structural Hydrogeology & Recharge Zone Delineation in Fragile Himalayan Terrains',
-      date: 'November 2025',
-      category: 'Research Paper',
-      readTime: '7 min read',
-      excerpt: 'Lithological fracture mapping, lineament density modeling, and recharge zone spatial protection protocols for perennial mountain spring conservation.',
-      buttonText: 'Read Article',
-    },
-    {
-      id: 'urban-carrying-capacity',
-      title: 'Urban Carrying Capacity Frameworks for Hill Settlements',
-      date: 'August 2024',
-      category: 'Whitepaper',
-      readTime: '8 min read',
-      excerpt: 'Methodological synthesis of slope factor of safety, foundation overburden, and municipal drinking water constraints in tourist-dense towns.',
-      buttonText: 'Read Article',
-    },
-    {
-      id: 'landslide-hazard-mapping',
-      title: 'GIS and Remote Sensing in Post-Monsoon Landslide Hazard Mapping',
-      date: 'July 2024',
-      category: 'Technical Note',
-      readTime: '5 min read',
-      excerpt: 'Integrating high-resolution LiDAR with multi-temporal Sentinel-2 imagery for slope deformation tracking and early warning systems.',
-      buttonText: 'Read Article',
-    },
-  ];
+  const articles = INSIGHTS_ARTICLES;
 
   return (
     <section id="insights" className="py-20 bg-white">
@@ -58,7 +31,8 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight 
           {articles.map((item, idx) => (
             <article
               key={idx}
-              className="bg-[#F8F9FA] rounded-xl border border-slate-200/80 p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300 group hover:border-[#B3864B]/40"
+              id={`insight-article-${item.id}`}
+              className="bg-[#F8F9FA] rounded-xl border border-slate-200/80 p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300 group hover:border-[#B3864B]/40 scroll-mt-24"
             >
               <div>
                 <div className="flex items-center justify-between text-xs text-slate-400 mb-3">

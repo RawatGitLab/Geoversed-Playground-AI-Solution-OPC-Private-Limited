@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban, BookOpen, FileText, Newspaper } from 'lucide-react';
 import { Logo } from './Logo';
-import { NAV_LINKS, CORE_SERVICES, PROJECTS_DATA } from '../data/servicesData';
+import { NAV_LINKS, CORE_SERVICES, PROJECTS_DATA, INSIGHTS_ARTICLES, PUBLISHED_REPORTS } from '../data/servicesData';
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -16,9 +16,12 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
   const [isProjectsDropdownOpen, setIsProjectsDropdownOpen] = useState(false);
   const [isMobileProjectsOpen, setIsMobileProjectsOpen] = useState(false);
+  const [isInsightsDropdownOpen, setIsInsightsDropdownOpen] = useState(false);
+  const [isMobileInsightsOpen, setIsMobileInsightsOpen] = useState(false);
   const dropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const servicesDropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const projectsDropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const insightsDropdownTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -70,12 +73,27 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
     }, 150);
   };
 
+  const handleInsightsMouseEnter = () => {
+    if (insightsDropdownTimeoutRef.current) {
+      clearTimeout(insightsDropdownTimeoutRef.current);
+      insightsDropdownTimeoutRef.current = null;
+    }
+    setIsInsightsDropdownOpen(true);
+  };
+
+  const handleInsightsMouseLeave = () => {
+    insightsDropdownTimeoutRef.current = setTimeout(() => {
+      setIsInsightsDropdownOpen(false);
+    }, 150);
+  };
+
   // Close mobile menu when clicking a link
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setIsMobileMenuOpen(false);
     setIsAboutDropdownOpen(false);
     setIsServicesDropdownOpen(false);
     setIsProjectsDropdownOpen(false);
+    setIsInsightsDropdownOpen(false);
     if (href.startsWith('#')) {
       const element = document.querySelector(href);
       if (element) {
@@ -408,6 +426,136 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               );
             }
 
+            if (item.label === 'Insights') {
+              return (
+                <div
+                  key={item.label}
+                  className="relative py-1"
+                  onMouseEnter={handleInsightsMouseEnter}
+                  onMouseLeave={handleInsightsMouseLeave}
+                >
+                  <a
+                    id={`nav-link-${item.label.toLowerCase()}`}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="text-[#0F2042] hover:text-[#B3864B] font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/insights"
+                  >
+                    <span>{item.label}</span>
+                    <ChevronDown
+                      className={`w-3.5 h-3.5 transition-transform duration-200 text-slate-400 group-hover/insights:text-[#B3864B] ${
+                        isInsightsDropdownOpen ? 'rotate-180 text-[#B3864B]' : ''
+                      }`}
+                    />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#B3864B] scale-x-0 group-hover/insights:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                  </a>
+
+                  {/* Dropdown Menu for Insights & Publications */}
+                  <div
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[520px] lg:w-[580px] z-50 transition-all duration-200 ${
+                      isInsightsDropdownOpen
+                        ? 'opacity-100 visible translate-y-0 pointer-events-auto'
+                        : 'opacity-0 invisible -translate-y-1 pointer-events-none'
+                    }`}
+                  >
+                    <div className="bg-white rounded-xl shadow-2xl border border-slate-200/90 overflow-hidden text-left">
+                      {/* Dropdown Header */}
+                      <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <BookOpen className="w-4 h-4 text-[#B3864B]" />
+                          <span className="text-[11px] font-bold text-[#0F2042] uppercase tracking-wider font-['Poppins']">
+                            Geoscience Insights &amp; Publications
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-semibold text-[#B3864B] bg-[#B3864B]/10 px-2.5 py-0.5 rounded-full border border-[#B3864B]/20">
+                          Knowledge Hub
+                        </span>
+                      </div>
+
+                      {/* Research Articles & Papers */}
+                      <div className="p-3 space-y-1.5 max-h-[300px] overflow-y-auto">
+                        <div className="px-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
+                          Research Articles &amp; Whitepapers
+                        </div>
+                        {INSIGHTS_ARTICLES.map((article) => (
+                          <a
+                            key={article.id}
+                            id={`dropdown-insight-link-${article.id}`}
+                            href={`#insight-article-${article.id}`}
+                            onClick={(e) => handleNavClick(e, `#insight-article-${article.id}`)}
+                            className="flex items-start gap-3 p-2 rounded-lg hover:bg-slate-50 border border-transparent hover:border-slate-200/80 transition-all duration-200 group/art"
+                          >
+                            <div className="w-7 h-7 rounded-md bg-[#0F2042]/5 group-hover/art:bg-[#0F2042] text-[#0F2042] group-hover/art:text-[#B3864B] flex items-center justify-center shrink-0 transition-colors mt-0.5">
+                              <Newspaper className="w-3.5 h-3.5" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <div className="text-xs font-semibold text-[#0F2042] group-hover/art:text-[#B3864B] transition-colors leading-tight font-['Poppins']">
+                                {article.title}
+                              </div>
+                              <div className="flex items-center gap-2 mt-1 text-[10px] text-slate-400">
+                                <span className="font-semibold text-[#B3864B]">{article.category}</span>
+                                <span>•</span>
+                                <span>{article.date}</span>
+                                <span>•</span>
+                                <span>{article.readTime}</span>
+                              </div>
+                            </div>
+                          </a>
+                        ))}
+                      </div>
+
+                      {/* Published Technical Research Reports (PDF Direct Links) */}
+                      <div className="px-3.5 py-2.5 bg-slate-50/80 border-t border-slate-100">
+                        <div className="text-[10px] font-bold text-[#0F2042] uppercase tracking-wider mb-2 flex items-center justify-between">
+                          <span className="flex items-center gap-1.5 text-slate-600">
+                            <FileText className="w-3.5 h-3.5 text-[#B3864B]" />
+                            Official Technical Reports (PDF)
+                          </span>
+                          <span className="text-[10px] text-[#B3864B] font-semibold">Towards Aviral Ganga</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                          {PUBLISHED_REPORTS.map((rep, rIdx) => (
+                            <a
+                              key={rIdx}
+                              href={rep.pdfUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex items-start gap-2 p-2 rounded-lg bg-white hover:bg-slate-100/80 border border-slate-200/70 hover:border-[#B3864B]/40 transition-all group/rep shadow-2xs"
+                              title={`Download ${rep.title}`}
+                            >
+                              <FileText className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
+                              <div className="min-w-0 flex-1">
+                                <div className="text-[11px] font-semibold text-[#0F2042] group-hover/rep:text-[#B3864B] transition-colors truncate font-['Poppins']">
+                                  {rep.shortTitle}
+                                </div>
+                                <div className="text-[10px] text-slate-400 truncate">
+                                  {rep.region}
+                                </div>
+                              </div>
+                            </a>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Dropdown Footer */}
+                      <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+                        <span className="text-xs text-slate-500">
+                          Peer-reviewed publications &amp; watershed models
+                        </span>
+                        <a
+                          href="#insights"
+                          onClick={(e) => handleNavClick(e, '#insights')}
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B3864B] hover:text-[#0F2042] transition-colors font-['Poppins']"
+                        >
+                          <span>Explore Knowledge Hub</span>
+                          <ArrowRight className="w-3.5 h-3.5" />
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
             return (
               <a
                 key={item.label}
@@ -620,6 +768,79 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
                         className="flex items-center justify-between px-2.5 py-2 text-xs font-semibold text-[#B3864B] hover:text-[#0F2042] pt-2 border-t border-slate-200/60 mt-1"
                       >
                         <span>View All Projects</span>
+                        <ArrowRight className="w-3 h-3" />
+                      </a>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            if (item.label === 'Insights') {
+              return (
+                <div key={item.label} className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <a
+                      id={`mobile-nav-link-${item.label.toLowerCase()}`}
+                      href={item.href}
+                      onClick={(e) => handleNavClick(e, item.href)}
+                      className="block px-3 py-2 rounded-md text-base font-medium text-[#0F2042] hover:text-[#B3864B] hover:bg-slate-50 transition-colors duration-200"
+                    >
+                      {item.label}
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setIsMobileInsightsOpen(!isMobileInsightsOpen)}
+                      className="p-2 text-slate-500 hover:text-[#B3864B]"
+                      aria-label="Toggle Insights submenu"
+                    >
+                      <ChevronDown
+                        className={`w-4 h-4 transition-transform duration-200 ${
+                          isMobileInsightsOpen ? 'rotate-180 text-[#B3864B]' : ''
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+                  {isMobileInsightsOpen && (
+                    <div className="pl-3 pr-2 py-2 space-y-2 border-l-2 border-[#B3864B]/30 ml-3 bg-slate-50/60 rounded-r-lg">
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1">
+                        Articles &amp; Papers
+                      </div>
+                      {INSIGHTS_ARTICLES.map((article) => (
+                        <a
+                          key={article.id}
+                          href={`#insight-article-${article.id}`}
+                          onClick={(e) => handleNavClick(e, `#insight-article-${article.id}`)}
+                          className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:text-[#B3864B] hover:bg-white rounded transition-colors"
+                        >
+                          <BookOpen className="w-3.5 h-3.5 text-[#B3864B] shrink-0" />
+                          <span className="truncate">{article.title}</span>
+                        </a>
+                      ))}
+
+                      <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-1 pt-1 border-t border-slate-200/60">
+                        Technical Reports (PDF)
+                      </div>
+                      {PUBLISHED_REPORTS.map((rep, rIdx) => (
+                        <a
+                          key={rIdx}
+                          href={rep.pdfUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-2 px-2.5 py-1.5 text-xs font-medium text-slate-700 hover:text-[#B3864B] hover:bg-white rounded transition-colors"
+                        >
+                          <FileText className="w-3.5 h-3.5 text-[#B3864B] shrink-0" />
+                          <span className="truncate">{rep.shortTitle}</span>
+                        </a>
+                      ))}
+
+                      <a
+                        href="#insights"
+                        onClick={(e) => handleNavClick(e, '#insights')}
+                        className="flex items-center justify-between px-2.5 py-2 text-xs font-semibold text-[#B3864B] hover:text-[#0F2042] pt-2 border-t border-slate-200/60 mt-1"
+                      >
+                        <span>View All Insights</span>
                         <ArrowRight className="w-3 h-3" />
                       </a>
                     </div>

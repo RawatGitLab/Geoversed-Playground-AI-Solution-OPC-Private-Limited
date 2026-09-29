@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, FileText } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
 
 interface ProjectsSectionProps {
@@ -65,6 +65,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                     {item.region}
                   </span>
                 </div>
+
+                {/* 📄 Clickable Technical Report Button at Annotated Position */}
+                {item.reportUrl && (
+                  <div className="mb-3">
+                    <a
+                      id={`project-report-btn-${item.id}`}
+                      href={item.reportUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-[#B3864B]/10 hover:bg-[#B3864B] text-[#B3864B] hover:text-white font-semibold text-xs transition-all duration-200 border border-[#B3864B]/25 hover:border-[#B3864B] shadow-xs cursor-pointer group/btn"
+                      title="Open Technical Research Report (PDF)"
+                    >
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Report</span>
+                    </a>
+                  </div>
+                )}
+
                 <h3 className="text-lg font-bold text-[#0F2042] font-['Poppins'] mb-3 group-hover:text-[#B3864B] transition-colors">
                   {item.title}
                 </h3>
@@ -73,11 +91,11 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-2 text-xs">
+              <div className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-2.5 text-xs">
                 <span className="text-slate-400 font-medium">{item.tag}</span>
                 <button
                   onClick={onOpenQuote}
-                  className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors"
+                  className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors ml-auto"
                 >
                   <span>Inquire for Similar</span>
                   <ExternalLink className="w-3.5 h-3.5" />

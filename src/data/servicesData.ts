@@ -1,4 +1,4 @@
-import { ServiceItem, NavItem } from '../types';
+import { ServiceItem, NavItem, InsightItem } from '../types';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: '#home' },
@@ -92,6 +92,7 @@ export interface ProjectItem {
   tag: string;
   summary: string;
   highlights?: string;
+  reportUrl?: string;
 }
 
 export const PROJECTS_DATA: ProjectItem[] = [
@@ -102,16 +103,18 @@ export const PROJECTS_DATA: ProjectItem[] = [
     category: 'Hydrology',
     tag: 'Water Security & Aviral Ganga',
     summary: 'Phase-I Rejuvenation of Springs & Naulas of Jatha & Pass Villages — Official GIScience-based micro-plans for groundwater augmentation (Towards Aviral Ganga) by Prof. J.S. Rawat, Er. Varun Rawat, Dr. N.C. Pant.',
-    highlights: 'Springshed hydrogeology, recharge zones & Aviral Ganga micro-plans',
+    highlights: 'Springshed hydrogeology & recharge zones',
+    reportUrl: '/reports/Dhargad_Watershed_Rejuvenation_Report_2026.pdf',
   },
   {
     id: 2,
-    title: 'Hill Town Carrying Capacity Assessment',
+    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Panyali Gadgera Watershed, Village Bhalyuta (Jaigan Waterhed, District Bagesgwar)',
     region: 'Upper Himalayan Settlements',
-    category: 'Urban Planning',
-    tag: 'Hazard Assessment',
-    summary: 'Multi-criteria GIS spatial evaluation measuring slope stability, aquifer extraction rates, and foundation load limits for expanding tourist towns.',
-    highlights: 'Multi-criteria slope stability & foundation load limits',
+    category: 'Hydrology',
+    tag: 'Water Security & Aviral Ganga',
+    summary: 'The Baluyata spring 29°44 4.41 N Lat and 79°46 54.34E Long lies at the height of 1170m from the msl in the northern part of the lesser Himalaya experimental recharge zone area.',
+    highlights: 'Springshed hydrogeology & recharge zones',
+    reportUrl: '/reports/Bhalyuta_Spring_Panyali_Gadgera_Rejuvenation_Report_2026.pdf',
   },
   {
     id: 3,
@@ -151,6 +154,53 @@ export const PROJECTS_DATA: ProjectItem[] = [
   },
 ];
 
+export const INSIGHTS_ARTICLES: InsightItem[] = [
+  {
+    id: 'hydrogeology-springshed-modelling',
+    title: 'Structural Hydrogeology & Recharge Zone Delineation in Fragile Himalayan Terrains',
+    date: 'November 2025',
+    category: 'Research Paper',
+    readTime: '7 min read',
+    excerpt: 'Lithological fracture mapping, lineament density modeling, and recharge zone spatial protection protocols for perennial mountain spring conservation.',
+    buttonText: 'Read Article',
+  },
+  {
+    id: 'urban-carrying-capacity',
+    title: 'Urban Carrying Capacity Frameworks for Hill Settlements',
+    date: 'August 2024',
+    category: 'Whitepaper',
+    readTime: '8 min read',
+    excerpt: 'Methodological synthesis of slope factor of safety, foundation overburden, and municipal drinking water constraints in tourist-dense towns.',
+    buttonText: 'Read Article',
+  },
+  {
+    id: 'landslide-hazard-mapping',
+    title: 'GIS and Remote Sensing in Post-Monsoon Landslide Hazard Mapping',
+    date: 'July 2024',
+    category: 'Technical Note',
+    readTime: '5 min read',
+    excerpt: 'Integrating high-resolution LiDAR with multi-temporal Sentinel-2 imagery for slope deformation tracking and early warning systems.',
+    buttonText: 'Read Article',
+  },
+];
+
+export const PUBLISHED_REPORTS = [
+  {
+    title: 'Dhargad Watershed Rejuvenation Technical Report (2026)',
+    shortTitle: 'Dhargad Springs Rejuvenation Report',
+    region: 'Jaigan Valley, Bageshwar',
+    pdfUrl: '/reports/Dhargad_Watershed_Rejuvenation_Report_2026.pdf',
+    authors: 'Prof. J.S. Rawat, Er. Varun Rawat, Dr. N.C. Pant',
+  },
+  {
+    title: 'Bhalyuta Spring & Panyali Gadgera Rejuvenation Report (2026)',
+    shortTitle: 'Bhalyuta Spring Rejuvenation Report',
+    region: 'Village Bhalyuta, Bageshwar',
+    pdfUrl: '/reports/Bhalyuta_Spring_Panyali_Gadgera_Rejuvenation_Report_2026.pdf',
+    authors: 'Prof. J.S. Rawat, Dr. Naresh Pant, Er. Varun Rawat',
+  },
+];
+
 export const COMPANY_INFO = {
   name: 'GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED',
   shortName: 'GEOVERSED',
@@ -165,3 +215,4 @@ export const COMPANY_INFO = {
   phone2Display: 'Ph: 7533983533',
   servicesSubheading: 'Comprehensive geospatial and geological intelligence solutions tailored for Himalayan ecology, sustainable infrastructure, and resilient regional governance.',
 };
+

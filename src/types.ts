@@ -19,3 +19,14 @@ export interface QuoteFormData {
   organization: string;
   projectScope: string;
 }
+
+export interface InsightItem {
+  id: string;
+  title: string;
+  date: string;
+  category: string;
+  readTime: string;
+  excerpt: string;
+  buttonText?: string;
+}
+
