@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import { Layers, Map, ExternalLink, FileText } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
 
 interface ProjectsSectionProps {
   onOpenQuote: () => void;
-  onOpenReport?: () => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote, onOpenReport }) => {
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote }) => {
   const [activeFilter, setActiveFilter] = useState('All');
 
   const filteredProjects =
@@ -76,25 +75,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote, o
 
               <div className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span className="text-slate-400 font-medium">{item.tag}</span>
-                <div className="flex items-center gap-2.5">
-                  {item.id === 1 && onOpenReport && (
-                    <button
-                      type="button"
-                      onClick={onOpenReport}
-                      className="px-3 py-1.5 rounded-lg bg-[#0F2042] text-white hover:bg-[#B3864B] font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-all shadow-xs hover:shadow-sm"
-                    >
-                      <FileText className="w-3.5 h-3.5 text-[#E5B574]" />
-                      <span>Report</span>
-                    </button>
-                  )}
-                  <button
-                    onClick={onOpenQuote}
-                    className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors"
-                  >
-                    <span>Inquire for Similar</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </button>
-                </div>
+                <button
+                  onClick={onOpenQuote}
+                  className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors"
+                >
+                  <span>Inquire for Similar</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </button>
               </div>
             </div>
           ))}

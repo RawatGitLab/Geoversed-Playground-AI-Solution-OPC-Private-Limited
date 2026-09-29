@@ -19,9 +19,6 @@ const ServiceDetailModal = lazy(() =>
     default: m.ServiceDetailModal,
   }))
 );
-const ReportModal = lazy(() =>
-  import('./components/ReportModal').then((m) => ({ default: m.ReportModal }))
-);
 const PrivacyPolicyModal = lazy(() =>
   import('./components/PrivacyPolicyModal').then((m) => ({
     default: m.PrivacyPolicyModal,
@@ -37,7 +34,6 @@ export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [detailService, setDetailService] = useState<ServiceItem | null>(null);
-  const [isReportOpen, setIsReportOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
 
@@ -103,22 +99,12 @@ export default function App() {
         {/* 5. Projects Section */}
         <ProjectsSection
           onOpenQuote={() => handleOpenQuote()}
-          onOpenReport={() => setIsReportOpen(true)}
         />
 
         {/* 6. Insights Section */}
         <InsightsSection
-          onReadInsight={(insightIdOrTitle) => {
-            if (
-              insightIdOrTitle === 'dhargad-rejuvenation-report' ||
-              insightIdOrTitle.toLowerCase().includes('dhargad') ||
-              insightIdOrTitle.toLowerCase().includes('kolsar') ||
-              insightIdOrTitle.toLowerCase().includes('rejuvenation')
-            ) {
-              setIsReportOpen(true);
-            } else {
-              handleOpenDetails(CORE_SERVICES[0]);
-            }
+          onReadInsight={() => {
+            handleOpenDetails(CORE_SERVICES[0]);
           }}
         />
 
@@ -150,16 +136,6 @@ export default function App() {
             service={detailService}
             onClose={() => setDetailService(null)}
             onRequestQuote={(srv) => handleOpenQuote(srv)}
-          />
-        </Suspense>
-      )}
-
-      {/* Technical Research Report Modal (Dhargad Watershed Rejuvenation) */}
-      {isReportOpen && (
-        <Suspense fallback={null}>
-          <ReportModal
-            isOpen={isReportOpen}
-            onClose={() => setIsReportOpen(false)}
           />
         </Suspense>
       )}
