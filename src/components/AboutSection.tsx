@@ -555,14 +555,22 @@ export const AboutSection: React.FC = () => {
                         <MapPin className="w-3.5 h-3.5 text-[#B3864B]" /> Uttarakhand
                       </span>
                     </div>
-                    <div
-                      onClick={() => setIsCertificateModalOpen(true)}
-                      className="cursor-pointer group/cert"
-                      title="Click to view Certificate of Incorporation"
-                    >
+                    <div>
                       <span className="text-slate-400 block text-[11px] font-medium">Certificate of Incorporation</span>
-                      <span className="text-slate-200 group-hover/cert:text-[#B3864B] font-semibold flex items-center gap-1 transition-colors">
-                        <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" /> Certificate
+                      <span className="text-slate-200 font-semibold flex items-center gap-1">
+                        <a
+                          href="/reports/incorporation_certificate.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-slate-200 hover:text-[#B3864B] transition-colors group/cert"
+                          title="Open Official Certificate of Incorporation (PDF)"
+                        >
+                          <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" />
+                          <span className="underline underline-offset-2 decoration-[#B3864B]/40 group-hover/cert:decoration-[#B3864B]">
+                            Certificate
+                          </span>
+                          <ExternalLink className="w-3 h-3 text-slate-400 group-hover/cert:text-[#B3864B]" />
+                        </a>
                       </span>
                       <span className="text-[10px] text-slate-400 block">MCA Govt. of India</span>
                     </div>
@@ -911,11 +919,22 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* Modal Actions */}
-            <div className="pt-3 border-t border-slate-200 flex items-center justify-end gap-3">
+            <div className="pt-3 border-t border-slate-200 flex items-center justify-between gap-3">
+              <a
+                href="/reports/incorporation_certificate.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-[#B3864B] hover:bg-[#8C5D27] text-white text-xs font-semibold rounded-lg transition-colors shadow-xs"
+              >
+                <FileText className="w-3.5 h-3.5" />
+                <span>Open Certificate PDF</span>
+                <ExternalLink className="w-3 h-3 ml-0.5" />
+              </a>
+
               <button
                 type="button"
                 onClick={() => setIsCertificateModalOpen(false)}
-                className="px-4 py-2 bg-[#0F2042] text-white text-xs font-semibold rounded-lg hover:bg-[#1a3365] transition-colors cursor-pointer"
+                className="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-[#0F2042] text-xs font-semibold rounded-lg transition-colors cursor-pointer"
               >
                 Close
               </button>

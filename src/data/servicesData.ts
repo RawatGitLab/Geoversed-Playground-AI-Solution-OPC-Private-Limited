@@ -199,6 +199,13 @@ export const PUBLISHED_REPORTS = [
     pdfUrl: '/reports/Bhalyuta_Spring_Panyali_Gadgera_Rejuvenation_Report_2026.pdf',
     authors: 'Prof. J.S. Rawat, Dr. Naresh Pant, Er. Varun Rawat',
   },
+  {
+    title: 'Certificate of Incorporation (MCA, Govt. of India)',
+    shortTitle: 'Certificate of Incorporation',
+    region: 'Almora, Uttarakhand',
+    pdfUrl: '/reports/incorporation_certificate.pdf',
+    authors: 'Ministry of Corporate Affairs, Govt. of India',
+  },
 ];
 
 export const COMPANY_INFO = {
