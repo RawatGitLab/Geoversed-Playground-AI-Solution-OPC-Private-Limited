@@ -1,44 +1,19 @@
 import React, { useState } from 'react';
-import { Layers, Map, ExternalLink } from 'lucide-react';
+import { Layers, Map, ExternalLink, FileText } from 'lucide-react';
+import { PROJECTS_DATA } from '../data/servicesData';
 
 interface ProjectsSectionProps {
   onOpenQuote: () => void;
+  onOpenReport?: () => void;
 }
 
-export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote }) => {
+export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote, onOpenReport }) => {
   const [activeFilter, setActiveFilter] = useState('All');
-
-  const projects = [
-    {
-      id: 1,
-      title: 'Spring Shed Revival & Hydrogeology Mapping',
-      region: 'Kumaon & Garhwal Catchments',
-      category: 'Hydrology',
-      tag: 'Water Security',
-      summary: 'Delineating recharge zones and creating participatory 3D GIS models for 20+ drying perennial springs in Almora districts.',
-    },
-    {
-      id: 2,
-      title: 'Hill Town Carrying Capacity Assessment',
-      region: 'Upper Himalayan Settlements',
-      category: 'Urban Planning',
-      tag: 'Hazard Assessment',
-      summary: 'Multi-criteria GIS spatial evaluation measuring slope stability, aquifer extraction rates, and foundation load limits for expanding tourist towns.',
-    },
-    {
-      id: 3,
-      title: 'State-Level Web-GIS Decision Support Portal',
-      region: 'Uttarakhand Regional Planning',
-      category: 'Web-GIS',
-      tag: 'Digital Governance',
-      summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, Flood Risk Zoning Layers and disaster mitigation dashboards.',
-    },
-  ];
 
   const filteredProjects =
     activeFilter === 'All'
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+      ? PROJECTS_DATA
+      : PROJECTS_DATA.filter((p) => p.category === activeFilter);
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -51,7 +26,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
               Featured Engagements
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0F2042] font-['Poppins'] tracking-tight">
-              Selected Geoscience Projects
+              Selected Geo Spatial Science Projects
             </h2>
             <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-xl">
               Real-world implementations demonstrating the convergence of rigorous field science and cutting-edge GIS technology.
@@ -60,7 +35,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
 
           {/* Filter Pills */}
           <div className="flex items-center gap-2 flex-wrap">
-            {['All', 'Hydrology', 'Urban Planning', 'Web-GIS'].map((filter) => (
+            {['All', 'Hydrology', 'Urban Planning', 'Web-GIS', 'Infrastructure', 'Environment'].map((filter) => (
               <button
                 key={filter}
                 onClick={() => setActiveFilter(filter)}
@@ -77,11 +52,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
         </div>
 
         {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {filteredProjects.map((item) => (
             <div
               key={item.id}
-              className="bg-[#F8F9FA] rounded-xl border border-slate-200/80 p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300 group hover:border-[#B3864B]/40"
+              id={`project-card-${item.id}`}
+              className="bg-[#F8F9FA] rounded-xl border border-slate-200/80 p-6 flex flex-col justify-between hover:shadow-md transition-all duration-300 group hover:border-[#B3864B]/40 scroll-mt-24"
             >
               <div>
                 <div className="flex items-center justify-between text-xs text-[#B3864B] font-semibold mb-3">
@@ -98,15 +74,27 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-slate-200/70 flex items-center justify-between text-xs">
+              <div className="pt-4 border-t border-slate-200/70 flex flex-wrap items-center justify-between gap-2 text-xs">
                 <span className="text-slate-400 font-medium">{item.tag}</span>
-                <button
-                  onClick={onOpenQuote}
-                  className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors"
-                >
-                  <span>Inquire for Similar</span>
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </button>
+                <div className="flex items-center gap-2.5">
+                  {item.id === 1 && onOpenReport && (
+                    <button
+                      type="button"
+                      onClick={onOpenReport}
+                      className="px-3 py-1.5 rounded-lg bg-[#0F2042] text-white hover:bg-[#B3864B] font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-all shadow-xs hover:shadow-sm"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-[#E5B574]" />
+                      <span>Report</span>
+                    </button>
+                  )}
+                  <button
+                    onClick={onOpenQuote}
+                    className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors"
+                  >
+                    <span>Inquire for Similar</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </button>
+                </div>
               </div>
             </div>
           ))}

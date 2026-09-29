@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Calendar, ArrowRight } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 
 interface InsightsSectionProps {
   onReadInsight: (title: string) => void;
@@ -8,13 +8,13 @@ interface InsightsSectionProps {
 export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight }) => {
   const articles = [
     {
-      id: 'dhargad-rejuvenation-report',
-      title: 'Rejuvenation Strategy of Dying Springs and Naulas in Dhargad Watershed (Jaigan Valley, District Bageshwar)',
-      date: 'January 2026',
-      category: 'Report',
-      readTime: 'Full Technical Report',
-      excerpt: 'Phase-I Rejuvenation of Springs & Naulas of Jatha & Pass Villages — Official GIScience-based micro-plans for groundwater augmentation (Towards Aviral Ganga) by Prof. J.S. Rawat, Er. Varun Rawat, Dr. N.C. Pant.',
-      buttonText: 'Report',
+      id: 'hydrogeology-springshed-modelling',
+      title: 'Structural Hydrogeology & Recharge Zone Delineation in Fragile Himalayan Terrains',
+      date: 'November 2025',
+      category: 'Research Paper',
+      readTime: '7 min read',
+      excerpt: 'Lithological fracture mapping, lineament density modeling, and recharge zone spatial protection protocols for perennial mountain spring conservation.',
+      buttonText: 'Read Article',
     },
     {
       id: 'urban-carrying-capacity',
@@ -84,13 +84,8 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onReadInsight 
                 <span className="text-xs text-slate-400">{item.readTime}</span>
                 <button
                   onClick={() => onReadInsight(item.id || item.title)}
-                  className={`text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-all group/link ${
-                    idx === 0
-                      ? 'px-3.5 py-1.5 rounded-lg bg-[#0F2042] text-white hover:bg-[#B3864B] shadow-xs hover:shadow-sm'
-                      : 'text-[#0F2042] hover:text-[#B3864B]'
-                  }`}
+                  className="text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer transition-all group/link text-[#0F2042] hover:text-[#B3864B]"
                 >
-                  {idx === 0 && <FileText className="w-3.5 h-3.5 text-[#E5B574]" />}
                   <span>{item.buttonText}</span>
                   <ArrowRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/link:translate-x-1" />
                 </button>

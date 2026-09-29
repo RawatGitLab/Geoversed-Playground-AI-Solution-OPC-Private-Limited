@@ -78,6 +78,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
               <span id="footer-location-text">{COMPANY_INFO.location}</span>
             </div>
 
+            {/* ✉️ Email link text: geoversedmailbox@gmail.com */}
+            <div className="flex items-center md:justify-end gap-2.5 text-sm text-slate-200">
+              <Mail className="w-4 h-4 text-[#B3864B] shrink-0" />
+              <a
+                id="footer-email-link"
+                href={`mailto:${COMPANY_INFO.email}`}
+                className="hover:text-white hover:underline transition-colors"
+              >
+                {COMPANY_INFO.email}
+              </a>
+            </div>
+
             {/* 📞 Phone link text: Ph: 8273753398 / 7533983533 */}
             <div className="flex items-start md:justify-end gap-2.5 text-sm text-slate-200">
               <Phone className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
@@ -99,17 +111,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
               </div>
             </div>
 
-            {/* ✉️ Email link text: geoversedmailbox@gmail.com */}
-            <div className="flex items-center md:justify-end gap-2.5 text-sm text-slate-200">
-              <Mail className="w-4 h-4 text-[#B3864B] shrink-0" />
-              <a
-                id="footer-email-link"
-                href={`mailto:${COMPANY_INFO.email}`}
-                className="hover:text-white hover:underline transition-colors"
-              >
-                {COMPANY_INFO.email}
-              </a>
-            </div>
+            
           </div>
 
         </div>

@@ -84,17 +84,84 @@ export const CORE_SERVICES: ServiceItem[] = [
   },
 ];
 
+export interface ProjectItem {
+  id: number;
+  title: string;
+  region: string;
+  category: string;
+  tag: string;
+  summary: string;
+  highlights?: string;
+}
+
+export const PROJECTS_DATA: ProjectItem[] = [
+  {
+    id: 1,
+    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Dhargad Watershed (Jaigan Valley, District Bageshwar)',
+    region: 'Jaigan Valley, District Bageshwar',
+    category: 'Hydrology',
+    tag: 'Water Security & Aviral Ganga',
+    summary: 'Phase-I Rejuvenation of Springs & Naulas of Jatha & Pass Villages — Official GIScience-based micro-plans for groundwater augmentation (Towards Aviral Ganga) by Prof. J.S. Rawat, Er. Varun Rawat, Dr. N.C. Pant.',
+    highlights: 'Springshed hydrogeology, recharge zones & Aviral Ganga micro-plans',
+  },
+  {
+    id: 2,
+    title: 'Hill Town Carrying Capacity Assessment',
+    region: 'Upper Himalayan Settlements',
+    category: 'Urban Planning',
+    tag: 'Hazard Assessment',
+    summary: 'Multi-criteria GIS spatial evaluation measuring slope stability, aquifer extraction rates, and foundation load limits for expanding tourist towns.',
+    highlights: 'Multi-criteria slope stability & foundation load limits',
+  },
+  {
+    id: 3,
+    title: 'State-Level Web-GIS Decision Support Portal',
+    region: 'Uttarakhand Regional Planning',
+    category: 'Web-GIS',
+    tag: 'Digital Governance',
+    summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, Flood Risk Zoning Layers and disaster mitigation dashboards.',
+    highlights: 'Real-time spatial analytics & disaster mitigation dashboards',
+  },
+  {
+    id: 4,
+    title: 'PM Gati-Shakti Infrastructure Corridor Survey',
+    region: 'Himalayan Connectivity Networks',
+    category: 'Infrastructure',
+    tag: 'PM Gati-Shakti',
+    summary: 'Integrated spatial data infrastructure, slope-sensitive multi-modal corridor alignment, and terrain cross-sectional modeling.',
+    highlights: 'Slope-sensitive multi-modal corridor alignment & terrain modeling',
+  },
+  {
+    id: 5,
+    title: 'Jal Jeevan Mission Springshed Cadastral Survey',
+    region: 'Rural Himalayan Catchments',
+    category: 'Hydrology',
+    tag: 'Jal Jeevan Mission',
+    summary: 'High-precision GPS & drone survey for spring source sustainability, tap water pipeline routing, and catchment conservation DPRs.',
+    highlights: 'Spring source sustainability & pipeline network layout',
+  },
+  {
+    id: 6,
+    title: 'Namami Gange Catchment & River Rejuvenation',
+    region: 'Ganga Tributary Basins',
+    category: 'Environment',
+    tag: 'Namami Gange',
+    summary: 'Riparian buffer mapping, sewage outflow tracking, erosion hazard zoning, and ecological restoration DPR preparation.',
+    highlights: 'Riparian buffer mapping & erosion hazard zoning',
+  },
+];
+
 export const COMPANY_INFO = {
   name: 'GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED',
   shortName: 'GEOVERSED',
   tagline: 'Geoscience Intelligence for Sustainable Solutions',
   heroH1: 'Where Field Expertise Meets Smart Technology',
   heroH2: 'Geoscience Intelligence for Sustainable Solutions',
-  location: 'Khatyari, Manoj Vihar, Almora, Uttarakhand 263601, India',
+  location: 'Almora, Uttarakhand 263601, India',
+  email: 'geoversedmailbox@gmail.com',
   phone: '8273753398',
   phoneDisplay: 'Ph: 8273753398',
   phone2: '7533983533',
   phone2Display: 'Ph: 7533983533',
-  email: 'geoversedmailbox@gmail.com',
   servicesSubheading: 'Comprehensive geospatial and geological intelligence solutions tailored for Himalayan ecology, sustainable infrastructure, and resilient regional governance.',
 };

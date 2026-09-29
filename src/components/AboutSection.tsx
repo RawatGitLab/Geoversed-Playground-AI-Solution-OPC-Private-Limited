@@ -218,7 +218,7 @@ export const AboutSection: React.FC = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             
             {/* 4. VISION Card */}
-            <div className="bg-[#0F2042] text-white rounded-2xl border border-slate-800 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
+            <div id="vision" className="scroll-mt-28 bg-[#0F2042] text-white rounded-2xl border border-slate-800 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
@@ -240,7 +240,7 @@ export const AboutSection: React.FC = () => {
             </div>
 
             {/* MISSION Card */}
-            <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#B3864B]/40 transition-all duration-300">
+            <div id="mission" className="scroll-mt-28 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#B3864B]/40 transition-all duration-300">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#B3864B]/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
@@ -264,7 +264,7 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* 5. OBJECT Container */}
-          <div className="bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+          <div id="objective" className="scroll-mt-28 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
             {/* Object Header */}
             <div className="p-6 sm:p-8 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
               <div>

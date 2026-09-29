@@ -101,7 +101,10 @@ export default function App() {
         <AboutSection />
 
         {/* 5. Projects Section */}
-        <ProjectsSection onOpenQuote={() => handleOpenQuote()} />
+        <ProjectsSection
+          onOpenQuote={() => handleOpenQuote()}
+          onOpenReport={() => setIsReportOpen(true)}
+        />
 
         {/* 6. Insights Section */}
         <InsightsSection

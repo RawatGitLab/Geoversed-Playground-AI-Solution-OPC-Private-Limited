@@ -89,7 +89,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
             <div
               key={service.id}
               id={`service-card-${service.id}`}
-              className="group bg-white hover:bg-[#F8F9FA] border border-slate-100/90 hover:border-[#B3864B]/40 rounded-xl p-7 transition-all duration-300 shadow-[0_2px_12px_rgba(15,32,66,0.06)] hover:shadow-[0_12px_28px_rgba(15,32,66,0.12)] flex flex-col justify-between relative overflow-hidden"
+              className="group bg-white hover:bg-[#F8F9FA] border border-slate-100/90 hover:border-[#B3864B]/40 rounded-xl p-7 transition-all duration-300 shadow-[0_2px_12px_rgba(15,32,66,0.06)] hover:shadow-[0_12px_28px_rgba(15,32,66,0.12)] flex flex-col justify-between relative overflow-hidden scroll-mt-28"
             >
               {/* Subtle accent corner glow on hover */}
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#B3864B]/5 rounded-bl-full pointer-events-none transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
