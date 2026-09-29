@@ -98,7 +98,7 @@ export interface ProjectItem {
 export const PROJECTS_DATA: ProjectItem[] = [
   {
     id: 1,
-    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Dhargad Watershed (Jaigan Valley, District Bageshwar)',
+    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Dhargad Watershed (Jaigan Valley, District Bageshwar, Uttarakhand)',
     region: 'Jaigan Valley, District Bageshwar',
     category: 'Hydrology',
     tag: 'Water Security & Aviral Ganga',
@@ -108,7 +108,7 @@ export const PROJECTS_DATA: ProjectItem[] = [
   },
   {
     id: 2,
-    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Panyali Gadgera Watershed, Village Bhalyuta (Jaigan Waterhed, District Bagesgwar)',
+    title: 'Rejuvenation Strategy of Dying Springs and Naulas in Panyali Gadgera Watershed, Village Bhalyuta (Jaigan Waterhed, District Bageshwar Uttarakhand)',
     region: 'Upper Himalayan Settlements',
     category: 'Hydrology',
     tag: 'Water Security & Aviral Ganga',
@@ -118,12 +118,13 @@ export const PROJECTS_DATA: ProjectItem[] = [
   },
   {
     id: 3,
-    title: 'State-Level Web-GIS Decision Support Portal',
-    region: 'Uttarakhand Regional Planning',
+    title: ' Rejuvenation strategy of rainfed jamakhal stream in the lessor himalayan region district Dehradun (Uttarakhand)',
+    region: 'Kotimycheck and Thana Danda Villages of the Jamankhal Watershed',
     category: 'Web-GIS',
     tag: 'Digital Governance',
     summary: 'Interactive enterprise geospatial platform providing real-time spatial analytics, land-use zoning layers, Flood Risk Zoning Layers and disaster mitigation dashboards.',
     highlights: 'Real-time spatial analytics & disaster mitigation dashboards',
+    reportUrl: '/reports/HASCO_Final.pdf',
   },
   {
     id: 4,
