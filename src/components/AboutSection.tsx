@@ -580,7 +580,7 @@ export const AboutSection: React.FC = () => {
                     </div>
 
                     <div className="pt-2 border-t border-white/10">
-                      <span className="text-slate-400 block text-[11px] font-medium">Founder &amp; First Director</span>
+                      <span className="text-slate-400 block text-[11px] font-medium">Founder &amp; Director</span>
                       <div className="flex items-center gap-2 mt-1">
                         <div className="w-7 h-7 rounded-full bg-[#B3864B]/20 flex items-center justify-center text-[#B3864B]">
                           <UserCheck className="w-4 h-4" />
@@ -830,7 +830,7 @@ export const AboutSection: React.FC = () => {
                     <span>One Person Company governance provisions governing director resolutions, minutes books, and administrative operations.</span>
                   </div>
                  
-                 
+
                   <div className="p-3 bg-[#F8F9FA] rounded-lg border border-slate-200/70">
                     <strong className="text-[#0F2042] block mb-0.5">Statutory Audit &amp; Witness Verification:</strong>
                     <span>Incorporation attested by Fellow Chartered Accountant (FCA) CA. Sanjay Karnatak (Membership No. 501670), Noida.</span>
