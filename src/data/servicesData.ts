@@ -204,7 +204,7 @@ export const PUBLISHED_REPORTS = [
     title: 'Certificate of Incorporation (MCA, Govt. of India)',
     shortTitle: 'Certificate of Incorporation',
     region: 'Almora, Uttarakhand',
-    pdfUrl: '/reports/incorporation_certificate.pdf',
+    pdfUrl: 'public/reports/Certificate_of_incorporation.pdf',
     authors: 'Ministry of Corporate Affairs, Govt. of India',
   },
 ];

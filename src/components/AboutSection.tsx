@@ -562,7 +562,7 @@ export const AboutSection: React.FC = () => {
                         <span className="text-slate-400 block text-[11px] font-medium">Certificate of Incorporation</span>
                         <span className="text-slate-200 font-semibold flex items-center gap-1">
                           <a
-                            href="/reports/incorporation_certificate.pdf"
+                            href="/reports/Certificate_of_incorporation.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="inline-flex items-center gap-1.5 text-slate-200 hover:text-[#B3864B] transition-colors group/cert"
@@ -829,10 +829,8 @@ export const AboutSection: React.FC = () => {
                     <strong className="text-[#0F2042] block mb-0.5">Section 122 Regulatory Adherence:</strong>
                     <span>One Person Company governance provisions governing director resolutions, minutes books, and administrative operations.</span>
                   </div>
-                  <div className="p-3 bg-[#F8F9FA] rounded-lg border border-slate-200/70">
-                    <strong className="text-[#0F2042] block mb-0.5">Financial &amp; Share Capital Architecture:</strong>
-                    <span>Authorized capital of 10,000 Equity Shares at ₹10 nominal par value, with statutory provisions for capital alteration and R&amp;D investment.</span>
-                  </div>
+                 
+                 
                   <div className="p-3 bg-[#F8F9FA] rounded-lg border border-slate-200/70">
                     <strong className="text-[#0F2042] block mb-0.5">Statutory Audit &amp; Witness Verification:</strong>
                     <span>Incorporation attested by Fellow Chartered Accountant (FCA) CA. Sanjay Karnatak (Membership No. 501670), Noida.</span>
