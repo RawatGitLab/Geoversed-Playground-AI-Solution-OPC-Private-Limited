@@ -150,7 +150,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Hero Section
     'hero.badge': 'Geospatial Excellence & Field Geosciences',
     'hero.heading1': 'Where Field Expertise Meets Smart Technology and',
-    'hero.heading2': 'Geoscience Intelligence for Sustainable Solutions',
+    'hero.heading2': 'Geo Spatial Intelligence for Sustainable Solutions',
     'hero.exploreServices': 'Explore Our Services',
     'hero.viewProjects': 'View Projects',
 
@@ -275,7 +275,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Hero Section
     'hero.badge': 'भू-स्थानिक उत्कृष्टता एवं हिमालयी क्षेत्रीय भू-विज्ञान',
     'hero.heading1': 'जहाँ धरातलीय अनुभव एवं स्मार्ट तकनीक का संगम होता है,',
-    'hero.heading2': 'सतत समाधानों हेतु आधुनिक भू-विज्ञान अभिसूचना',
+    'hero.heading2': 'सतत समाधानों हेतु आधुनिक भू-स्थानिक अभिसूचना',
     'hero.exploreServices': 'हमारी सेवाएँ देखें',
     'hero.viewProjects': 'परियोजनाएँ देखें',
 
@@ -400,7 +400,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Hero Section
     'hero.badge': 'జియోస్పేషియల్ ఎక్సలెన్స్ & హిమాలయ ఫీల్డ్ జియోసైన్సెస్',
     'hero.heading1': 'క్షేత్ర నైపుణ్యం మరియు స్మార్ట్ సాంకేతికత కలయిక,',
-    'hero.heading2': 'స్థిరమైన పరిష్కారాల కోసం జియోసైన్స్ ఇంటెలిజెన్స్',
+    'hero.heading2': 'స్థిరమైన పరిష్కారాల కోసం జియోస్పేషియల్ ఇంటెలిజెన్స్',
     'hero.exploreServices': 'మా సేవలను అన్వేషించండి',
     'hero.viewProjects': 'ప్రాజెక్టులను చూడండి',
 
@@ -525,7 +525,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Hero Section
     'hero.badge': 'भू-स्थानिक उत्कृष्टता आणि हिमालयीन भू-विज्ञान',
     'hero.heading1': 'जेथे प्रत्यक्ष क्षेत्रीय अनुभव आणि स्मार्ट तंत्रज्ञान एकत्र येतात,',
-    'hero.heading2': 'शाश्वत उपायांसाठी आधुनिक भू-विज्ञान बुद्धिमत्ता',
+    'hero.heading2': 'शाश्वत उपायांसाठी आधुनिक भू-स्थानिक बुद्धिमत्ता',
     'hero.exploreServices': 'आमच्या सेवा एक्सप्लोर करा',
     'hero.viewProjects': 'प्रकल्प पहा',
 
@@ -650,7 +650,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Hero Section
     'hero.badge': 'ভূ-স্থানিক উৎকর্ষ ও হিমালয় ফিল্ড ভূ-বিজ্ঞান',
     'hero.heading1': 'যেখানে বাস্তব মাঠপর্যায়ের অভিজ্ঞতা ও স্মার্ট প্রযুক্তির মিলন ঘটে,',
-    'hero.heading2': 'টেকসই সমাধানের জন্য আধুনিক ভূ-বিজ্ঞান বুদ্ধিমত্তা',
+    'hero.heading2': 'টেকসই সমাধানের জন্য আধুনিক ভূ-স্থানিক বুদ্ধিমত্তা',
     'hero.exploreServices': 'আমাদের সেবাসমূহ দেখুন',
     'hero.viewProjects': 'প্রকল্পসমূহ দেখুন',
 

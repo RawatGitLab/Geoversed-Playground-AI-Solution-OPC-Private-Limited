@@ -83,7 +83,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-[#0F2042] font-sans selection:bg-[#B3864B] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
       {/* 1. Header / Navigation Bar */}
       <Header
         onOpenQuote={() => handleOpenQuote()}

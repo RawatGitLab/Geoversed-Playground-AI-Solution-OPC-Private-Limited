@@ -219,48 +219,48 @@ export const AboutSection: React.FC = () => {
         {/* Mission, Vision & 5. Object Section */}
         <div id="mission-vision-objects" className="mb-16 space-y-8">
           
-          {/* Top Row: Vision & Mission */}
+          {/* Top Row: Vision & Mission matching the reference design */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
             
-            {/* 4. VISION Card */}
-            <div id="vision" className="scroll-mt-28 bg-[#0F2042] text-white rounded-2xl border border-slate-800 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
+            {/* 4. VISION Card (Deep Royal Indigo) */}
+            <div id="vision" className="scroll-mt-28 bg-[#312E81] text-white rounded-2xl border border-indigo-500/20 shadow-md p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D4A366] text-xs font-bold uppercase tracking-wider font-['Poppins']">
-                    <Eye className="w-3.5 h-3.5 text-[#B3864B]" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-white text-xs font-bold uppercase tracking-wider font-['Poppins']">
+                    <Eye className="w-3.5 h-3.5 text-sky-400" />
                     <span>{t('about.vision.title')}</span>
                   </div>
-                  <span className="text-[11px] font-semibold text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
+                  <span className="text-[11px] font-semibold text-sky-300 bg-sky-400/10 px-2.5 py-0.5 rounded-full border border-sky-400/20">
                     {t('about.vision.tag')}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-['Poppins'] mb-3 leading-snug">
                   {t('about.vision.heading')}
                 </h3>
-                <p className="text-slate-300 text-xs sm:text-sm leading-relaxed text-justify">
+                <p className="text-indigo-100 text-xs sm:text-sm leading-relaxed text-justify">
                   {t('about.vision.text')}
                 </p>
               </div>
             </div>
 
-            {/* MISSION Card */}
-            <div id="mission" className="scroll-mt-28 bg-white rounded-2xl border border-slate-200/90 shadow-sm p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-[#B3864B]/40 transition-all duration-300">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#B3864B]/5 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
+            {/* MISSION Card (Soft Ice Lavender) */}
+            <div id="mission" className="scroll-mt-28 bg-[#EEF2FF] rounded-2xl border border-indigo-200/80 shadow-xs p-6 sm:p-8 flex flex-col justify-between relative overflow-hidden group hover:border-indigo-300 transition-all duration-300">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-100/50 rounded-bl-full pointer-events-none -mr-6 -mt-6"></div>
               <div>
                 <div className="flex items-center justify-between gap-3 mb-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0F2042]/5 border border-[#0F2042]/10 text-[#0F2042] text-xs font-bold uppercase tracking-wider font-['Poppins']">
-                    <Target className="w-3.5 h-3.5 text-[#B3864B]" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider font-['Poppins'] shadow-2xs">
+                    <Target className="w-3.5 h-3.5 text-blue-600" />
                     <span>{t('about.mission.title')}</span>
                   </div>
-                  <span className="text-[11px] font-semibold text-[#B3864B] bg-[#B3864B]/10 px-2.5 py-0.5 rounded-full border border-[#B3864B]/20">
+                  <span className="text-[11px] font-semibold text-blue-700 bg-blue-100/70 px-2.5 py-0.5 rounded-full border border-blue-200">
                     {t('about.mission.tag')}
                   </span>
                 </div>
-                <h3 className="text-xl sm:text-2xl font-bold text-[#0F2042] font-['Poppins'] mb-3 leading-snug">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900 font-['Poppins'] mb-3 leading-snug">
                   {t('about.mission.heading')}
                 </h3>
-                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
+                <p className="text-slate-700 text-xs sm:text-sm leading-relaxed text-justify">
                   {t('about.mission.text')}
                 </p>
               </div>
@@ -269,15 +269,15 @@ export const AboutSection: React.FC = () => {
           </div>
 
           {/* 5. OBJECT Container */}
-          <div id="objective" className="scroll-mt-28 bg-white rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+          <div id="objective" className="scroll-mt-28 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
             {/* Object Header */}
-            <div className="p-6 sm:p-8 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/50">
+            <div className="p-6 sm:p-8 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-50/70">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-600 text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-2">
                   <ShieldCheck className="w-3.5 h-3.5" />
                   <span>{t('about.objective.badge')}</span>
                 </div>
-                <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins']">
+                <h3 className="text-2xl font-bold text-slate-900 font-['Poppins']">
                   {t('about.objective.title')}
                 </h3>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
@@ -286,14 +286,14 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Filter Tabs */}
-              <div className="inline-flex p-1 bg-white rounded-xl border border-slate-200 shadow-sm text-xs font-['Poppins']">
+              <div className="inline-flex p-1 bg-white rounded-xl border border-slate-200 shadow-2xs text-xs font-['Poppins']">
                 <button
                   type="button"
                   onClick={() => setObjectsFilter('all')}
-                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                     objectsFilter === 'all'
-                      ? 'bg-[#0F2042] text-white shadow-sm'
-                      : 'text-slate-600 hover:text-[#0F2042]'
+                      ? 'bg-blue-600 text-white shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   All (15)
@@ -301,10 +301,10 @@ export const AboutSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setObjectsFilter('main')}
-                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                     objectsFilter === 'main'
-                      ? 'bg-[#0F2042] text-white shadow-sm'
-                      : 'text-slate-600 hover:text-[#0F2042]'
+                      ? 'bg-blue-600 text-white shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   A. Main Objective (9)
@@ -312,10 +312,10 @@ export const AboutSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setObjectsFilter('furtherance')}
-                  className={`px-3 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
+                  className={`px-3.5 py-1.5 rounded-lg font-semibold transition-all cursor-pointer ${
                     objectsFilter === 'furtherance'
-                      ? 'bg-[#0F2042] text-white shadow-sm'
-                      : 'text-slate-600 hover:text-[#0F2042]'
+                      ? 'bg-blue-600 text-white shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
                   }`}
                 >
                   B. Furtherance (6)
@@ -330,8 +330,8 @@ export const AboutSection: React.FC = () => {
               {(objectsFilter === 'all' || objectsFilter === 'main') && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#B3864B]"></span>
-                    <h4 className="font-bold text-base sm:text-lg text-[#0F2042] font-['Poppins']">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                    <h4 className="font-bold text-base sm:text-lg text-slate-900 font-['Poppins']">
                       A. MAIN OBJECTS
                     </h4>
                     <span className="text-xs text-slate-400 font-medium ml-auto">9 Primary Clauses</span>
@@ -341,15 +341,15 @@ export const AboutSection: React.FC = () => {
                     {mainObjects.map((obj) => (
                       <div
                         key={obj.id}
-                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/70 hover:border-[#B3864B]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/80 hover:border-blue-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
                       >
                         <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#0F2042]/5 group-hover:bg-[#0F2042] text-[#0F2042] group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
+                          <div className="flex items-center justify-between mb-2.5">
+                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-50 group-hover:bg-blue-600 text-blue-600 group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
                               {obj.id}
                             </span>
                           </div>
-                          <h5 className="text-xs font-bold text-[#0F2042] font-['Poppins'] mb-1.5 group-hover:text-[#B3864B] transition-colors">
+                          <h5 className="text-xs font-bold text-slate-900 font-['Poppins'] mb-1.5 group-hover:text-blue-600 transition-colors">
                             {obj.title}
                           </h5>
                           <p className="text-slate-600 text-xs leading-relaxed">
@@ -366,8 +366,8 @@ export const AboutSection: React.FC = () => {
               {(objectsFilter === 'all' || objectsFilter === 'furtherance') && (
                 <div className="space-y-4">
                   <div className="flex items-center gap-2.5 pb-2 border-b border-slate-100">
-                    <span className="w-2.5 h-2.5 rounded-full bg-[#0F2042]"></span>
-                    <h4 className="font-bold text-base sm:text-lg text-[#0F2042] font-['Poppins']">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span>
+                    <h4 className="font-bold text-base sm:text-lg text-slate-900 font-['Poppins']">
                       B. MATTERS WHICH ARE NECESSARY FOR FURTHERANCE OF THE OBJECTS
                     </h4>
                     <span className="text-xs text-slate-400 font-medium ml-auto">6 Incidental Clauses</span>
@@ -377,15 +377,15 @@ export const AboutSection: React.FC = () => {
                     {furtheranceObjects.map((obj) => (
                       <div
                         key={obj.id}
-                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/70 hover:border-[#0F2042]/40 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
+                        className="bg-slate-50/70 hover:bg-white rounded-xl p-4 sm:p-5 border border-slate-200/80 hover:border-blue-300 hover:shadow-sm transition-all duration-200 flex flex-col justify-between group"
                       >
                         <div>
-                          <div className="flex items-center justify-between mb-2">
-                            <span className="inline-flex items-center justify-center w-6 h-6 rounded-md bg-[#B3864B]/10 group-hover:bg-[#B3864B] text-[#B3864B] group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
+                          <div className="flex items-center justify-between mb-2.5">
+                            <span className="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-blue-50 group-hover:bg-blue-600 text-blue-600 group-hover:text-white font-bold text-xs font-['Poppins'] transition-colors">
                               {obj.id}
                             </span>
                           </div>
-                          <h5 className="text-xs font-bold text-[#0F2042] font-['Poppins'] mb-1.5 group-hover:text-[#B3864B] transition-colors">
+                          <h5 className="text-xs font-bold text-slate-900 font-['Poppins'] mb-1.5 group-hover:text-blue-600 transition-colors">
                             {obj.title}
                           </h5>
                           <p className="text-slate-600 text-xs leading-relaxed">
@@ -405,11 +405,11 @@ export const AboutSection: React.FC = () => {
 
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-600 text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-3">
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t('about.badge')}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-bold text-[#0F2042] font-['Poppins'] tracking-tight mb-4 leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-bold text-slate-900 font-['Poppins'] tracking-tight mb-4 leading-tight">
             {t('about.title')}
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
@@ -419,13 +419,13 @@ export const AboutSection: React.FC = () => {
 
         {/* Interactive Tabs Header */}
         <div className="flex justify-center mb-10 overflow-x-auto pb-2 scrollbar-none">
-          <div className="inline-flex p-1.5 bg-white rounded-xl border border-slate-200/80 shadow-sm gap-1 text-xs font-['Poppins']">
+          <div className="inline-flex p-1.5 bg-white rounded-2xl border border-slate-200 shadow-2xs gap-1.5 text-xs font-['Poppins']">
             <button
               onClick={() => setActiveTab('profile')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 sm:px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 activeTab === 'profile'
-                  ? 'bg-[#0F2042] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#0F2042] hover:bg-slate-50'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               <Building2 className="w-3.5 h-3.5" />
@@ -434,10 +434,10 @@ export const AboutSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('objects')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 sm:px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 activeTab === 'objects'
-                  ? 'bg-[#0F2042] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#0F2042] hover:bg-slate-50'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
@@ -446,10 +446,10 @@ export const AboutSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('missions')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 sm:px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 activeTab === 'missions'
-                  ? 'bg-[#0F2042] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#0F2042] hover:bg-slate-50'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               <Landmark className="w-3.5 h-3.5" />
@@ -458,10 +458,10 @@ export const AboutSection: React.FC = () => {
 
             <button
               onClick={() => setActiveTab('governance')}
-              className={`px-4 py-2 rounded-lg font-semibold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
+              className={`px-4 sm:px-5 py-2.5 rounded-xl font-semibold transition-all duration-200 cursor-pointer flex items-center gap-2 ${
                 activeTab === 'governance'
-                  ? 'bg-[#0F2042] text-white shadow-sm'
-                  : 'text-slate-600 hover:text-[#0F2042] hover:bg-slate-50'
+                  ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
               }`}
             >
               <Scale className="w-3.5 h-3.5" />
@@ -477,13 +477,13 @@ export const AboutSection: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
               
               {/* Left Column: Narrative */}
-              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm space-y-5 flex flex-col justify-between h-full">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-xs space-y-5 flex flex-col justify-between h-full">
                 <div className="space-y-4">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#B3864B] uppercase tracking-wider font-['Poppins']">
+                  <div className="flex items-center gap-2 text-xs font-bold text-blue-600 uppercase tracking-wider font-['Poppins']">
                     <Mountain className="w-4 h-4" />
                     <span>The GEOVERSED Story &amp; Vision</span>
                   </div>
-                  <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins'] leading-snug">
+                  <h3 className="text-2xl font-bold text-slate-900 font-['Poppins'] leading-snug">
                     Transforming Geospatial science with Artificial Intelligence from the Central Himalayas
                   </h3>
                   <p className="text-slate-600 text-sm leading-relaxed">
@@ -502,31 +502,31 @@ export const AboutSection: React.FC = () => {
                 {/* Key Metrics Ribbon */}
                 <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100 mt-auto">
                   <div>
-                    <span className="block text-2xl font-bold text-[#0F2042] font-['Poppins']">13</span>
+                    <span className="block text-2xl font-bold text-slate-900 font-['Poppins']">13</span>
                     <span className="text-xs text-slate-500">Districts Covered</span>
                   </div>
                   <div>
-                    <span className="block text-2xl font-bold text-[#B3864B] font-['Poppins']">53,483</span>
+                    <span className="block text-2xl font-bold text-blue-600 font-['Poppins']">53,483</span>
                     <span className="text-xs text-slate-500">km² Himalayan Atlas</span>
                   </div>
                   <div>
-                    <span className="block text-2xl font-bold text-[#0F2042] font-['Poppins']">100%</span>
+                    <span className="block text-2xl font-bold text-slate-900 font-['Poppins']">100%</span>
                     <span className="text-xs text-slate-500">MCA Registered</span>
                   </div>
                 </div>
               </div>
 
               {/* Right Column: Official MCA Incorporation Card */}
-              <div className="bg-[#0F2042] text-white rounded-2xl p-6 sm:p-7 shadow-lg border border-slate-800 space-y-5 flex flex-col justify-between h-full">
+              <div className="bg-gradient-to-br from-[#0F172A] via-[#1E293B] to-[#312E81] text-white rounded-2xl p-6 sm:p-7 shadow-xl border border-indigo-500/20 space-y-5 flex flex-col justify-between h-full">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between pb-3 border-b border-white/10">
                     <div className="flex items-center gap-2">
-                      <ShieldCheck className="w-5 h-5 text-[#B3864B]" />
+                      <ShieldCheck className="w-5 h-5 text-sky-400" />
                       <span className="font-bold text-xs uppercase tracking-wider text-slate-200 font-['Poppins']">
                         Official Incorporation Data
                       </span>
                     </div>
-                    <span className="text-[10px] font-semibold bg-[#B3864B]/20 text-[#B3864B] px-2 py-0.5 rounded border border-[#B3864B]/30">
+                    <span className="text-[10px] font-semibold bg-amber-400/10 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-400/20">
                       Govt. of India
                     </span>
                   </div>
@@ -556,7 +556,7 @@ export const AboutSection: React.FC = () => {
                       <div>
                         <span className="text-slate-400 block text-[11px] font-medium">State of Incorporation</span>
                         <span className="text-slate-200 font-semibold flex items-center gap-1">
-                          <MapPin className="w-3.5 h-3.5 text-[#B3864B]" /> Uttarakhand
+                          <MapPin className="w-3.5 h-3.5 text-sky-400" /> Uttarakhand
                         </span>
                       </div>
                       <div>
@@ -566,14 +566,14 @@ export const AboutSection: React.FC = () => {
                             href="/reports/Certificate_of_incorporation.pdf"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-1.5 text-slate-200 hover:text-[#B3864B] transition-colors group/cert"
+                            className="inline-flex items-center gap-1.5 text-sky-300 hover:text-sky-200 transition-colors group/cert"
                             title="Open Official Certificate of Incorporation (PDF)"
                           >
-                            <ShieldCheck className="w-3.5 h-3.5 text-[#B3864B]" />
-                            <span className="underline underline-offset-2 decoration-[#B3864B]/40 group-hover/cert:decoration-[#B3864B]">
+                            <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+                            <span className="underline underline-offset-2 decoration-sky-400/40 group-hover/cert:decoration-sky-300">
                               Certificate
                             </span>
-                            <ExternalLink className="w-3 h-3 text-slate-400 group-hover/cert:text-[#B3864B]" />
+                            <ExternalLink className="w-3 h-3 text-slate-300 group-hover/cert:text-sky-200" />
                           </a>
                         </span>
                         <span className="text-[10px] text-slate-400 block">MCA Govt. of India</span>
@@ -583,12 +583,12 @@ export const AboutSection: React.FC = () => {
                     <div className="pt-2 border-t border-white/10">
                       <span className="text-slate-400 block text-[11px] font-medium">Founder &amp; Director</span>
                       <div className="flex items-center gap-2 mt-1">
-                        <div className="w-7 h-7 rounded-full bg-[#B3864B]/20 flex items-center justify-center text-[#B3864B]">
+                        <div className="w-7 h-7 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-300">
                           <UserCheck className="w-4 h-4" />
                         </div>
                         <div>
                           <strong className="text-white text-xs font-['Poppins']">Varun Rawat</strong>
-                          <span className="text-slate-400 text-[10px] block">Director &amp; Chief Geospatial Architect</span>
+                          <span className="text-slate-300 text-[10px] block">Director &amp; Chief Geospatial Architect</span>
                         </div>
                       </div>
                     </div>
@@ -633,12 +633,12 @@ export const AboutSection: React.FC = () => {
                 return (
                   <div
                     key={idx}
-                    className="bg-white rounded-xl p-5 border border-slate-200/80 shadow-sm hover:shadow-md transition-all duration-300 group"
+                    className="bg-white rounded-xl p-5 border border-slate-200/80 shadow-xs hover:border-blue-300 hover:shadow-md transition-all duration-300 group"
                   >
-                    <div className="w-10 h-10 rounded-lg bg-[#0F2042]/5 group-hover:bg-[#B3864B]/10 flex items-center justify-center text-[#0F2042] group-hover:text-[#B3864B] transition-colors mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-blue-50 group-hover:bg-blue-600 flex items-center justify-center text-blue-600 group-hover:text-white transition-colors mb-3">
                       <Icon className="w-5 h-5" />
                     </div>
-                    <h4 className="font-bold text-sm text-[#0F2042] font-['Poppins'] mb-1.5">
+                    <h4 className="font-bold text-sm text-slate-900 group-hover:text-blue-600 transition-colors font-['Poppins'] mb-1.5">
                       {item.title}
                     </h4>
                     <p className="text-xs text-slate-500 leading-relaxed">
@@ -658,7 +658,7 @@ export const AboutSection: React.FC = () => {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-100">
                 <div>
                   <h3 className="text-xl font-bold text-[#0F2042] font-['Poppins'] flex items-center gap-2">
-                    <FileText className="w-5 h-5 text-[#B3864B]" />
+                    <FileText className="w-5 h-5 text-blue-600" />
                     Clause 3(a) — The Objects Pursued by the Company on Incorporation
                   </h3>
                   <p className="text-xs text-slate-500 mt-0.5">
@@ -694,7 +694,7 @@ export const AboutSection: React.FC = () => {
                             <h4 className="font-bold text-base text-[#0F2042] font-['Poppins']">
                               {obj.title}
                             </h4>
-                            <span className="text-[10px] font-mono font-medium text-[#B3864B]">
+                            <span className="text-[10px] font-mono font-medium text-blue-600">
                               {obj.clause}
                             </span>
                           </div>
@@ -711,7 +711,7 @@ export const AboutSection: React.FC = () => {
                       <ul className="space-y-2 mb-4">
                         {obj.points.map((pt, pidx) => (
                           <li key={pidx} className="flex items-start gap-2 text-xs text-slate-600 leading-relaxed">
-                            <CheckCircle2 className="w-3.5 h-3.5 text-[#B3864B] shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
                             <span>{pt}</span>
                           </li>
                         ))}
@@ -734,7 +734,7 @@ export const AboutSection: React.FC = () => {
           <div className="space-y-6 animate-fadeIn">
             {/* Context Box */}
             <div className="bg-gradient-to-r from-[#0F2042] to-[#1a3365] text-white rounded-2xl p-6 sm:p-7 shadow-md">
-              <div className="flex items-center gap-2 text-[#B3864B] text-xs font-bold uppercase tracking-wider font-['Poppins'] mb-1.5">
+              <div className="flex items-center gap-2 text-blue-600 text-xs font-bold uppercase tracking-wider font-['Poppins'] mb-1.5">
                 <Landmark className="w-4 h-4" />
                 <span>Statutory Mandate: Clause 3(a)(10) of e-MOA</span>
               </div>
@@ -768,7 +768,7 @@ export const AboutSection: React.FC = () => {
                       {item.desc}
                     </p>
                   </div>
-                  <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-[#B3864B] font-semibold">
+                  <div className="mt-4 pt-2.5 border-t border-slate-100 flex items-center justify-between text-[11px] text-blue-600 font-semibold">
                     <span>Active Domain</span>
                     <ChevronRight className="w-3.5 h-3.5" />
                   </div>
@@ -785,7 +785,7 @@ export const AboutSection: React.FC = () => {
               
               {/* R&D and Academic Institution Objects */}
               <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm space-y-4">
-                <div className="flex items-center gap-2 text-[#B3864B] font-bold text-xs uppercase tracking-wider font-['Poppins']">
+                <div className="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider font-['Poppins']">
                   <GraduationCap className="w-4 h-4" />
                   <span>Clause 3(b)(3) — Academic &amp; R&amp;D Centers</span>
                 </div>
@@ -805,7 +805,7 @@ export const AboutSection: React.FC = () => {
                     'Intellectual property (IPR) generation, patenting, and proprietary GeoAI software commercialization',
                   ].map((pt, pidx) => (
                     <div key={pidx} className="flex items-start gap-2 text-xs text-slate-700">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-[#B3864B] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-3.5 h-3.5 text-blue-600 shrink-0 mt-0.5" />
                       <span>{pt}</span>
                     </div>
                   ))}
@@ -814,7 +814,7 @@ export const AboutSection: React.FC = () => {
 
               {/* Legal & Corporate Governance */}
               <div className="bg-white rounded-2xl p-6 sm:p-7 border border-slate-200/80 shadow-sm space-y-4">
-                <div className="flex items-center gap-2 text-[#B3864B] font-bold text-xs uppercase tracking-wider font-['Poppins']">
+                <div className="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase tracking-wider font-['Poppins']">
                   <Scale className="w-4 h-4" />
                   <span>INC-34 e-AOA Corporate Governance</span>
                 </div>
@@ -869,9 +869,9 @@ export const AboutSection: React.FC = () => {
             {/* Header with National Emblem / MCA Branding */}
             <div className="text-center pb-5 border-b border-slate-200">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#0F2042]/5 text-[#0F2042] mb-3">
-                <Landmark className="w-6 h-6 text-[#B3864B]" />
+                <Landmark className="w-6 h-6 text-blue-600" />
               </div>
-              <div className="text-[11px] font-bold tracking-widest text-[#B3864B] uppercase font-['Poppins']">
+              <div className="text-[11px] font-bold tracking-widest text-blue-600 uppercase font-['Poppins']">
                 Government of India • Ministry of Corporate Affairs
               </div>
               <h3 className="text-lg sm:text-xl font-bold text-[#0F2042] font-['Poppins'] mt-1">

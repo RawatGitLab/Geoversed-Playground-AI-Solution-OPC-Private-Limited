@@ -48,7 +48,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
   };
 
   return (
-    <footer id="main-footer" className="bg-[#0F2042] text-white w-full border-t border-[#162c5c]">
+    <footer id="main-footer" className="bg-[#0A0F1D] text-white w-full border-t border-slate-800/80">
       {/* Main Footer Row */}
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 items-start">
@@ -64,14 +64,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
             >
               {t('footer.tagline')}
             </p>
-            <div className="text-xs text-slate-400 pt-1">
-              Registered Geospatial & Geoscience Technical Consultancy
+            <div className="text-xs text-sky-400/90 pt-1 font-medium">
+              Registered Geospatial &amp; Geoscience Technical Consultancy
             </div>
           </div>
 
           {/* Column 2 (Quick Links): Clean list of text links mirroring main header menu */}
           <div id="footer-links-column" className="md:px-4">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#B3864B] mb-4 font-['Poppins']">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-sky-400 mb-4 font-['Poppins']">
               {t('footer.quickLinks')}
             </h4>
             <ul className="grid grid-cols-2 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-sm">
@@ -95,7 +95,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
                     e.preventDefault();
                     onOpenSitemap?.();
                   }}
-                  className="text-[#B3864B] hover:text-white hover:underline transition-colors duration-200 inline-block py-0.5 font-medium"
+                  className="text-sky-400 hover:text-white hover:underline transition-colors duration-200 inline-block py-0.5 font-medium"
                 >
                   {t('nav.sitemap')}
                 </a>
@@ -105,19 +105,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
 
           {/* Column 3 (Contact Us): Aligned to the right with icon placeholders */}
           <div id="footer-contact-column" className="md:text-right space-y-3.5 flex flex-col md:items-end">
-            <h4 className="text-sm font-semibold uppercase tracking-wider text-[#B3864B] mb-1 font-['Poppins']">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-sky-400 mb-1 font-['Poppins']">
               {t('footer.contactUs')}
             </h4>
 
             {/* 📍 Location text: Almora, Uttarakhand, India */}
             <div className="flex items-start md:justify-end gap-2.5 text-sm text-slate-200">
-              <MapPin className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
+              <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
               <span id="footer-location-text">{COMPANY_INFO.location}</span>
             </div>
 
             {/* ✉️ Email link text: geoversedmailbox@gmail.com */}
             <div className="flex items-center md:justify-end gap-2.5 text-sm text-slate-200">
-              <Mail className="w-4 h-4 text-[#B3864B] shrink-0" />
+              <Mail className="w-4 h-4 text-sky-400 shrink-0" />
               <a
                 id="footer-email-link"
                 href={`mailto:${COMPANY_INFO.email}`}
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
 
             {/* 📞 Phone link text: Ph: 8273753398 / 7533983533 */}
             <div className="flex items-start md:justify-end gap-2.5 text-sm text-slate-200">
-              <Phone className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
+              <Phone className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
               <div className="flex flex-col md:items-end space-y-0.5">
                 <a
                   id="footer-phone-link"
@@ -153,7 +153,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
         </div>
 
         {/* Bottom Sub-footer */}
-        <div className="mt-14 pt-8 border-t border-[#162c5c]/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="mt-14 pt-8 border-t border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} {COMPANY_INFO.name}. {t('footer.rights')}</p>
           <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6">
             <LanguageSelector variant="footer" />
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               aria-label="Back to top"
             >
               <span>{t('footer.backToTop')}</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5 text-sky-400" />
             </button>
           </div>
         </div>

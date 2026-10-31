@@ -2977,7 +2977,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
             /* STANDARD VIEW FOR OTHER SERVICES (02 to 12) */
             <div className="space-y-6">
               <div>
-                <h4 className="font-semibold text-xs uppercase tracking-wider text-[#B3864B] mb-2 font-['Poppins']">
+                <h4 className="font-semibold text-xs uppercase tracking-wider text-blue-600 mb-2 font-['Poppins']">
                   Overview
                 </h4>
                 <p className="text-slate-600 leading-relaxed">
@@ -2995,7 +2995,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               </div>
 
               <div>
-                <h4 className="font-semibold text-xs uppercase tracking-wider text-[#B3864B] mb-2 font-['Poppins']">
+                <h4 className="font-semibold text-xs uppercase tracking-wider text-blue-600 mb-2 font-['Poppins']">
                   Scientific Methodology &amp; Tools
                 </h4>
                 <p className="text-slate-600 leading-relaxed text-xs sm:text-sm">
@@ -3004,13 +3004,13 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               </div>
 
               <div>
-                <h4 className="font-semibold text-xs uppercase tracking-wider text-[#B3864B] mb-3 font-['Poppins']">
+                <h4 className="font-semibold text-xs uppercase tracking-wider text-blue-600 mb-3 font-['Poppins']">
                   Standard Deliverables
                 </h4>
                 <ul className="space-y-2">
                   {currentDetails.deliverables.map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-slate-700">
-                      <CheckCircle2 className="w-4 h-4 text-[#B3864B] shrink-0 mt-0.5" />
+                      <CheckCircle2 className="w-4 h-4 text-blue-600 shrink-0 mt-0.5" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -3035,7 +3035,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
               onClose();
               onRequestQuote(service);
             }}
-            className="inline-flex items-center gap-2 bg-[#B3864B] hover:bg-[#9c733d] text-white text-xs sm:text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-300 shadow-md shadow-blue-500/20 cursor-pointer font-['Poppins']"
           >
             <span>Request Quote For This Service</span>
             <ArrowRight className="w-4 h-4" />

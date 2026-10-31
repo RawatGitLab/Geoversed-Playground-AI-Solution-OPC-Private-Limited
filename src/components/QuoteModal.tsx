@@ -152,7 +152,7 @@ Almora, Uttarakhand 263601, India`;
           >
             <X className="w-5 h-5" />
           </button>
-          <div className="flex items-center gap-2 text-[#B3864B] text-xs font-semibold uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-1">
             <Calculator className="w-4 h-4" />
             Project Estimation & Proposal
           </div>
@@ -272,7 +272,7 @@ Almora, Uttarakhand 263601, India`;
                   onChange={(e) =>
                     setFormData({ ...formData, serviceId: e.target.value })
                   }
-                  className="w-full text-sm border border-slate-200 rounded-lg p-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B] text-[#0F2042] font-medium transition-colors"
+                  className="w-full text-sm border border-slate-200 rounded-lg p-2.5 bg-slate-50 focus:bg-white focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600 text-[#0F2042] font-medium transition-colors"
                   required
                 >
                   {CORE_SERVICES.map((s) => (
@@ -296,7 +296,7 @@ Almora, Uttarakhand 263601, India`;
                       setFormData({ ...formData, fullName: e.target.value })
                     }
                     placeholder="Dr. / Er. / Mr. / Ms."
-                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
+                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
                 <div>
@@ -310,7 +310,7 @@ Almora, Uttarakhand 263601, India`;
                       setFormData({ ...formData, organization: e.target.value })
                     }
                     placeholder="University, Gov or Firm"
-                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
+                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
               </div>
@@ -328,7 +328,7 @@ Almora, Uttarakhand 263601, India`;
                       setFormData({ ...formData, email: e.target.value })
                     }
                     placeholder="name@organization.com"
-                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
+                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
                 <div>
@@ -342,7 +342,7 @@ Almora, Uttarakhand 263601, India`;
                       setFormData({ ...formData, phone: e.target.value })
                     }
                     placeholder="e.g. +91 9876543210"
-                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
+                    className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                   />
                 </div>
               </div>
@@ -358,14 +358,14 @@ Almora, Uttarakhand 263601, India`;
                     setFormData({ ...formData, projectScope: e.target.value })
                   }
                   placeholder="Outline your study area (e.g. Almora district, watershed boundary, town municipal limits, timeline, or specific deliverables)..."
-                  className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
+                  className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
                 />
               </div>
 
               <div className="pt-3">
                 <div className="flex items-center justify-between gap-3">
                   <div className="hidden sm:flex items-center gap-1.5 text-[11px] text-slate-500">
-                    <Mail className="w-3.5 h-3.5 text-[#B3864B] shrink-0" />
+                    <Mail className="w-3.5 h-3.5 text-blue-600 shrink-0" />
                     <span className="truncate">Sends directly to <strong className="text-slate-700 font-medium">{TARGET_MAILBOX}</strong></span>
                   </div>
                   <div className="flex items-center justify-end gap-3 w-full sm:w-auto">
@@ -379,7 +379,7 @@ Almora, Uttarakhand 263601, India`;
                     <button
                       type="submit"
                       disabled={loading}
-                      className="inline-flex items-center justify-center gap-2 bg-[#B3864B] hover:bg-[#9c733d] text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-sm cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed"
+                      className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-6 py-2.5 rounded-full transition-all duration-300 shadow-md shadow-blue-500/20 cursor-pointer disabled:opacity-75 disabled:cursor-not-allowed font-['Poppins']"
                     >
                       {loading ? (
                         <>
@@ -396,7 +396,7 @@ Almora, Uttarakhand 263601, India`;
                   </div>
                 </div>
                 <div className="sm:hidden text-center mt-2 text-[11px] text-slate-500 flex items-center justify-center gap-1">
-                  <Mail className="w-3 h-3 text-[#B3864B]" />
+                  <Mail className="w-3 h-3 text-blue-600" />
                   <span>Sends directly to <strong>{TARGET_MAILBOX}</strong></span>
                 </div>
               </div>
