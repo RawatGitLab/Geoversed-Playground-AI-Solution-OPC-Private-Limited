@@ -6,9 +6,10 @@ import { NAV_LINKS, COMPANY_INFO } from '../data/servicesData';
 interface FooterProps {
   onOpenPrivacy?: () => void;
   onOpenTerms?: () => void;
+  onOpenSitemap?: () => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) => {
+export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOpenSitemap }) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -63,6 +64,19 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  id="footer-quicklink-sitemap"
+                  href="#sitemap"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onOpenSitemap?.();
+                  }}
+                  className="text-[#B3864B] hover:text-white hover:underline transition-colors duration-200 inline-block py-0.5 font-medium"
+                >
+                  Site Map
+                </a>
+              </li>
             </ul>
           </div>
 
@@ -140,6 +154,17 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms }) =>
               className="hover:text-white transition-colors cursor-pointer"
             >
               Terms of Service
+            </a>
+            <a
+              id="footer-sitemap-link"
+              href="#sitemap"
+              onClick={(e) => {
+                e.preventDefault();
+                onOpenSitemap?.();
+              }}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              Sitemap
             </a>
             <button
               onClick={scrollToTop}

@@ -201,13 +201,22 @@ export const PUBLISHED_REPORTS = [
     authors: 'Prof. J.S. Rawat, Dr. Naresh Pant, Er. Varun Rawat',
   },
   {
+    title: 'Jamakhal Stream Rejuvenation in Lesser Himalaya Dehradun',
+    shortTitle: 'Jamakhal Stream Rejuvenation Report',
+    region: 'Kotimycheck & Thana Watershed, Dehradun',
+    pdfUrl: '/reports/HASCO_Final.pdf',
+    authors: 'Himalayan Action Research / GEOVERSED Field Study',
+  },
+  {
     title: 'Certificate of Incorporation (MCA, Govt. of India)',
     shortTitle: 'Certificate of Incorporation',
     region: 'Almora, Uttarakhand',
-    pdfUrl: 'public/reports/Certificate_of_incorporation.pdf',
+    pdfUrl: '/reports/Certificate_of_incorporation.pdf',
     authors: 'Ministry of Corporate Affairs, Govt. of India',
   },
 ];
+
+export const RESEARCH_REPORTS = PUBLISHED_REPORTS;
 
 export const COMPANY_INFO = {
   name: 'GEOVERSED PLAYGROUND AI SOLUTION (OPC) PRIVATE LIMITED',

@@ -29,6 +29,11 @@ const TermsOfServiceModal = lazy(() =>
     default: m.TermsOfServiceModal,
   }))
 );
+const SitemapModal = lazy(() =>
+  import('./components/SitemapModal').then((m) => ({
+    default: m.SitemapModal,
+  }))
+);
 
 export default function App() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
@@ -36,6 +41,7 @@ export default function App() {
   const [detailService, setDetailService] = useState<ServiceItem | null>(null);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
+  const [isSitemapOpen, setIsSitemapOpen] = useState(false);
 
   useEffect(() => {
     const handleHash = () => {
@@ -43,6 +49,8 @@ export default function App() {
         setIsPrivacyOpen(true);
       } else if (window.location.hash === '#terms') {
         setIsTermsOpen(true);
+      } else if (window.location.hash === '#sitemap') {
+        setIsSitemapOpen(true);
       }
     };
     handleHash();
@@ -77,7 +85,10 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col bg-white text-[#0F2042] font-sans selection:bg-[#B3864B] selection:text-white">
       {/* 1. Header / Navigation Bar */}
-      <Header onOpenQuote={() => handleOpenQuote()} />
+      <Header
+        onOpenQuote={() => handleOpenQuote()}
+        onOpenSitemap={() => setIsSitemapOpen(true)}
+      />
 
       {/* Main Content Area */}
       <main className="flex-1">
@@ -117,6 +128,7 @@ export default function App() {
       <Footer
         onOpenPrivacy={() => setIsPrivacyOpen(true)}
         onOpenTerms={() => setIsTermsOpen(true)}
+        onOpenSitemap={() => setIsSitemapOpen(true)}
       />
 
       {/* Quote Request Modal */}
@@ -157,6 +169,20 @@ export default function App() {
           <TermsOfServiceModal
             isOpen={isTermsOpen}
             onClose={() => setIsTermsOpen(false)}
+          />
+        </Suspense>
+      )}
+
+      {/* Sitemap Directory Modal */}
+      {isSitemapOpen && (
+        <Suspense fallback={null}>
+          <SitemapModal
+            isOpen={isSitemapOpen}
+            onClose={() => setIsSitemapOpen(false)}
+            onSelectService={handleOpenDetails}
+            onOpenPrivacy={() => setIsPrivacyOpen(true)}
+            onOpenTerms={() => setIsTermsOpen(true)}
+            onOpenQuote={(srv) => handleOpenQuote(srv)}
           />
         </Suspense>
       )}

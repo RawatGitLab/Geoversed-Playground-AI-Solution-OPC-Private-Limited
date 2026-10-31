@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban, BookOpen, FileText, Newspaper } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban, BookOpen, FileText, Newspaper, Compass } from 'lucide-react';
 import { Logo } from './Logo';
 import { NAV_LINKS, CORE_SERVICES, PROJECTS_DATA, INSIGHTS_ARTICLES, PUBLISHED_REPORTS } from '../data/servicesData';
 
 interface HeaderProps {
   onOpenQuote: () => void;
+  onOpenSitemap?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
@@ -572,7 +573,24 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
         </nav>
 
         {/* Right Section: CTA Button & Mobile Menu Toggle */}
-        <div className="relative z-10 flex items-center space-x-3">
+        <div className="relative z-10 flex items-center space-x-2 sm:space-x-3">
+          <button
+            id="header-sitemap-btn"
+            type="button"
+            onClick={() => {
+              if (onOpenSitemap) {
+                onOpenSitemap();
+              } else {
+                window.location.hash = '#sitemap';
+              }
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#0F2042] hover:text-[#B3864B] px-3 sm:px-3.5 py-2 rounded-full border border-slate-200 hover:border-[#B3864B]/40 bg-slate-50/80 hover:bg-white transition-all duration-200 cursor-pointer shadow-2xs"
+            title="Open website sitemap and directory"
+          >
+            <Compass className="w-3.5 h-3.5 text-[#B3864B]" />
+            <span>Site Map</span>
+          </button>
+
           <button
             id="header-get-quote-btn"
             onClick={onOpenQuote}
@@ -861,7 +879,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote }) => {
               </a>
             );
           })}
-          <div className="pt-2">
+          <div className="pt-2 space-y-2">
+            <button
+              id="mobile-menu-sitemap-btn"
+              type="button"
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                if (onOpenSitemap) {
+                  onOpenSitemap();
+                } else {
+                  window.location.hash = '#sitemap';
+                }
+              }}
+              className="w-full flex items-center justify-center gap-2 bg-slate-100 hover:bg-slate-200 text-[#0F2042] text-sm font-medium px-5 py-2.5 rounded-full transition-all duration-300 cursor-pointer border border-slate-200"
+            >
+              <Compass className="w-4 h-4 text-[#B3864B]" />
+              <span>Site Map</span>
+            </button>
             <button
               id="mobile-menu-get-quote-btn"
               onClick={() => {
