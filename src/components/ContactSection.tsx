@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { MapPin, Phone, Mail, Send, CheckCircle2, Loader2, ExternalLink } from 'lucide-react';
 import { COMPANY_INFO } from '../data/servicesData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 const TARGET_MAILBOX = 'geoversedmailbox@gmail.com';
 
 export const ContactSection: React.FC = () => {
+  const { t } = useLanguage();
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -55,13 +57,13 @@ export const ContactSection: React.FC = () => {
         
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#B3864B] tracking-wider uppercase mb-2 font-['Poppins']">
-            Get In Touch
+            {t('contact.badge')}
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-[#0F2042] font-['Poppins'] tracking-tight">
-            Connect With Our Geoversed Team
+            {t('contact.title')}
           </h2>
           <p className="text-slate-500 text-sm sm:text-base mt-2">
-            Located in Almora, Uttarakhand. Reach out for research collaborations, GIS consultancy, or government technical partnerships.
+            {t('contact.subtitle')}
           </p>
         </div>
 
@@ -71,7 +73,7 @@ export const ContactSection: React.FC = () => {
           <div className="bg-[#0F2042] text-white rounded-2xl p-8 shadow-md flex flex-col justify-between">
             <div>
               <h3 className="text-xl font-bold font-['Poppins'] mb-6 text-white">
-                Headquarters
+                {t('contact.headquarters')}
               </h3>
               
               <div className="space-y-6">
@@ -80,7 +82,7 @@ export const ContactSection: React.FC = () => {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Office Location</div>
+                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">{t('contact.locationLabel')}</div>
                     <div className="text-sm font-medium text-slate-100 mt-0.5">{COMPANY_INFO.location}</div>
                   </div>
                 </div>
@@ -90,7 +92,7 @@ export const ContactSection: React.FC = () => {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Telephone</div>
+                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">{t('contact.phoneLabel')}</div>
                     <div className="space-y-1 mt-0.5">
                       <a
                         href={`tel:${COMPANY_INFO.phone}`}
@@ -113,7 +115,7 @@ export const ContactSection: React.FC = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">Official Email</div>
+                    <div className="text-xs text-slate-400 font-medium uppercase tracking-wider">{t('contact.emailLabel')}</div>
                     <a
                       href={`mailto:${TARGET_MAILBOX}`}
                       className="text-sm font-medium text-slate-100 hover:text-[#B3864B] transition-colors mt-0.5 block break-all"
@@ -133,20 +135,20 @@ export const ContactSection: React.FC = () => {
           {/* Direct Quick Inquiry Form */}
           <div className="lg:col-span-2 bg-white rounded-2xl p-8 border border-slate-200/80 shadow-sm">
             <h3 className="text-xl font-bold text-[#0F2042] font-['Poppins'] mb-2">
-              Send a Direct Message
+              {t('contact.sendMessage')}
             </h3>
             <p className="text-slate-500 text-xs sm:text-sm mb-6">
-              Inquire about technical studies, GIS data licensing, or collaborative research. Submissions are delivered to <strong className="text-slate-700 font-semibold">{TARGET_MAILBOX}</strong>.
+              {t('contact.formSubtitle')}
             </p>
 
             {sent ? (
               <div className="p-6 bg-emerald-50 border border-emerald-200 rounded-xl text-center space-y-2">
                 <CheckCircle2 className="w-8 h-8 text-emerald-600 mx-auto" />
                 <h4 className="font-bold text-emerald-900 text-base font-['Poppins']">
-                  Message Sent to {TARGET_MAILBOX}
+                  {t('contact.successTitle')}
                 </h4>
                 <p className="text-emerald-700 text-xs sm:text-sm">
-                  Thank you for reaching out to GEOVERSED. Your message has been sent to {TARGET_MAILBOX}. Our team in Almora will respond promptly.
+                  {t('contact.successMsg')}
                 </p>
               </div>
             ) : (
@@ -154,27 +156,27 @@ export const ContactSection: React.FC = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                      Your Name
+                      {t('contact.nameLabel')}
                     </label>
                     <input
                       type="text"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Name or Designation"
+                      placeholder={t('contact.namePlaceholder')}
                       className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                      Email Address
+                      {t('contact.emailFieldLabel')}
                     </label>
                     <input
                       type="email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="email@organization.in"
+                      placeholder={t('contact.emailPlaceholder')}
                       className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
                     />
                   </div>
@@ -182,28 +184,28 @@ export const ContactSection: React.FC = () => {
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Subject
+                    {t('contact.subjectLabel')}
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    placeholder="e.g., Watershed Survey in Almora / GIS Training Workshop"
+                    placeholder={t('contact.subjectPlaceholder')}
                     className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
                   />
                 </div>
 
                 <div>
                   <label className="block text-xs font-semibold text-slate-700 uppercase tracking-wider mb-1">
-                    Message
+                    {t('contact.messageLabel')}
                   </label>
                   <textarea
                     rows={4}
                     required
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Briefly describe your requirements, area of interest, or timeline..."
+                    placeholder={t('contact.messagePlaceholder')}
                     className="w-full text-sm border border-slate-200 rounded-lg p-2.5 focus:outline-none focus:border-[#B3864B] focus:ring-1 focus:ring-[#B3864B]"
                   />
                 </div>
@@ -221,11 +223,11 @@ export const ContactSection: React.FC = () => {
                     {loading ? (
                       <>
                         <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending...</span>
+                        <span>{t('contact.sending')}</span>
                       </>
                     ) : (
                       <>
-                        <span>Send Message</span>
+                        <span>{t('contact.sendBtn')}</span>
                         <Send className="w-3.5 h-3.5 text-[#B3864B]" />
                       </>
                     )}

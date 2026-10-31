@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import { CORE_SERVICES, COMPANY_INFO, NAV_LINKS, RESEARCH_REPORTS } from '../data/servicesData';
 import { ServiceItem } from '../types';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface SitemapModalProps {
   isOpen: boolean;
@@ -35,6 +36,26 @@ export const SitemapModal: React.FC<SitemapModalProps> = ({
   onOpenTerms,
   onOpenQuote,
 }) => {
+  const { t } = useLanguage();
+
+  const getNavLabel = (label: string): string => {
+    switch (label) {
+      case 'Home':
+        return t('nav.home');
+      case 'About':
+        return t('nav.about');
+      case 'Services':
+        return t('nav.services');
+      case 'Projects':
+        return t('nav.projects');
+      case 'Insights':
+        return t('nav.insights');
+      case 'Contact':
+        return t('nav.contact');
+      default:
+        return label;
+    }
+  };
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -147,7 +168,7 @@ export const SitemapModal: React.FC<SitemapModalProps> = ({
                     {link.href}
                   </div>
                   <div className="text-xs sm:text-sm font-bold text-[#0F2042] group-hover:text-[#B3864B] font-['Poppins'] mt-0.5 flex items-center justify-between">
-                    <span>{link.label}</span>
+                    <span>{getNavLabel(link.label)}</span>
                     <ArrowRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </div>
                 </button>

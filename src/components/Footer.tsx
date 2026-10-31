@@ -2,6 +2,8 @@ import React from 'react';
 import { MapPin, Phone, Mail, ArrowUp } from 'lucide-react';
 import { Logo } from './Logo';
 import { NAV_LINKS, COMPANY_INFO } from '../data/servicesData';
+import { useLanguage } from '../i18n/LanguageContext';
+import { LanguageSelector } from './LanguageSelector';
 
 interface FooterProps {
   onOpenPrivacy?: () => void;
@@ -10,6 +12,8 @@ interface FooterProps {
 }
 
 export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOpenSitemap }) => {
+  const { t } = useLanguage();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -21,6 +25,25 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
         e.preventDefault();
         element.scrollIntoView({ behavior: 'smooth' });
       }
+    }
+  };
+
+  const getNavLabel = (label: string): string => {
+    switch (label) {
+      case 'Home':
+        return t('nav.home');
+      case 'About':
+        return t('nav.about');
+      case 'Services':
+        return t('nav.services');
+      case 'Projects':
+        return t('nav.projects');
+      case 'Insights':
+        return t('nav.insights');
+      case 'Contact':
+        return t('nav.contact');
+      default:
+        return label;
     }
   };
 
@@ -39,7 +62,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               id="footer-tagline"
               className="text-slate-300 text-sm leading-relaxed max-w-sm font-normal"
             >
-              {COMPANY_INFO.tagline}
+              {t('footer.tagline')}
             </p>
             <div className="text-xs text-slate-400 pt-1">
               Registered Geospatial & Geoscience Technical Consultancy
@@ -49,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
           {/* Column 2 (Quick Links): Clean list of text links mirroring main header menu */}
           <div id="footer-links-column" className="md:px-4">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#B3864B] mb-4 font-['Poppins']">
-              Quick Links
+              {t('footer.quickLinks')}
             </h4>
             <ul className="grid grid-cols-2 sm:grid-cols-2 gap-y-2.5 gap-x-6 text-sm">
               {NAV_LINKS.map((link) => (
@@ -60,7 +83,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
                     onClick={(e) => handleNavClick(e, link.href)}
                     className="text-slate-300 hover:text-white hover:underline transition-colors duration-200 inline-block py-0.5"
                   >
-                    {link.label}
+                    {getNavLabel(link.label)}
                   </a>
                 </li>
               ))}
@@ -74,7 +97,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
                   }}
                   className="text-[#B3864B] hover:text-white hover:underline transition-colors duration-200 inline-block py-0.5 font-medium"
                 >
-                  Site Map
+                  {t('nav.sitemap')}
                 </a>
               </li>
             </ul>
@@ -83,7 +106,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
           {/* Column 3 (Contact Us): Aligned to the right with icon placeholders */}
           <div id="footer-contact-column" className="md:text-right space-y-3.5 flex flex-col md:items-end">
             <h4 className="text-sm font-semibold uppercase tracking-wider text-[#B3864B] mb-1 font-['Poppins']">
-              Contact Us
+              {t('footer.contactUs')}
             </h4>
 
             {/* 📍 Location text: Almora, Uttarakhand, India */}
@@ -125,15 +148,15 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               </div>
             </div>
 
-            
           </div>
 
         </div>
 
         {/* Bottom Sub-footer */}
-        <div className="mt-14 pt-8 border-t border-[#162c5c]/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
-          <p>© {new Date().getFullYear()} {COMPANY_INFO.name}. All rights reserved.</p>
-          <div className="flex items-center gap-6">
+        <div className="mt-14 pt-8 border-t border-[#162c5c]/80 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>© {new Date().getFullYear()} {COMPANY_INFO.name}. {t('footer.rights')}</p>
+          <div className="flex flex-wrap items-center justify-center md:justify-end gap-4 sm:gap-6">
+            <LanguageSelector variant="footer" />
             <a
               href="#privacy"
               onClick={(e) => {
@@ -142,7 +165,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               }}
               className="hover:text-white transition-colors cursor-pointer"
             >
-              Privacy Policy
+              {t('footer.privacy')}
             </a>
             <a
               id="footer-terms-link"
@@ -153,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               }}
               className="hover:text-white transition-colors cursor-pointer"
             >
-              Terms of Service
+              {t('footer.terms')}
             </a>
             <a
               id="footer-sitemap-link"
@@ -164,14 +187,14 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
               }}
               className="hover:text-white transition-colors cursor-pointer"
             >
-              Sitemap
+              {t('nav.sitemap')}
             </a>
             <button
               onClick={scrollToTop}
-              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors cursor-pointer ml-2"
+              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-white transition-colors cursor-pointer ml-1"
               aria-label="Back to top"
             >
-              <span>Back to top</span>
+              <span>{t('footer.backToTop')}</span>
               <ArrowUp className="w-3.5 h-3.5" />
             </button>
           </div>

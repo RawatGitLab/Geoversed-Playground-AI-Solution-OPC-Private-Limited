@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { ExternalLink, FileText } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface ProjectsSectionProps {
   onOpenQuote: () => void;
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote }) => {
+  const { t, language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
 
   // The first three project divs were moved to section#insights (Knowledge Hub / Publications)
@@ -17,7 +19,12 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
       ? remainingProjects
       : remainingProjects.filter((p) => p.category === activeFilter);
 
-  const filterCategories = ['All', 'Infrastructure', 'Hydrology', 'Environment'];
+  const filterCategories = [
+    { key: 'All', labelEn: 'All', labelHi: 'सभी' },
+    { key: 'Infrastructure', labelEn: 'Infrastructure', labelHi: 'बुनियादी ढाँचा' },
+    { key: 'Hydrology', labelEn: 'Hydrology', labelHi: 'जल विज्ञान' },
+    { key: 'Environment', labelEn: 'Environment', labelHi: 'पर्यावरण' },
+  ];
 
   return (
     <section id="projects" className="py-20 bg-white">
@@ -27,13 +34,13 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#B3864B] tracking-wider uppercase mb-2 font-['Poppins']">
-              Featured Engagements
+              {t('projects.badge')}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0F2042] font-['Poppins'] tracking-tight">
-              Selected Geo Spatial Science Projects
+              {t('projects.title')}
             </h2>
             <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-xl">
-              Real-world implementations demonstrating the convergence of rigorous field science and cutting-edge GIS technology.
+              {t('projects.subtitle')}
             </p>
           </div>
 
@@ -41,15 +48,15 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
           <div className="flex items-center gap-2 flex-wrap">
             {filterCategories.map((filter) => (
               <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
+                key={filter.key}
+                onClick={() => setActiveFilter(filter.key)}
                 className={`text-xs font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 cursor-pointer ${
-                  activeFilter === filter
+                  activeFilter === filter.key
                     ? 'bg-[#0F2042] text-white shadow-sm'
                     : 'bg-[#F8F9FA] text-slate-600 hover:bg-slate-200'
                 }`}
               >
-                {filter}
+                {language === 'hi' ? filter.labelHi : filter.labelEn}
               </button>
             ))}
           </div>
@@ -82,7 +89,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                       title="Open Technical Research Report (PDF)"
                     >
                       <FileText className="w-3.5 h-3.5" />
-                      <span>Report</span>
+                      <span>{t('projects.reportBtn')}</span>
                     </a>
                   </div>
                 )}
@@ -101,7 +108,7 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
                   onClick={onOpenQuote}
                   className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors ml-auto"
                 >
-                  <span>Inquire for Similar</span>
+                  <span>{t('projects.inquireBtn')}</span>
                   <ExternalLink className="w-3.5 h-3.5" />
                 </button>
               </div>

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
 import { ServiceItem } from '../types';
 import { CORE_SERVICES } from '../data/servicesData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface CoreServicesProps {
   onSelectServiceForQuote: (service: ServiceItem) => void;
@@ -12,15 +13,70 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
   onSelectServiceForQuote,
   onOpenDetails,
 }) => {
+  const { t, language } = useLanguage();
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
   const categories = [
-    'All',
-    'Digital Geospatial',
-    'Planning & Governance',
-    'Hydrology & Environment',
-    'Climate & Settlements',
-    'AI & Capacity Building',
+    {
+      key: 'All',
+      label: {
+        en: 'All',
+        hi: 'सभी 12 सेवाएँ',
+        te: 'అన్నీ (12)',
+        mr: 'सर्व (12)',
+        bn: 'সমস্ত (১২)',
+      },
+    },
+    {
+      key: 'Digital Geospatial',
+      label: {
+        en: 'Digital Geospatial',
+        hi: 'डिजिटल भू-स्थानिक',
+        te: 'డిజిటల్ జియోస్పేషియల్',
+        mr: 'डिजिटल भू-स्थानिक',
+        bn: 'ডিজিটাল ভূ-স্থানিক',
+      },
+    },
+    {
+      key: 'Planning & Governance',
+      label: {
+        en: 'Planning & Governance',
+        hi: 'नियोजन व जी-गवर्नेंस',
+        te: 'ప్లానింగ్ & పాలన',
+        mr: 'नियोजन व प्रशासन',
+        bn: 'পরিকল্পনা ও প্রশাসন',
+      },
+    },
+    {
+      key: 'Hydrology & Environment',
+      label: {
+        en: 'Hydrology & Environment',
+        hi: 'जल विज्ञान व पर्यावरण',
+        te: 'హైడ్రాలజీ & పర్యావరణం',
+        mr: 'जलविज्ञान व पर्यावरण',
+        bn: 'জলবিজ্ঞান ও পরিবেশ',
+      },
+    },
+    {
+      key: 'Climate & Settlements',
+      label: {
+        en: 'Climate & Settlements',
+        hi: 'जलवायु व बस्तियाँ',
+        te: 'వాతావరణం & నివాసాలు',
+        mr: 'हवामान व वसाहती',
+        bn: 'জলবায়ু ও জনবসতি',
+      },
+    },
+    {
+      key: 'AI & Capacity Building',
+      label: {
+        en: 'AI & Capacity Building',
+        hi: 'एआई व क्षमता निर्माण',
+        te: 'AI & సామర్థ్య పెంపు',
+        mr: 'एआय व क्षमता बांधणी',
+        bn: 'এআই ও সক্ষমতা বৃদ্ধি',
+      },
+    },
   ];
 
   // Filter logic based on category
@@ -49,17 +105,20 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#B3864B] tracking-wider uppercase mb-2 font-['Poppins']">
+            {t('services.badge')}
+          </div>
           <h2
             id="services-section-heading"
             className="text-[#0F2042] font-bold text-3xl sm:text-4xl md:text-[40px] tracking-tight font-['Poppins'] mb-4"
           >
-            Core Services
+            {t('services.title')}
           </h2>
           <p
             id="services-section-subtext"
             className="text-slate-500 text-base sm:text-lg leading-relaxed font-normal"
           >
-            Advanced geoscience and GIS solutions engineered specifically for the intricate geographical and developmental challenges of Himalayan regions and fragile ecological landscapes.
+            {t('services.subtitle')}
           </p>
         </div>
 
@@ -67,15 +126,15 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
         <div className="flex items-center justify-center gap-2 overflow-x-auto w-full py-1 mb-10 pb-4 border-b border-slate-100 scrollbar-none">
           {categories.map((cat) => (
             <button
-              key={cat}
-              onClick={() => setSelectedCategory(cat)}
+              key={cat.key}
+              onClick={() => setSelectedCategory(cat.key)}
               className={`text-xs sm:text-sm font-medium px-4 py-1.5 rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
-                selectedCategory === cat
+                selectedCategory === cat.key
                   ? 'bg-[#0F2042] text-white shadow-sm'
                   : 'bg-[#F8F9FA] text-slate-600 hover:bg-slate-200'
               }`}
             >
-              {cat}
+              {cat.label[language] || cat.label.en}
             </button>
           ))}
         </div>
@@ -136,7 +195,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
                   onClick={() => onOpenDetails(service)}
                   className="text-xs font-semibold text-[#0F2042] hover:text-[#B3864B] bg-slate-100/80 hover:bg-[#0F2042]/5 transition-colors cursor-pointer py-1.5 px-3 rounded-lg border border-slate-200/80 hover:border-[#B3864B]/40 inline-flex items-center gap-1.5"
                 >
-                  <span>About Service</span>
+                  <span>{t('services.viewSpecifications')}</span>
                 </button>
 
                 <button
@@ -144,7 +203,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
                   onClick={() => onSelectServiceForQuote(service)}
                   className="text-xs font-semibold text-[#B3864B] hover:text-[#9c733d] inline-flex items-center gap-1 group/btn cursor-pointer py-1.5 px-2"
                 >
-                  <span>Request Quote</span>
+                  <span>{t('services.requestQuote')}</span>
                   <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                 </button>
               </div>

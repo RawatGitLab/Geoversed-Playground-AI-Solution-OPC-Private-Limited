@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronRight, Layers } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 import heroBgWebp from '../assets/images/himalayan_peaks_sharp_1789732575223.webp';
 import heroBgJpg from '../assets/images/himalayan_peaks_sharp_1789732575223.jpg';
 
@@ -9,6 +10,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects }) => {
+  const { t } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
 
   return (
@@ -43,7 +45,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
         {/* Subtle pill badge */}
         <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/20 text-white/90 text-xs sm:text-sm font-medium mb-6 tracking-wide shadow-sm">
           <Layers className="w-3.5 h-3.5 text-white/80" />
-          <span>Geospatial Excellence &amp; Field Geosciences</span>
+          <span>{t('hero.badge')}</span>
         </div>
 
         {/* Main Heading (H1) */}
@@ -52,10 +54,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           className="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-[42px] xl:text-[48px] tracking-tight leading-[1.25] sm:leading-[1.3] max-w-6xl mb-8 font-['Poppins'] drop-shadow-md text-center"
         >
           <span className="block md:whitespace-nowrap">
-            Where Field Expertise Meets Smart Technology and
+            {t('hero.heading1')}
           </span>
           <span className="block md:whitespace-nowrap">
-            Geoscience Intelligence for Sustainable Solutions
+            {t('hero.heading2')}
           </span>
         </h1>
 
@@ -68,9 +70,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           <button
             id="hero-explore-services-btn"
             onClick={onExploreServices}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[#0F2042] font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-[#0F2042] font-semibold text-base px-7 py-3.5 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5 cursor-pointer font-['Poppins']"
           >
-            <span>Explore Our Services</span>
+            <span>{t('hero.exploreServices')}</span>
             <ChevronRight className="w-4 h-4 text-[#0F2042]" />
           </button>
 
@@ -78,9 +80,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           <button
             id="hero-view-projects-btn"
             onClick={onViewProjects}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/15 text-white font-medium text-base px-7 py-3.5 rounded-full border border-white/90 transition-all duration-300 hover:border-white hover:-translate-y-0.5 cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-transparent hover:bg-white/15 text-white font-medium text-base px-7 py-3.5 rounded-full border border-white/90 transition-all duration-300 hover:border-white hover:-translate-y-0.5 cursor-pointer font-['Poppins']"
           >
-            <span>View Projects</span>
+            <span>{t('hero.viewProjects')}</span>
           </button>
         </div>
       </div>

@@ -26,7 +26,10 @@ import {
   X,
 } from 'lucide-react';
 
+import { useLanguage } from '../i18n/LanguageContext';
+
 export const AboutSection: React.FC = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'profile' | 'objects' | 'missions' | 'governance'>('profile');
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
 
@@ -226,17 +229,17 @@ export const AboutSection: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[#D4A366] text-xs font-bold uppercase tracking-wider font-['Poppins']">
                     <Eye className="w-3.5 h-3.5 text-[#B3864B]" />
-                    <span>OUR VISION</span>
+                    <span>{t('about.vision.title')}</span>
                   </div>
                   <span className="text-[11px] font-semibold text-slate-300 bg-white/10 px-2.5 py-0.5 rounded-full border border-white/10">
-                    Global Leadership
+                    {t('about.vision.tag')}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-white font-['Poppins'] mb-3 leading-snug">
-                  Category-Defining Global Technology Enterprise
+                  {t('about.vision.heading')}
                 </h3>
                 <p className="text-slate-300 text-xs sm:text-sm leading-relaxed text-justify">
-                  To build a category-defining global technology enterprise at the intersection of SaaS, AI, and geospatial intelligence—delivering scalable, high-impact platforms that drive digital transformation, unlock operational efficiency, and generate long-term enterprise and institutional value. We aim to lead the global evolution of data-driven governance and intelligent infrastructure by enabling smarter cities, resilient ecosystems, and sustainable resource management, positioning ourselves as a strategic force in shaping the future of digital economies while delivering sustained growth, innovation, and market leadership worldwide.
+                  {t('about.vision.text')}
                 </p>
               </div>
             </div>
@@ -248,17 +251,17 @@ export const AboutSection: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 mb-4">
                   <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0F2042]/5 border border-[#0F2042]/10 text-[#0F2042] text-xs font-bold uppercase tracking-wider font-['Poppins']">
                     <Target className="w-3.5 h-3.5 text-[#B3864B]" />
-                    <span> OUR MISSION</span>
+                    <span>{t('about.mission.title')}</span>
                   </div>
                   <span className="text-[11px] font-semibold text-[#B3864B] bg-[#B3864B]/10 px-2.5 py-0.5 rounded-full border border-[#B3864B]/20">
-                    g-Governance &amp; Digital India
+                    {t('about.mission.tag')}
                   </span>
                 </div>
                 <h3 className="text-xl sm:text-2xl font-bold text-[#0F2042] font-['Poppins'] mb-3 leading-snug">
-                  Transforming e-Governance into Intelligent g-Governance
+                  {t('about.mission.heading')}
                 </h3>
                 <p className="text-slate-600 text-xs sm:text-sm leading-relaxed text-justify">
-                  Our mission is to design, develop, and scale enterprise-grade SaaS platforms and AI-driven software solutions that empower businesses, governments, and institutions to automate operations, unlock data intelligence, and accelerate digital transformation. By integrating GIS and Remote Sensing, we transform conventional e-Governance into intelligent g-Governance — improving transparency, efficiency, and decision-making across water resources, disaster management, urban planning, and infrastructure. In line with Digital India, we deliver scalable, high-impact technology solutions for sustainable growth. Aligned with the vision of Digital India, our approach focuses on delivering scalable innovation, fostering inclusive growth, and creating long-term value for stakeholders while driving measurable socio-economic impact through technology excellence.
+                  {t('about.mission.text')}
                 </p>
               </div>
             </div>
@@ -272,13 +275,13 @@ export const AboutSection: React.FC = () => {
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-2">
                   <ShieldCheck className="w-3.5 h-3.5" />
-                  <span>Statutory Corporate Memorandum</span>
+                  <span>{t('about.objective.badge')}</span>
                 </div>
                 <h3 className="text-2xl font-bold text-[#0F2042] font-['Poppins']">
-                  OUR OBJECTIVE
+                  {t('about.objective.title')}
                 </h3>
                 <p className="text-slate-500 text-xs sm:text-sm mt-0.5">
-                  Chartered under Section 4 and Schedule I of the Companies Act, 2013 (INC-33 e-MOA).
+                  {t('about.objective.subtitle')}
                 </p>
               </div>
 
@@ -404,15 +407,13 @@ export const AboutSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#B3864B]/10 border border-[#B3864B]/30 text-[#B3864B] text-xs font-semibold uppercase tracking-wider font-['Poppins'] mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Statutory Corporate Profile &amp; Mission</span>
+            <span>{t('about.badge')}</span>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-[40px] font-bold text-[#0F2042] font-['Poppins'] tracking-tight mb-4 leading-tight">
-            Pioneering Geoscience Intelligence &amp; Enterprise AI Solutions
+            {t('about.title')}
           </h2>
           <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-            Incorporated under the <strong>Companies Act, 2013 (Ministry of Corporate Affairs, Government of India)</strong>, 
-            GEOVERSED unites on-ground Himalayan field exploration with enterprise-grade Artificial Intelligence, 
-            satellite remote sensing, and national infrastructure consulting.
+            {t('about.description')}
           </p>
         </div>
 
@@ -428,7 +429,7 @@ export const AboutSection: React.FC = () => {
               }`}
             >
               <Building2 className="w-3.5 h-3.5" />
-              <span>Corporate Overview</span>
+              <span>{t('about.tab.profile')}</span>
             </button>
 
             <button
@@ -440,7 +441,7 @@ export const AboutSection: React.FC = () => {
               }`}
             >
               <Cpu className="w-3.5 h-3.5" />
-              <span>e-MOA Objects &amp; SaaS</span>
+              <span>{t('about.tab.objects')}</span>
             </button>
 
             <button
@@ -452,7 +453,7 @@ export const AboutSection: React.FC = () => {
               }`}
             >
               <Landmark className="w-3.5 h-3.5" />
-              <span>National Flagship Missions</span>
+              <span>{t('about.tab.missions')}</span>
             </button>
 
             <button
@@ -464,7 +465,7 @@ export const AboutSection: React.FC = () => {
               }`}
             >
               <Scale className="w-3.5 h-3.5" />
-              <span>Statutory &amp; R&amp;D Mandate</span>
+              <span>{t('about.tab.governance')}</span>
             </button>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FileText, ExternalLink } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
+import { useLanguage } from '../i18n/LanguageContext';
 
 interface InsightsSectionProps {
   onReadInsight?: (title: string) => void;
@@ -8,6 +9,7 @@ interface InsightsSectionProps {
 }
 
 export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote }) => {
+  const { t } = useLanguage();
   // First three project research reports moved from section#projects into section#insights
   const researchReports = PROJECTS_DATA.slice(0, 3);
 
@@ -18,13 +20,13 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
           <div>
             <div className="inline-flex items-center gap-2 text-xs font-semibold text-[#B3864B] tracking-wider uppercase mb-2 font-['Poppins']">
-              Knowledge Hub
+              {t('insights.badge')}
             </div>
             <h2 className="text-3xl sm:text-4xl font-bold text-[#0F2042] font-['Poppins'] tracking-tight">
-              Geoscience Insights &amp; Publications
+              {t('insights.title')}
             </h2>
             <p className="text-slate-500 text-sm sm:text-base mt-2 max-w-xl">
-              Official technical research reports, ground-truthed hydrological micro-plans, and geospatial methodologies published by GEOVERSED researchers.
+              {t('insights.subtitle')}
             </p>
           </div>
         </div>
@@ -38,11 +40,11 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
                 <span>Official Technical Reports &amp; DPRs</span>
               </div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#0F2042] font-['Poppins'] mt-1">
-                Published Watershed Rejuvenation Technical Reports
+                {t('insights.dprHeading')}
               </h3>
             </div>
             <span className="text-xs font-semibold text-[#B3864B] bg-[#B3864B]/10 px-3 py-1 rounded-full border border-[#B3864B]/20 self-start sm:self-auto font-['Poppins']">
-              Full Technical PDFs Available
+              {t('insights.dprBadge')}
             </span>
           </div>
 
@@ -72,7 +74,7 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
                         title="Open Technical Research Report (PDF)"
                       >
                         <FileText className="w-3.5 h-3.5" />
-                        <span>Report</span>
+                        <span>{t('insights.openReport')}</span>
                         <ExternalLink className="w-3 h-3 ml-0.5 opacity-70 group-hover/btn:opacity-100" />
                       </a>
                     </div>
@@ -93,7 +95,7 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
                       onClick={onOpenQuote}
                       className="text-[#0F2042] font-semibold hover:text-[#B3864B] inline-flex items-center gap-1 cursor-pointer transition-colors ml-auto"
                     >
-                      <span>Inquire for Similar</span>
+                      <span>{t('projects.inquireBtn')}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </button>
                   )}
