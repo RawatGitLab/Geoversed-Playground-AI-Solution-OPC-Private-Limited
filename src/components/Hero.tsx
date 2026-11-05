@@ -109,29 +109,49 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
             <div className="text-[11px] text-slate-200">Uttarakhand Himalayan Field Atlas ↗</div>
           </a>
 
-          {/* Stat 2 */}
-          <div className="bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-4.5 hover:bg-slate-900/50 transition-all shadow-lg">
-            <div className="flex items-center gap-2.5 mb-1">
-              <div className="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center">
-                <Sparkles className="w-4 h-4" />
+          {/* Stat 2: Clickable link to Core Capabilities / Services section */}
+          <a
+            href="#services"
+            onClick={(e) => {
+              e.preventDefault();
+              onExploreServices();
+            }}
+            title="Explore 12 Core Capabilities & Services"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-indigo-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 cursor-pointer"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-indigo-500/20 text-indigo-300 flex items-center justify-center group-hover:bg-indigo-500/30 transition-colors">
+                  <Sparkles className="w-4 h-4" />
+                </div>
+                <span className="text-2xl sm:text-3xl font-extrabold text-white font-['Poppins']">12</span>
               </div>
-              <span className="text-2xl sm:text-3xl font-extrabold text-white font-['Poppins']">12</span>
+              <ChevronRight className="w-3.5 h-3.5 text-white/50 group-hover:text-indigo-300 group-hover:translate-x-0.5 transition-all" />
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-white">Core Capabilities</div>
-            <div className="text-[11px] text-slate-200">Geoscience, AI &amp; GIS Intelligence</div>
-          </div>
+            <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-indigo-200 transition-colors">Core Capabilities</div>
+            <div className="text-[11px] text-slate-200">Geoscience, AI &amp; GIS Intelligence ↓</div>
+          </a>
 
-          {/* Stat 3 */}
-          <div className="bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-4.5 hover:bg-slate-900/50 transition-all shadow-lg">
-            <div className="flex items-center gap-2.5 mb-1">
-              <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center">
-                <ShieldCheck className="w-4 h-4" />
+          {/* Stat 3: Clickable link to MOA-INC-33 Document */}
+          <a
+            href="/assets/aistudio/MOA-INC-33_GEOVERSED_d7b64cd7.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="View Official MCA Form INC-33 e-MOA Document (PDF)"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-emerald-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-0.5 cursor-pointer"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center group-hover:bg-emerald-500/30 transition-colors">
+                  <ShieldCheck className="w-4 h-4" />
+                </div>
+                <span className="text-xl sm:text-2xl font-extrabold text-white font-['Poppins']">INC-33</span>
               </div>
-              <span className="text-xl sm:text-2xl font-extrabold text-white font-['Poppins']">INC-33</span>
+              <ExternalLink className="w-3.5 h-3.5 text-white/50 group-hover:text-emerald-300 transition-colors" />
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-white">MCA Statutory Registered</div>
-            <div className="text-[11px] text-slate-200">Govt. of India Recognized OPC</div>
-          </div>
+            <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-emerald-200 transition-colors">MCA Statutory Registered</div>
+            <div className="text-[11px] text-slate-200 group-hover:text-white transition-colors">View Form INC-33 e-MOA ↗</div>
+          </a>
         </div>
       </div>
 
