@@ -41,6 +41,9 @@ const EventDetailModal = lazy(() =>
     default: m.EventDetailModal,
   }))
 );
+const ShareModal = lazy(() =>
+  import('./components/ShareModal').then((m) => ({ default: m.ShareModal }))
+);
 
 export default function App() {
   const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
@@ -50,6 +53,7 @@ export default function App() {
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isSitemapOpen, setIsSitemapOpen] = useState(false);
+  const [isShareOpen, setIsShareOpen] = useState(false);
 
   // Monitor hash changes for in-page smooth scrolling & modals
   useEffect(() => {
@@ -62,6 +66,8 @@ export default function App() {
         setIsTermsOpen(true);
       } else if (hash === '#sitemap') {
         setIsSitemapOpen(true);
+      } else if (hash === '#share') {
+        setIsShareOpen(true);
       } else if (hash.startsWith('#events/') || hash.startsWith('#event/')) {
         const slug = hash.replace(/^#(?:events|event)\//, '').trim();
         const found = getEventById(slug);
@@ -123,6 +129,7 @@ export default function App() {
       <Header
         onOpenQuote={() => handleOpenQuote()}
         onOpenSitemap={() => setIsSitemapOpen(true)}
+        onOpenShare={() => setIsShareOpen(true)}
       />
 
       {/* Main Single Page Content Area - Fully Scrollable */}
@@ -235,6 +242,16 @@ export default function App() {
             onOpenPrivacy={() => setIsPrivacyOpen(true)}
             onOpenTerms={() => setIsTermsOpen(true)}
             onOpenQuote={(srv) => handleOpenQuote(srv)}
+          />
+        </Suspense>
+      )}
+
+      {/* Share Website Modal with Social Preview Popup */}
+      {isShareOpen && (
+        <Suspense fallback={null}>
+          <ShareModal
+            isOpen={isShareOpen}
+            onClose={() => setIsShareOpen(false)}
           />
         </Suspense>
       )}

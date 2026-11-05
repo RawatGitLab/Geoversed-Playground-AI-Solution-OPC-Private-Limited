@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban, BookOpen, FileText, Newspaper, Compass } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronDown, Eye, Target, ShieldCheck, Layers, FolderKanban, BookOpen, FileText, Newspaper, Compass, Share2 } from 'lucide-react';
 import { Logo } from './Logo';
 import { NAV_LINKS, CORE_SERVICES, PROJECTS_DATA, INSIGHTS_ARTICLES, PUBLISHED_REPORTS } from '../data/servicesData';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -8,9 +8,10 @@ import { LanguageSelector } from './LanguageSelector';
 interface HeaderProps {
   onOpenQuote: () => void;
   onOpenSitemap?: () => void;
+  onOpenShare?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) => {
+export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOpenShare }) => {
   const { t } = useLanguage();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -609,6 +610,23 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
           >
             <Compass className="w-3.5 h-3.5 text-blue-600" />
             <span>{t('nav.sitemap')}</span>
+          </button>
+
+          <button
+            id="header-share-btn"
+            type="button"
+            onClick={() => {
+              if (onOpenShare) {
+                onOpenShare();
+              } else {
+                window.location.hash = '#share';
+              }
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 px-3 sm:px-3.5 py-2 rounded-full border border-slate-200 hover:border-blue-300 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer shadow-2xs"
+            title="Share website link and social preview"
+          >
+            <Share2 className="w-3.5 h-3.5 text-blue-600" />
+            <span className="hidden sm:inline">Share</span>
           </button>
 
           <button
