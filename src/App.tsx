@@ -5,12 +5,14 @@ import { CoreServices } from './components/CoreServices';
 import { AboutSection } from './components/AboutSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { InsightsSection } from './components/InsightsSection';
+import { EventsSection } from './components/events/EventsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
-import { ServiceItem } from './types';
+import { ServiceItem, EventItem } from './types';
 import { CORE_SERVICES } from './data/servicesData';
+import { getEventById } from './data/events';
 
-// Lazy load modals so heavy assets and banners don't block the initial page render
+// Lazy load modals so heavy assets and videos don't block the initial page render
 const QuoteModal = lazy(() =>
   import('./components/QuoteModal').then((m) => ({ default: m.QuoteModal }))
 );
@@ -34,8 +36,14 @@ const SitemapModal = lazy(() =>
     default: m.SitemapModal,
   }))
 );
+const EventDetailModal = lazy(() =>
+  import('./components/events/EventDetailModal').then((m) => ({
+    default: m.EventDetailModal,
+  }))
+);
 
 export default function App() {
+  const [selectedEvent, setSelectedEvent] = useState<EventItem | null>(null);
   const [isQuoteOpen, setIsQuoteOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<ServiceItem | null>(null);
   const [detailService, setDetailService] = useState<ServiceItem | null>(null);
@@ -43,16 +51,33 @@ export default function App() {
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isSitemapOpen, setIsSitemapOpen] = useState(false);
 
+  // Monitor hash changes for in-page smooth scrolling & modals
   useEffect(() => {
     const handleHash = () => {
-      if (window.location.hash === '#privacy') {
+      const hash = window.location.hash || '';
+
+      if (hash === '#privacy') {
         setIsPrivacyOpen(true);
-      } else if (window.location.hash === '#terms') {
+      } else if (hash === '#terms') {
         setIsTermsOpen(true);
-      } else if (window.location.hash === '#sitemap') {
+      } else if (hash === '#sitemap') {
         setIsSitemapOpen(true);
+      } else if (hash.startsWith('#events/') || hash.startsWith('#event/')) {
+        const slug = hash.replace(/^#(?:events|event)\//, '').trim();
+        const found = getEventById(slug);
+        if (found) {
+          setSelectedEvent(found);
+        }
+      } else if (hash.startsWith('#')) {
+        const el = document.querySelector(hash);
+        if (el) {
+          setTimeout(() => {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }, 50);
+        }
       }
     };
+
     handleHash();
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
@@ -82,6 +107,16 @@ export default function App() {
     setDetailService(service);
   };
 
+  const handleSelectEvent = (event: EventItem) => {
+    setSelectedEvent(event);
+    window.location.hash = `#events/${event.id}`;
+  };
+
+  const handleCloseEventModal = () => {
+    setSelectedEvent(null);
+    window.location.hash = '#events';
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
       {/* 1. Header / Navigation Bar */}
@@ -90,7 +125,7 @@ export default function App() {
         onOpenSitemap={() => setIsSitemapOpen(true)}
       />
 
-      {/* Main Content Area */}
+      {/* Main Single Page Content Area - Fully Scrollable */}
       <main className="flex-1">
         {/* 2. Hero Section */}
         <Hero
@@ -98,21 +133,26 @@ export default function App() {
           onViewProjects={handleViewProjects}
         />
 
-        {/* 3. Core Services Grid Section */}
+        {/* 3. Events Section (Placed directly after Hero image) */}
+        <EventsSection
+          onSelectEvent={handleSelectEvent}
+        />
+
+        {/* 4. Core Services Grid Section */}
         <CoreServices
           onSelectServiceForQuote={(srv) => handleOpenQuote(srv)}
           onOpenDetails={handleOpenDetails}
         />
 
-        {/* 4. About Section */}
+        {/* 5. About Section */}
         <AboutSection />
 
-        {/* 5. Projects Section */}
+        {/* 6. Projects Section */}
         <ProjectsSection
           onOpenQuote={() => handleOpenQuote()}
         />
 
-        {/* 6. Insights Section */}
+        {/* 7. Insights Section */}
         <InsightsSection
           onOpenQuote={() => handleOpenQuote()}
           onReadInsight={() => {
@@ -120,16 +160,28 @@ export default function App() {
           }}
         />
 
-        {/* 7. Contact Section */}
+        {/* 8. Contact Section */}
         <ContactSection />
       </main>
 
-      {/* 8. Footer Section */}
+      {/* 9. Footer Section */}
       <Footer
         onOpenPrivacy={() => setIsPrivacyOpen(true)}
         onOpenTerms={() => setIsTermsOpen(true)}
         onOpenSitemap={() => setIsSitemapOpen(true)}
       />
+
+      {/* Event Detail Modal (Single-page modal with photos, videos, & lightbox) */}
+      {selectedEvent && (
+        <Suspense fallback={null}>
+          <EventDetailModal
+            event={selectedEvent}
+            isOpen={!!selectedEvent}
+            onClose={handleCloseEventModal}
+            onSelectEvent={handleSelectEvent}
+          />
+        </Suspense>
+      )}
 
       {/* Quote Request Modal */}
       {isQuoteOpen && (

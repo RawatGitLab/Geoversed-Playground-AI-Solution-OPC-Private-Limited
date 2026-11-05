@@ -50,6 +50,8 @@ export const SitemapModal: React.FC<SitemapModalProps> = ({
         return t('nav.projects');
       case 'Insights':
         return t('nav.insights');
+      case 'Events':
+        return t('nav.events');
       case 'Contact':
         return t('nav.contact');
       default:

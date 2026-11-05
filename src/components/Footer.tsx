@@ -20,6 +20,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
+      window.location.hash = href;
       const element = document.querySelector(href);
       if (element) {
         e.preventDefault();
@@ -40,6 +41,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
         return t('nav.projects');
       case 'Insights':
         return t('nav.insights');
+      case 'Events':
+        return t('nav.events');
       case 'Contact':
         return t('nav.contact');
       default:

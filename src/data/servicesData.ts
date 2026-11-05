@@ -2,6 +2,7 @@ import { ServiceItem, NavItem, InsightItem } from '../types';
 
 export const NAV_LINKS: NavItem[] = [
   { label: 'Home', href: '#home' },
+  { label: 'Events', href: '#events' },
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
   { label: 'Projects', href: '#projects' },

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ChevronRight, Layers, MapPin, Sparkles, ShieldCheck } from 'lucide-react';
+import { ChevronRight, Layers, MapPin, Sparkles, ShieldCheck, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import heroBgWebp from '../assets/images/himalayan_peaks_sharp_1789732575223.webp';
 import heroBgJpg from '../assets/images/himalayan_peaks_sharp_1789732575223.jpg';
@@ -88,17 +88,26 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
 
         {/* Floating 3-Card Glassmorphism Stats Bar */}
         <div className="w-full max-w-4xl grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 text-left">
-          {/* Stat 1 */}
-          <div className="bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-4.5 hover:bg-slate-900/50 transition-all shadow-lg">
-            <div className="flex items-center gap-2.5 mb-1">
-              <div className="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center">
-                <MapPin className="w-4 h-4" />
+          {/* Stat 1: Clickable link to Uttarakhand Geo Portal */}
+          <a
+            href="https://uttarakhand-geo-portal.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Open Uttarakhand Geo Portal (External Link)"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-sky-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5 cursor-pointer"
+          >
+            <div className="flex items-center justify-between mb-1">
+              <div className="flex items-center gap-2.5">
+                <div className="w-7 h-7 rounded-lg bg-sky-500/20 text-sky-300 flex items-center justify-center group-hover:bg-sky-500/30 transition-colors">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <span className="text-2xl sm:text-3xl font-extrabold text-white font-['Poppins']">13</span>
               </div>
-              <span className="text-2xl sm:text-3xl font-extrabold text-white font-['Poppins']">13</span>
+              <ExternalLink className="w-3.5 h-3.5 text-white/50 group-hover:text-sky-300 transition-colors" />
             </div>
-            <div className="text-xs sm:text-sm font-semibold text-white">Districts Covered</div>
-            <div className="text-[11px] text-slate-200">Uttarakhand Himalayan Field Atlas</div>
-          </div>
+            <div className="text-xs sm:text-sm font-semibold text-white group-hover:text-sky-200 transition-colors">Districts Covered</div>
+            <div className="text-[11px] text-slate-200">Uttarakhand Himalayan Field Atlas ↗</div>
+          </a>
 
           {/* Stat 2 */}
           <div className="bg-slate-900/40 backdrop-blur-md border border-white/20 rounded-2xl p-4 sm:p-4.5 hover:bg-slate-900/50 transition-all shadow-lg">

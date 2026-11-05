@@ -5,6 +5,7 @@ export type TranslationKey =
   | 'nav.services'
   | 'nav.projects'
   | 'nav.insights'
+  | 'nav.events'
   | 'nav.contact'
   | 'nav.sitemap'
   | 'nav.getQuote'
@@ -105,6 +106,24 @@ export type TranslationKey =
   | 'contact.successTitle'
   | 'contact.successMsg'
 
+  // Events Section
+  | 'events.badge'
+  | 'events.title'
+  | 'events.subtitle'
+  | 'events.all'
+  | 'events.searchPlaceholder'
+  | 'events.allYears'
+  | 'events.loadMore'
+  | 'events.noResults'
+  | 'events.viewAll'
+  | 'events.backToEvents'
+  | 'events.previous'
+  | 'events.next'
+  | 'events.photosSection'
+  | 'events.videosSection'
+  | 'events.latestTitle'
+  | 'events.latestSubtitle'
+
   // Footer
   | 'footer.tagline'
   | 'footer.quickLinks'
@@ -130,6 +149,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'nav.services': 'Services',
     'nav.projects': 'Projects',
     'nav.insights': 'Insights',
+    'nav.events': 'Events',
     'nav.contact': 'Contact',
     'nav.sitemap': 'Site Map',
     'nav.getQuote': 'Get Quote',
@@ -239,6 +259,24 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'footer.backToTop': 'Back to top',
     'footer.rights': 'All rights reserved.',
 
+    // Events Section
+    'events.badge': 'Field Engagements & Milestones',
+    'events.title': 'Our Events',
+    'events.subtitle': 'Trainings, workshops, MoUs, governance meetings, and high-altitude field expeditions led by GEOVERSED.',
+    'events.all': 'All',
+    'events.searchPlaceholder': 'Search events by title or location...',
+    'events.allYears': 'All Years',
+    'events.loadMore': 'Load More Events',
+    'events.noResults': 'No events found matching your search or filter.',
+    'events.viewAll': 'View All Events',
+    'events.backToEvents': 'Back to Events',
+    'events.previous': 'Previous Event',
+    'events.next': 'Next Event',
+    'events.photosSection': 'Event Photo Gallery',
+    'events.videosSection': 'Video Highlights',
+    'events.latestTitle': 'Recent Events & Field Engagements',
+    'events.latestSubtitle': 'Discover our latest capacity-building workshops, academic MoUs, and Himalayan field missions.',
+
     // Language selector
     'lang.selectorLabel': 'Language',
     'lang.en': 'English',
@@ -255,6 +293,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'nav.services': 'सेवाएँ',
     'nav.projects': 'परियोजनाएँ',
     'nav.insights': 'ज्ञान केंद्र',
+    'nav.events': 'कार्यक्रम',
     'nav.contact': 'संपर्क करें',
     'nav.sitemap': 'साइट मैप',
     'nav.getQuote': 'कोटेशन लें',
@@ -364,6 +403,24 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'footer.backToTop': 'शीर्ष पर जाएँ',
     'footer.rights': 'सर्वाधिकार सुरक्षित।',
 
+    // Events Section
+    'events.badge': 'क्षेत्रीय कार्यक्रम एवं उपलब्धियाँ',
+    'events.title': 'हमारे कार्यक्रम',
+    'events.subtitle': 'जियोवर्सड द्वारा आयोजित प्रशिक्षण, कार्यशालाएँ, एमओयू, शासन बैठकें और उच्च-हिमालयी क्षेत्रीय अभियान।',
+    'events.all': 'सभी',
+    'events.searchPlaceholder': 'शीर्षक या स्थान द्वारा कार्यक्रम खोजें...',
+    'events.allYears': 'सभी वर्ष',
+    'events.loadMore': 'और कार्यक्रम देखें',
+    'events.noResults': 'कोई कार्यक्रम नहीं मिला।',
+    'events.viewAll': 'सभी कार्यक्रम देखें',
+    'events.backToEvents': 'कार्यक्रम सूची पर वापस जाएँ',
+    'events.previous': 'पिछला कार्यक्रम',
+    'events.next': 'अगला कार्यक्रम',
+    'events.photosSection': 'कार्यक्रम चित्र वीथिका (Photos)',
+    'events.videosSection': 'वीडियो हाइलाइट्स',
+    'events.latestTitle': 'हाल के कार्यक्रम एवं क्षेत्रीय अभियान',
+    'events.latestSubtitle': 'हमारी हालिया क्षमता-विकास कार्यशालाएँ, शैक्षणिक समझौते और हिमालयी वैज्ञानिक मिशन।',
+
     // Language selector
     'lang.selectorLabel': 'भाषा',
     'lang.en': 'English',
@@ -380,6 +437,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'nav.services': 'సేవలు',
     'nav.projects': 'ప్రాజెక్టులు',
     'nav.insights': 'పరిజ్ఞాన కేంద్రం',
+    'nav.events': 'ఈవెంట్లు',
     'nav.contact': 'సంప్రదించండి',
     'nav.sitemap': 'సైట్ మ్యాప్',
     'nav.getQuote': 'కోటేషన్ పొందండి',
@@ -489,6 +547,24 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'footer.backToTop': 'పైకి వెళ్లండి',
     'footer.rights': 'సర్వహక్కులు ప్రత్యేకించబడ్డాయి.',
 
+    // Events Section
+    'events.badge': 'క్షేత్ర ఈవెంట్లు & మైలురాళ్ళు',
+    'events.title': 'మా ఈవెంట్లు',
+    'events.subtitle': 'జియోవర్స్డ్ నేతృత్వంలోని శిక్షణలు, వర్క్‌షాప్‌లు, అవగాహన ఒప్పందాలు (MoU) మరియు క్షేత్రస్థాయి యాత్రలు.',
+    'events.all': 'అన్నీ',
+    'events.searchPlaceholder': 'శీర్షిక లేదా స్థానం ద్వారా శోధించండి...',
+    'events.allYears': 'అన్ని సంవత్సరాలు',
+    'events.loadMore': 'మరిన్ని ఈవెంట్లను లోడ్ చేయండి',
+    'events.noResults': 'ఎటువంటి ఈవెంట్లు కనుగొనబడలేదు.',
+    'events.viewAll': 'అన్ని ఈవెంట్లను చూడండి',
+    'events.backToEvents': 'ఈవెంట్లకు తిరిగి వెళ్లండి',
+    'events.previous': 'మునుపటి ఈవెంట్',
+    'events.next': 'తరువాతి ఈవెంట్',
+    'events.photosSection': 'ఈవెంట్ ఫోటో గ్యాలరీ',
+    'events.videosSection': 'వీడియో ముఖ్యాంశాలు',
+    'events.latestTitle': 'ఇటీవలి ఈవెంట్లు & ఫీల్డ్ మిషన్లు',
+    'events.latestSubtitle': 'మా తాజా కెపాసిటీ బిల్డింగ్ వర్క్‌షాప్‌లు, అకడమిక్ ఒప్పందాలు మరియు ఫీల్డ్ మిషన్లను కనుగొనండి.',
+
     // Language selector
     'lang.selectorLabel': 'భాష',
     'lang.en': 'English',
@@ -505,6 +581,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'nav.services': 'सेवा',
     'nav.projects': 'प्रकल्प',
     'nav.insights': 'ज्ञान केंद्र',
+    'nav.events': 'कार्यक्रम',
     'nav.contact': 'संपर्क',
     'nav.sitemap': 'साइट मॅप',
     'nav.getQuote': 'कोटेशन मिळवा',
@@ -614,6 +691,24 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'footer.backToTop': 'वर जा',
     'footer.rights': 'सर्व हक्क राखीव.',
 
+    // Events Section
+    'events.badge': 'क्षेत्रीय उपक्रम व महत्त्वपूर्ण टप्पे',
+    'events.title': 'आमचे कार्यक्रम',
+    'events.subtitle': 'जिओव्हर्स्ड द्वारे आयोजित प्रशिक्षण, कार्यशाळा, सामंजस्य करार (MoU) आणि हिमालयीन क्षेत्रीय मोहिमा.',
+    'events.all': 'सर्व',
+    'events.searchPlaceholder': 'शीर्षक किंवा स्थानानुसार कार्यक्रम शोधा...',
+    'events.allYears': 'सर्व वर्षे',
+    'events.loadMore': 'आणखी कार्यक्रम लोड करा',
+    'events.noResults': 'कोणतेही कार्यक्रम आढळले नाहीत.',
+    'events.viewAll': 'सर्व कार्यक्रम पहा',
+    'events.backToEvents': 'कार्यक्रमांकडे परत जा',
+    'events.previous': 'मागील कार्यक्रम',
+    'events.next': 'पुढील कार्यक्रम',
+    'events.photosSection': 'कार्यक्रम छायाचित्र दालन (Photos)',
+    'events.videosSection': 'व्हिडिओ हायलाइट्स',
+    'events.latestTitle': 'नुकतेच पार पडलेले कार्यक्रम व मोहिमा',
+    'events.latestSubtitle': 'आमच्या कार्यशाळा, शैक्षणिक करार आणि वैज्ञानिक क्षेत्रीय मोहिमांचा आढावा घ्या.',
+
     // Language selector
     'lang.selectorLabel': 'भाषा',
     'lang.en': 'English',
@@ -630,6 +725,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'nav.services': 'সেবাসমূহ',
     'nav.projects': 'প্রকল্পসমূহ',
     'nav.insights': 'জ্ঞান কেন্দ্র',
+    'nav.events': 'ইভেন্টস',
     'nav.contact': 'যোগাযোগ',
     'nav.sitemap': 'সাইট ম্যাপ',
     'nav.getQuote': 'কোটেশন পান',
@@ -738,6 +834,24 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     'footer.terms': 'সেবার শর্তাবলী (Terms of Service)',
     'footer.backToTop': 'উপরে যান',
     'footer.rights': 'সর্বস্বত্ব সংরক্ষিত।',
+
+    // Events Section
+    'events.badge': 'ফিল্ড এনগেজমেন্ট ও মাইলফলক',
+    'events.title': 'আমাদের ইভেন্টস',
+    'events.subtitle': 'জিওভার্সড পরিচালিত প্রশিক্ষণ, কর্মশালা, সমঝোতা স্মারক (MoU) ও হিমালয় ফিল্ড অভিযানসমূহ।',
+    'events.all': 'সবগুলো',
+    'events.searchPlaceholder': 'শিরোনাম বা স্থান দিয়ে ইভেন্ট খুঁজুন...',
+    'events.allYears': 'সব বছর',
+    'events.loadMore': 'আরও ইভেন্ট লোড করুন',
+    'events.noResults': 'কোনো ইভেন্ট পাওয়া যায়নি।',
+    'events.viewAll': 'সব ইভেন্ট দেখুন',
+    'events.backToEvents': 'ইভেন্ট তালিকায় ফিরে যান',
+    'events.previous': 'পূর্ববর্তী ইভেন্ট',
+    'events.next': 'পরবর্তী ইভেন্ট',
+    'events.photosSection': 'ইভেন্ট ফটো গ্যালারি',
+    'events.videosSection': 'ভিডিও হাইলাইটস',
+    'events.latestTitle': 'সাম্প্রতিক ইভেন্টস ও ফিল্ড অভিযান',
+    'events.latestSubtitle': 'আমাদের সাম্প্রতিক কর্মশালা, অ্যাকাডেমিক সমঝোতা স্মারক এবং হিমালয় বৈজ্ঞানিক মিশনসমূহ।',
 
     // Language selector
     'lang.selectorLabel': 'ভাষা',

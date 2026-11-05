@@ -34,6 +34,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
       case 'Services': return t('nav.services');
       case 'Projects': return t('nav.projects');
       case 'Insights': return t('nav.insights');
+      case 'Events': return t('nav.events');
       case 'Contact': return t('nav.contact');
       default: return label;
     }
@@ -111,6 +112,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
     setIsProjectsDropdownOpen(false);
     setIsInsightsDropdownOpen(false);
     if (href.startsWith('#')) {
+      window.location.hash = href;
       const element = document.querySelector(href);
       if (element) {
         e.preventDefault();

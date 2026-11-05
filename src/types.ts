@@ -30,3 +30,24 @@ export interface InsightItem {
   buttonText?: string;
 }
 
+export type EventCategory = 'Training' | 'Workshop' | 'MoU' | 'Meeting' | 'Field Visit' | 'Guest Lecture';
+
+export interface EventVideo {
+  youtubeId?: string;
+  videoUrl?: string;
+  title: string;
+}
+
+export interface EventItem {
+  id: string; // unique slug used in URLs (e.g. "himalayan-spring-workshop-2024")
+  title: string;
+  date: string; // YYYY-MM-DD
+  category: EventCategory;
+  location: string;
+  summary: string;
+  description: string;
+  cover: string; // main card & banner image URL
+  photos: string[]; // array of image URLs
+  videos: EventVideo[]; // array of YouTube videos
+}
+
