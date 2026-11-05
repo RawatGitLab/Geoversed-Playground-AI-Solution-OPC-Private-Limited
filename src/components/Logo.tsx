@@ -5,8 +5,10 @@ interface LogoProps {
   showText?: boolean;
   variant?: 'light' | 'dark';
   textColor?: string;
+  subtitleColor?: string;
   subtitle?: string;
   size?: 'sm' | 'md' | 'lg' | 'xl';
+  emblemVariant?: 'light' | 'dark';
 }
 
 /**
@@ -21,8 +23,10 @@ export const Logo: React.FC<LogoProps> = ({
   showText = true,
   variant = 'dark',
   textColor,
+  subtitleColor,
   subtitle = 'Playground AI Solution OPC Pvt LTD',
   size = 'md',
+  emblemVariant,
 }) => {
   // Height and scale configurations for responsive sizing
   const sizeConfigs = {
@@ -64,12 +68,16 @@ export const Logo: React.FC<LogoProps> = ({
 
   // Palette adaptation for Light (Header) vs Dark (Footer) backgrounds
   const isDarkBg = variant === 'light';
+  const isLightEmblem = emblemVariant ? emblemVariant === 'light' : isDarkBg;
   
+  const emblemColors = {
+    navy: isLightEmblem ? '#FFFFFF' : '#1A3258',
+    bronze: isLightEmblem ? '#D4A76A' : '#946E44',
+  };
+
   const colors = {
-    navy: isDarkBg ? '#FFFFFF' : '#1A3258',
-    bronze: isDarkBg ? '#D4A76A' : '#946E44',
     titleText: textColor || (isDarkBg ? 'text-white' : 'text-[#1A3258]'),
-    subText: isDarkBg ? 'text-[#D4A76A]' : 'text-[#946E44]',
+    subText: isDarkBg ? 'text-[#D4A76A]' : 'text-[#87A9FF]',
   };
 
   return (
@@ -78,7 +86,13 @@ export const Logo: React.FC<LogoProps> = ({
       aria-label={`GEOVERSED ${subtitle}`}
     >
       {/* Precision Vector Emblem Graphic */}
-      <div className="relative shrink-0 flex items-center justify-center">
+      <div
+        className={`relative shrink-0 flex items-center justify-center transition-all duration-300 ${
+          isLightEmblem && !isDarkBg
+            ? 'bg-[#0A0F1D] p-1 sm:p-1.5 rounded-xl border border-slate-800/80 shadow-xs'
+            : ''
+        }`}
+      >
         <svg
           width={currentSize.emblemWidth}
           height={currentSize.emblemHeight}
@@ -90,13 +104,13 @@ export const Logo: React.FC<LogoProps> = ({
           {/* Lower Left Navy Wing of "A" */}
           <path
             d="M 5 56 L 3 56 L 18 26 L 24 37 L 16 50 L 20 56 L 5 56 Z"
-            fill={colors.navy}
+            fill={emblemColors.navy}
           />
 
           {/* Upper Peak and Right Downward Leg of "A" in Bronze */}
           <path
             d="M 28 5 L 34 5 L 59 56 L 45 56 L 40 45 L 28 45 L 24 51 L 28 51 L 24 56 L 16 56 L 30 27 L 34 27 L 26 40 L 37 40 L 32 28 L 28 5 Z"
-            fill={colors.bronze}
+            fill={emblemColors.bronze}
           />
 
           {/* Surveyor Reticle / Geospatial Crosshairs Target */}
@@ -106,7 +120,7 @@ export const Logo: React.FC<LogoProps> = ({
               cx="0"
               cy="0"
               r="13.5"
-              stroke={colors.bronze}
+              stroke={emblemColors.bronze}
               strokeWidth="2.4"
               fill="none"
             />
@@ -117,7 +131,7 @@ export const Logo: React.FC<LogoProps> = ({
               y1="-18"
               x2="0"
               y2="-12"
-              stroke={colors.bronze}
+              stroke={emblemColors.bronze}
               strokeWidth="2"
               strokeLinecap="square"
             />
@@ -126,7 +140,7 @@ export const Logo: React.FC<LogoProps> = ({
               y1="12"
               x2="0"
               y2="18"
-              stroke={colors.bronze}
+              stroke={emblemColors.bronze}
               strokeWidth="2"
               strokeLinecap="square"
             />
@@ -135,7 +149,7 @@ export const Logo: React.FC<LogoProps> = ({
               y1="0"
               x2="-12"
               y2="0"
-              stroke={colors.bronze}
+              stroke={emblemColors.bronze}
               strokeWidth="2"
               strokeLinecap="square"
             />
@@ -144,7 +158,7 @@ export const Logo: React.FC<LogoProps> = ({
               y1="0"
               x2="18"
               y2="0"
-              stroke={colors.bronze}
+              stroke={emblemColors.bronze}
               strokeWidth="2"
               strokeLinecap="square"
             />
@@ -154,7 +168,7 @@ export const Logo: React.FC<LogoProps> = ({
               cx="0"
               cy="0"
               r="8.8"
-              stroke={colors.navy}
+              stroke={emblemColors.navy}
               strokeWidth="2.2"
               fill="none"
             />
@@ -164,7 +178,7 @@ export const Logo: React.FC<LogoProps> = ({
               cx="0"
               cy="0"
               r="2.8"
-              fill={colors.navy}
+              fill={emblemColors.navy}
             />
           </g>
         </svg>
@@ -183,8 +197,15 @@ export const Logo: React.FC<LogoProps> = ({
 
           {/* Subtitle */}
           <span
-            className={`font-['Poppins'] font-medium tracking-normal mt-0.5 sm:mt-1 ${colors.subText} ${currentSize.subSize}`}
-            style={{ letterSpacing: '0.01em' }}
+            className={`font-['Poppins'] font-medium tracking-normal mt-0.5 sm:mt-1 ${currentSize.subSize} ${
+              subtitleColor?.startsWith('text-') ? subtitleColor : ''
+            }`}
+            style={{
+              letterSpacing: '0.01em',
+              color: subtitleColor
+                ? (subtitleColor.startsWith('text-') ? undefined : subtitleColor)
+                : (isDarkBg ? '#D4A76A' : '#87A9FF'),
+            }}
           >
             {subtitle}
           </span>

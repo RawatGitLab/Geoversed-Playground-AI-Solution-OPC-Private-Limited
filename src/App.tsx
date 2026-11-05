@@ -8,6 +8,7 @@ import { InsightsSection } from './components/InsightsSection';
 import { EventsSection } from './components/events/EventsSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { ServiceItem, EventItem } from './types';
 import { CORE_SERVICES } from './data/servicesData';
 import { getEventById } from './data/events';
@@ -255,6 +256,9 @@ export default function App() {
           />
         </Suspense>
       )}
+
+      {/* Floating WhatsApp Quick Contact & Preview Widget */}
+      <WhatsAppFloatingButton onOpenShare={() => setIsShareOpen(true)} />
     </div>
   );
 }

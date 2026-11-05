@@ -127,8 +127,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
       id="main-header"
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#F1F5F9]/95 backdrop-blur-md shadow-xs py-3 border-b border-slate-200'
-          : 'bg-[#F1F5F9] py-4 border-b border-slate-200/80'
+          ? 'bg-[#0A0F1D]/95 backdrop-blur-md shadow-xs py-3 border-b border-slate-800/80'
+          : 'bg-[#0A0F1D] py-4 border-b border-slate-800/80'
       }`}
     >
       <div className="relative w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[52px]">
@@ -138,7 +138,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
           id="nav-brand-link"
           className="relative z-10 flex items-center group transition-transform hover:opacity-95"
         >
-          <Logo variant="dark" size="md" />
+          <Logo variant="light" size="md" subtitleColor="#D4A76A" />
         </a>
 
         {/* Center Section: Horizontal Flex Navigation Menu (Centered in Header) */}
@@ -593,7 +593,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
         {/* Right Section: Language Selector, Site Map Button, CTA Button & Mobile Menu Toggle */}
         <div className="relative z-10 flex items-center space-x-1.5 sm:space-x-2.5">
           {/* I18n Language Selector */}
-          <LanguageSelector variant="header" />
+          <LanguageSelector variant="footer" />
 
           <button
             id="header-sitemap-btn"
@@ -605,10 +605,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                 window.location.hash = '#sitemap';
               }
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 px-3 sm:px-3.5 py-2 rounded-full border border-slate-200 hover:border-blue-300 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer shadow-2xs"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white px-3 sm:px-3.5 py-2 rounded-full border border-slate-700/80 hover:border-slate-600 bg-slate-900/80 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-2xs"
             title="Open website sitemap and directory"
           >
-            <Compass className="w-3.5 h-3.5 text-blue-600" />
+            <Compass className="w-3.5 h-3.5 text-sky-400" />
             <span>{t('nav.sitemap')}</span>
           </button>
 
@@ -622,10 +622,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                 window.location.hash = '#share';
               }
             }}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-700 hover:text-blue-600 px-3 sm:px-3.5 py-2 rounded-full border border-slate-200 hover:border-blue-300 bg-white hover:bg-slate-50 transition-all duration-200 cursor-pointer shadow-2xs"
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-200 hover:text-white px-3 sm:px-3.5 py-2 rounded-full border border-slate-700/80 hover:border-slate-600 bg-slate-900/80 hover:bg-slate-800 transition-all duration-200 cursor-pointer shadow-2xs"
             title="Share website link and social preview"
           >
-            <Share2 className="w-3.5 h-3.5 text-blue-600" />
+            <Share2 className="w-3.5 h-3.5 text-sky-400" />
             <span className="hidden sm:inline">Share</span>
           </button>
 
@@ -642,7 +642,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
             id="mobile-menu-toggle-btn"
             type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-slate-100 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-slate-200 hover:text-white hover:bg-slate-800/80 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
             aria-expanded={isMobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -658,7 +658,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
       {/* Mobile Navigation Drawer / Dropdown */}
       <div
         id="mobile-nav-drawer"
-        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-b border-slate-200 bg-white ${
+        className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out border-b border-slate-800 bg-[#0A0F1D] text-white ${
           isMobileMenuOpen ? 'max-h-[640px] opacity-100 shadow-lg' : 'max-h-0 opacity-0'
         }`}
       >

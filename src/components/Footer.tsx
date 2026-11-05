@@ -59,7 +59,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
           {/* Column 1 (Brand): Company logo graphic, title text, and small tagline */}
           <div id="footer-brand-column" className="space-y-4">
             <a href="#home" className="inline-block transition-opacity hover:opacity-95">
-              <Logo variant="light" size="md" textColor="text-white" />
+              <Logo variant="light" size="md" textColor="text-white" subtitleColor="#87A9FF" />
             </a>
             <p
               id="footer-tagline"
