@@ -126,8 +126,8 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
       id="main-header"
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-sm py-3 border-b border-slate-100'
-          : 'bg-white py-4 border-b border-slate-100/80'
+          ? 'bg-[#F1F5F9]/95 backdrop-blur-md shadow-xs py-3 border-b border-slate-200'
+          : 'bg-[#F1F5F9] py-4 border-b border-slate-200/80'
       }`}
     >
       <div className="relative w-full px-4 sm:px-6 lg:px-8 flex items-center justify-between min-h-[52px]">
@@ -143,7 +143,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
         {/* Center Section: Horizontal Flex Navigation Menu (Centered in Header) */}
         <nav
           id="desktop-navigation-menu"
-          className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-1 lg:space-x-5 px-5 lg:px-7 py-1.5 rounded-full border border-slate-200/70 bg-white/90 backdrop-blur-sm z-10 shadow-2xs"
+          className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-1 lg:space-x-3 px-5 lg:px-6 py-1.5 rounded-full border border-teal-300/60 bg-[#5EEAD4] z-10 shadow-sm shadow-teal-500/15"
           aria-label="Main Navigation"
         >
           {NAV_LINKS.map((item) => {
@@ -159,15 +159,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
                     id={`nav-link-${item.label.toLowerCase()}`}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-blue-600 font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/about"
+                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/about"
                   >
                     <span>{getNavLabel(item.label)}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-slate-400 group-hover/about:text-blue-600 ${
-                        isAboutDropdownOpen ? 'rotate-180 text-blue-600' : ''
+                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/about:text-[#0F2042] ${
+                        isAboutDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
                       }`}
                     />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 scale-x-0 group-hover/about:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/about:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                   </a>
 
                   {/* Dropdown Menu for Vision, Mission and Objective */}
@@ -272,15 +272,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
                     id={`nav-link-${item.label.toLowerCase()}`}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-blue-600 font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/services"
+                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/services"
                   >
                     <span>{getNavLabel(item.label)}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-slate-400 group-hover/services:text-blue-600 ${
-                        isServicesDropdownOpen ? 'rotate-180 text-blue-600' : ''
+                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/services:text-[#0F2042] ${
+                        isServicesDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
                       }`}
                     />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 scale-x-0 group-hover/services:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/services:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                   </a>
 
                   {/* Mega Dropdown Menu for 12 Services */}
@@ -361,15 +361,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
                     id={`nav-link-${item.label.toLowerCase()}`}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-blue-600 font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/projects"
+                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/projects"
                   >
                     <span>{getNavLabel(item.label)}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-slate-400 group-hover/projects:text-blue-600 ${
-                        isProjectsDropdownOpen ? 'rotate-180 text-blue-600' : ''
+                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/projects:text-[#0F2042] ${
+                        isProjectsDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
                       }`}
                     />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 scale-x-0 group-hover/projects:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/projects:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                   </a>
 
                   {/* Mega Dropdown Menu for Projects */}
@@ -456,15 +456,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
                     id={`nav-link-${item.label.toLowerCase()}`}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-blue-600 font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/insights"
+                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/insights"
                   >
                     <span>{getNavLabel(item.label)}</span>
                     <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-slate-400 group-hover/insights:text-blue-600 ${
-                        isInsightsDropdownOpen ? 'rotate-180 text-blue-600' : ''
+                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/insights:text-[#0F2042] ${
+                        isInsightsDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
                       }`}
                     />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 scale-x-0 group-hover/insights:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/insights:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
                   </a>
 
                   {/* Dropdown Menu for Insights & Publications */}
@@ -580,10 +580,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap }) =>
                 id={`nav-link-${item.label.toLowerCase()}`}
                 href={item.href}
                 onClick={(e) => handleNavClick(e, item.href)}
-                className="text-[#0F2042] hover:text-blue-600 font-['Poppins'] font-medium text-sm lg:text-[15px] px-3 py-1.5 rounded-md transition-all duration-200 relative group tracking-normal cursor-pointer select-none"
+                className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative group tracking-normal cursor-pointer select-none"
               >
                 {getNavLabel(item.label)}
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
+                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
               </a>
             );
           })}

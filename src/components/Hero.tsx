@@ -158,7 +158,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
       {/* Decorative Wave Transition Divider into White Page Body */}
       <div className="relative z-10 w-full overflow-hidden leading-none">
         <svg
-          className="relative block w-full h-8 sm:h-12 text-white"
+          className="relative block w-full h-8 sm:h-12 text-[#EBF5FE]"
           viewBox="0 0 1200 120"
           preserveAspectRatio="none"
         >

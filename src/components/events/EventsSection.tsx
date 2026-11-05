@@ -68,7 +68,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
   return (
     <section
       id="events"
-      className="relative py-20 bg-gradient-to-b from-white via-slate-50/70 to-white overflow-hidden border-t border-slate-100 scroll-mt-20"
+      className="relative py-20 bg-[#EBF5FE] overflow-hidden scroll-mt-20"
     >
       {/* Ambient background decoration */}
       <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />

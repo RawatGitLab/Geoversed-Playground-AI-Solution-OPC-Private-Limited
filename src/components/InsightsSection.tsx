@@ -14,7 +14,7 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
   const researchReports = PROJECTS_DATA.slice(0, 3);
 
   return (
-    <section id="insights" className="py-20 lg:py-24 bg-[#F8FAFC]">
+    <section id="insights" className="py-20 lg:py-24 bg-[#E6F8F6] border-t border-teal-200/70">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">

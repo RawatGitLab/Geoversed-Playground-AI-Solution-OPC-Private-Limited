@@ -117,7 +117,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
   });
 
   return (
-    <section id="services" className="py-20 lg:py-24 bg-[#F8FAFC]">
+    <section id="services" className="py-20 lg:py-24 bg-[#F5E4E4] border-t border-[#800000]/10">
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-14">

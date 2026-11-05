@@ -213,7 +213,7 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-20 lg:py-24 bg-[#F8F9FA] border-y border-slate-200/70">
+    <section id="about" className="py-20 lg:py-24 bg-[#E6F8F6] border-y border-teal-200/70">
       <div className="w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Mission, Vision & 5. Object Section */}
