@@ -126,7 +126,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white">
+    <div className="w-full min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
       {/* 1. Header / Navigation Bar */}
       <Header
         onOpenQuote={() => handleOpenQuote()}
@@ -135,7 +135,7 @@ export default function App() {
       />
 
       {/* Main Single Page Content Area - Fully Scrollable */}
-      <main className="flex-1">
+      <main className="w-full flex-1 overflow-x-hidden">
         {/* 1. Hero Section */}
         <Hero
           onExploreServices={handleExploreServices}

@@ -123,10 +123,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
 
           {/* Name & Designation */}
           <div>
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-['Poppins'] tracking-tight">
+            <h3 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-['Poppins'] tracking-tight break-words">
               {profile.name}
             </h3>
-            <p className="text-sm sm:text-base text-emerald-300 font-medium font-['Poppins'] mt-1">
+            <p className="text-xs sm:text-base text-emerald-300 font-medium font-['Poppins'] mt-1 break-words">
               {profile.designation} &bull; <span className="text-white font-medium">{profile.company}</span>
             </p>
           </div>
@@ -190,7 +190,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
             <div className="absolute -inset-1.5 rounded-3xl bg-gradient-to-tr from-emerald-600 via-teal-500 to-emerald-400 opacity-80 blur-md group-hover:opacity-100 transition duration-500" />
 
             {/* Portrait Frame */}
-            <div className="relative w-56 h-64 sm:w-64 sm:h-72 lg:w-72 lg:h-80 rounded-2xl bg-slate-950 overflow-hidden border-2 border-white/20 shadow-2xl flex items-center justify-center">
+            <div className="relative w-48 h-56 xs:w-56 xs:h-64 sm:w-64 sm:h-72 lg:w-72 lg:h-80 max-w-[calc(100vw-80px)] rounded-2xl bg-slate-950 overflow-hidden border-2 border-white/20 shadow-2xl flex items-center justify-center">
               {!imageFailed ? (
                 <img
                   src={

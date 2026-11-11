@@ -20,12 +20,12 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({ 
   return (
     <div
       id="whatsapp-floating-widget"
-      className="fixed bottom-6 left-6 z-40 flex flex-col items-start gap-2 select-none"
+      className="fixed bottom-4 left-4 sm:bottom-6 sm:left-6 z-40 flex flex-col items-start gap-2 select-none"
     >
       {/* Quick Popup Card */}
       {isOpen && (
         <div
-          className="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-4 w-72 sm:w-80 animate-in slide-in-from-bottom-3 duration-200"
+          className="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-4 w-[280px] sm:w-80 max-w-[calc(100vw-32px)] animate-in slide-in-from-bottom-3 duration-200"
           role="dialog"
           aria-label="WhatsApp quick contact and share"
         >

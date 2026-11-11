@@ -154,7 +154,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
           </div>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0F2042] tracking-tight font-['Poppins'] mb-3">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-['Poppins'] mb-3 drop-shadow-md">
             {t('events.title')}
           </h2>
 

@@ -140,7 +140,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
         </div>
 
         {/* Category Badges Toolbar */}
-        <div className="flex items-center justify-center gap-2 overflow-x-auto w-full py-1 mb-12 pb-2 scrollbar-none">
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto w-full py-1 mb-12 pb-2 px-2 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat.key}

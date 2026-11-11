@@ -24,7 +24,7 @@ export const CertCard: React.FC<CertCardProps> = ({ cert, onClick }) => {
       onClick={onClick}
       onKeyDown={handleKeyDown}
       aria-label={`View certificate details for ${cert.title} issued by ${cert.issuer}`}
-      className="w-[280px] sm:w-[320px] shrink-0 bg-slate-900/85 hover:bg-slate-900 backdrop-blur-md border border-slate-800 hover:border-cyan-400/50 rounded-2xl p-4 sm:p-5 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 group cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 select-none flex flex-col justify-between"
+      className="w-[260px] xs:w-[280px] sm:w-[320px] max-w-[85vw] shrink-0 bg-slate-900/85 hover:bg-slate-900 backdrop-blur-md border border-slate-800 hover:border-cyan-400/50 rounded-2xl p-4 sm:p-5 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-cyan-500/10 hover:-translate-y-1 group cursor-pointer text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 select-none flex flex-col justify-between"
     >
       <div>
         {/* Top Header: Badge, Issuer Pill, & Verify Link */}

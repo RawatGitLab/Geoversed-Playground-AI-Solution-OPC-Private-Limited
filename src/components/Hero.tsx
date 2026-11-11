@@ -122,12 +122,12 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
         {/* Main Heading (H1) with vibrant Cyan / Sky highlight */}
         <h1
           id="hero-main-heading"
-          className="text-white font-bold text-lg sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[42px] tracking-tight leading-[1.25] sm:leading-[1.28] w-full max-w-5xl mb-8 font-['Poppins'] text-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]"
+          className="text-white font-bold text-xl sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[42px] tracking-tight leading-[1.25] sm:leading-[1.28] w-full max-w-5xl mb-8 font-['Poppins'] text-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] break-words px-2"
         >
-          <span className="block mb-1 whitespace-nowrap">
+          <span className="block mb-1">
             {t('hero.heading1')}
           </span>
-          <span className="block text-white font-extrabold whitespace-nowrap">
+          <span className="block text-white font-extrabold">
             {t('hero.heading2')}
           </span>
         </h1>

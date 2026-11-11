@@ -45,7 +45,7 @@ const StatCounter: React.FC<{ value: number; suffix: string }> = ({ value, suffi
 
 export const StatsStrip: React.FC<StatsStripProps> = ({ stats }) => {
   return (
-    <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
+    <div className="w-full grid grid-cols-1 xs:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6">
       {stats.map((stat) => (
         <div
           key={stat.id}

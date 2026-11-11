@@ -286,7 +286,7 @@ export const AboutSection: React.FC = () => {
               </div>
 
               {/* Filter Tabs */}
-              <div className="inline-flex p-1 bg-white rounded-xl border border-slate-200 shadow-2xs text-xs font-['Poppins']">
+              <div className="flex flex-wrap gap-1 p-1 bg-white rounded-xl border border-slate-200 shadow-2xs text-xs font-['Poppins'] max-w-full">
                 <button
                   type="button"
                   onClick={() => setObjectsFilter('all')}
