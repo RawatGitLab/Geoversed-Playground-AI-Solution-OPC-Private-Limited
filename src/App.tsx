@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { CoreServices } from './components/CoreServices';
 import { AboutSection } from './components/AboutSection';
+import { DirectorSection } from './components/DirectorSection';
 import { ProjectsSection } from './components/ProjectsSection';
 import { InsightsSection } from './components/InsightsSection';
 import { EventsSection } from './components/events/EventsSection';
@@ -135,13 +136,16 @@ export default function App() {
 
       {/* Main Single Page Content Area - Fully Scrollable */}
       <main className="flex-1">
-        {/* 2. Hero Section */}
+        {/* 1. Hero Section */}
         <Hero
           onExploreServices={handleExploreServices}
           onViewProjects={handleViewProjects}
         />
 
-        {/* 3. Events Section (Placed directly after Hero image) */}
+        {/* 2. Director Section (Second from top) */}
+        <DirectorSection />
+
+        {/* 3. Events Section */}
         <EventsSection
           onSelectEvent={handleSelectEvent}
         />

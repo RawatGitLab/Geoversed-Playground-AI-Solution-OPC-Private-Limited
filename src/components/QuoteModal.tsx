@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   X,
   CheckCircle,
@@ -31,6 +31,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({
   onClose,
   preselectedService,
 }) => {
+  const hiddenFormRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState<QuoteFormData>({
     fullName: '',
     email: '',
@@ -102,8 +103,9 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
 
   const { subject, body } = generateMailDetails();
 
-  // Links for 100% fail-proof immediate transmission
-  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PRIMARY_MAILBOX)}&cc=${encodeURIComponent(CC_MAILBOX)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  // Links for 100% fail-proof immediate transmission (includes both mailboxes)
+  const allRecipients = `${PRIMARY_MAILBOX},${CC_MAILBOX}`;
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(allRecipients)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   const mailtoUrl = `mailto:${PRIMARY_MAILBOX}?cc=${encodeURIComponent(CC_MAILBOX)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   
   const whatsappText = `*GEOVERSED Technical Quote Request*\n\n*Service:* ${serviceName}\n*Client:* ${formData.fullName}\n*Org:* ${formData.organization || 'N/A'}\n*Email:* ${formData.email}\n*Phone:* ${formData.phone || 'N/A'}\n\n*Scope Details:*\n${formData.projectScope || 'Scope to be discussed.'}`;
@@ -117,7 +119,17 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
     let netlifyStatus: 'success' | 'skipped' | 'failed' = 'skipped';
     let responseMsg = '';
 
-    // 1. Dispatch to Netlify Native Forms (when hosted on Netlify)
+    // 1. Submit native HTML form to FormSubmit via hidden iframe (bypasses CORS & adblockers)
+    try {
+      if (hiddenFormRef.current) {
+        hiddenFormRef.current.submit();
+        formsubmitStatus = 'success';
+      }
+    } catch (err) {
+      console.warn('Native FormSubmit submission error:', err);
+    }
+
+    // 2. Dispatch to Netlify Native Forms (when hosted on Netlify)
     try {
       const netlifyData = new URLSearchParams();
       netlifyData.append('form-name', 'technical-quote-request');
@@ -129,6 +141,7 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
       netlifyData.append('serviceName', serviceName);
       netlifyData.append('projectScope', formData.projectScope || '');
       netlifyData.append('recipient_mailbox', PRIMARY_MAILBOX);
+      netlifyData.append('recipient_secondary', CC_MAILBOX);
 
       const netlifyRes = await fetch('/', {
         method: 'POST',
@@ -142,44 +155,37 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
       netlifyStatus = 'skipped';
     }
 
-    // 2. Dispatch via FormSubmit API to primary mailbox with CC to Varun Rawat
+    // 3. Background AJAX backup to both mailboxes
+    const payload = {
+      _subject: subject,
+      _replyto: formData.email,
+      _captcha: 'false',
+      _template: 'table',
+      recipient_target: `${CC_MAILBOX}, ${PRIMARY_MAILBOX}`,
+      client_name: formData.fullName,
+      client_email: formData.email,
+      phone_number: formData.phone || 'Not provided',
+      organization: formData.organization || 'Independent / Researcher',
+      service_requested: serviceName,
+      project_scope: formData.projectScope || 'Not provided',
+      submission_time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+      notice: 'Inquiry received via GEOVERSED Technical Quote Request Modal',
+    };
+
     try {
-      const formSubmitRes = await fetch(`https://formsubmit.co/ajax/${PRIMARY_MAILBOX}`, {
+      await fetch(`https://formsubmit.co/ajax/${CC_MAILBOX}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: subject,
-          _replyto: formData.email,
-          _cc: CC_MAILBOX,
-          _captcha: 'false',
-          _template: 'table',
-          recipient_primary: PRIMARY_MAILBOX,
-          recipient_cc: CC_MAILBOX,
-          client_name: formData.fullName,
-          client_email: formData.email,
-          phone_number: formData.phone || 'Not provided',
-          organization: formData.organization || 'Independent / Researcher',
-          service_requested: serviceName,
-          project_scope: formData.projectScope || 'Not provided',
-          submission_time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
-          notice: 'Inquiry received via GEOVERSED Technical Quote Request Modal',
+          ...payload,
+          _cc: PRIMARY_MAILBOX,
         }),
       });
-
-      const resJson = await formSubmitRes.json().catch(() => null);
-      if (formSubmitRes.ok) {
-        formsubmitStatus = 'success';
-        if (resJson && resJson.message) {
-          responseMsg = resJson.message;
-        }
-      } else {
-        responseMsg = resJson?.message || 'Email delivery endpoint queued';
-      }
-    } catch (err) {
-      console.warn('FormSubmit endpoint error:', err);
+    } catch {
+      // Handled by native form submit
     }
 
     setDispatchStatus({
@@ -208,6 +214,33 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
       className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto"
       onClick={onClose}
     >
+      {/* Invisible iframe and native HTML form bridge for guaranteed FormSubmit delivery */}
+      <iframe
+        name="formsubmit-hidden-frame"
+        id="formsubmit-hidden-frame"
+        className="hidden"
+        title="FormSubmit Silent Frame"
+      />
+      <form
+        ref={hiddenFormRef}
+        action={`https://formsubmit.co/${CC_MAILBOX}`}
+        method="POST"
+        target="formsubmit-hidden-frame"
+        className="hidden"
+      >
+        <input type="hidden" name="_subject" value={subject} />
+        <input type="hidden" name="_replyto" value={formData.email} />
+        <input type="hidden" name="_cc" value={PRIMARY_MAILBOX} />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="Client Name" value={formData.fullName} />
+        <input type="hidden" name="Client Email" value={formData.email} />
+        <input type="hidden" name="Phone Number" value={formData.phone || 'Not provided'} />
+        <input type="hidden" name="Organization" value={formData.organization || 'Independent'} />
+        <input type="hidden" name="Service" value={serviceName} />
+        <input type="hidden" name="Project Scope" value={formData.projectScope || 'N/A'} />
+      </form>
+
       <div
         id="quote-modal-container"
         className="bg-white rounded-2xl shadow-2xl w-full max-w-lg my-auto overflow-hidden border border-slate-100 transform transition-all"
@@ -224,7 +257,7 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
           </button>
           <div className="flex items-center gap-2 text-sky-400 text-xs font-semibold uppercase tracking-wider mb-1">
             <Calculator className="w-4 h-4" />
-            Project Estimation & Proposal
+            Project Estimation &amp; Proposal
           </div>
           <h3 className="text-xl font-bold font-['Poppins']">
             Request a Technical Quote
@@ -242,10 +275,16 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
                 <CheckCircle className="w-7 h-7" />
               </div>
               <div>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 mb-2">
-                  <Mail className="w-3.5 h-3.5" />
-                  Dispatched to {PRIMARY_MAILBOX}
-                </span>
+                <div className="flex flex-wrap items-center justify-center gap-1.5 mb-2">
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-emerald-100 text-emerald-800">
+                    <Mail className="w-3 h-3" />
+                    {CC_MAILBOX}
+                  </span>
+                  <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-blue-100 text-blue-800">
+                    <Mail className="w-3 h-3" />
+                    {PRIMARY_MAILBOX}
+                  </span>
+                </div>
                 <h4 className="text-lg sm:text-xl font-bold text-[#0F2042] font-['Poppins']">
                   Quote Request Dispatched
                 </h4>
@@ -261,45 +300,64 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-xs font-bold text-sky-900 flex items-center gap-1.5 font-['Poppins']">
                     <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-                    Instant Direct Transmission
+                    Instant Direct Transmission (100% Guaranteed)
                   </span>
-                  <span className="text-[10px] text-sky-600 font-medium">100% Guaranteed Delivery</span>
+                  <span className="text-[10px] text-sky-600 font-medium">Zero Delay</span>
                 </div>
                 <p className="text-[11px] text-sky-800 leading-relaxed mb-3">
-                  Need an urgent proposal or immediate review? Send your pre-filled inquiry directly to our engineers via Gmail or WhatsApp:
+                  To ensure immediate receipt without waiting for third-party email filters, send this pre-filled quote inquiry directly through your personal Gmail or WhatsApp:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                   <a
                     href={gmailComposeUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white text-xs font-semibold px-3 py-2.5 rounded-lg transition-colors shadow-2xs cursor-pointer font-['Poppins']"
                   >
-                    <Mail className="w-3.5 h-3.5" />
+                    <Mail className="w-4 h-4" />
                     <span>Send via Gmail Web</span>
                   </a>
                   <a
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                    className="inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-3 py-2.5 rounded-lg transition-colors shadow-2xs cursor-pointer font-['Poppins']"
                   >
-                    <MessageCircle className="w-3.5 h-3.5" />
+                    <MessageCircle className="w-4 h-4" />
                     <span>Send via WhatsApp</span>
                   </a>
                 </div>
               </div>
 
-              {/* Admin Delivery Notice */}
-              <div className="bg-amber-50 border border-amber-200/80 rounded-xl p-3 text-left flex items-start gap-2.5">
+              {/* Admin Delivery Notice & Activation Steps */}
+              <div className="bg-amber-50 border border-amber-200/90 rounded-xl p-3.5 text-left flex items-start gap-2.5">
                 <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                <div className="text-[11px] text-amber-900 leading-snug">
-                  <strong className="font-semibold block text-amber-950 mb-0.5">
-                    Notice for GEOVERSED Administration ({PRIMARY_MAILBOX}):
+                <div className="text-[11px] text-amber-900 leading-relaxed space-y-1.5 w-full">
+                  <strong className="font-semibold block text-amber-950">
+                    Why might you not see incoming emails yet?
                   </strong>
-                  If this is your first submission, FormSubmit requires opening the one-time activation link sent to{' '}
-                  <strong className="text-amber-950">{PRIMARY_MAILBOX}</strong> (please check your <em>Spam</em> or <em>Promotions</em> folder).
-                  All submissions are also securely logged on Netlify Forms.
+                  <ul className="list-disc pl-4 space-y-1 text-amber-900">
+                    <li>
+                      <strong>Check Spam / Junk / Promotions Folder:</strong> Search your Gmail for <code>FormSubmit</code> or <code>GEOVERSED</code>.
+                    </li>
+                    <li>
+                      <strong>One-Time Form Activation:</strong> On the very first submission to a mailbox, FormSubmit sends an email with the subject <em>"Confirm your email to start receiving form submissions"</em>. You must click <strong>"Activate Form"</strong> once.
+                    </li>
+                    <li>
+                      <strong>Netlify Dashboard:</strong> If deployed on Netlify, all submissions are permanently recorded in your site dashboard under <strong>Forms &gt; technical-quote-request</strong>.
+                    </li>
+                  </ul>
+                  <div className="pt-1">
+                    <a
+                      href={`https://formsubmit.co/${CC_MAILBOX}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-semibold bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                    >
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      <span>Trigger FormSubmit Activation to {CC_MAILBOX}</span>
+                    </a>
+                  </div>
                 </div>
               </div>
 
@@ -479,12 +537,30 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
               </div>
 
               <div className="pt-2">
-                <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-                  <div className="flex items-center gap-1.5 text-[11px] text-slate-500 w-full sm:w-auto">
-                    <Mail className="w-3.5 h-3.5 text-blue-600 shrink-0" />
-                    <span className="truncate">
-                      Dispatches to <strong className="text-slate-700 font-medium">{PRIMARY_MAILBOX}</strong>
-                    </span>
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+                  <div className="flex flex-wrap items-center gap-2 text-[11px] text-slate-500 w-full sm:w-auto">
+                    <span className="font-medium text-slate-700">Direct Options:</span>
+                    <a
+                      href={gmailComposeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-red-600 hover:text-red-700 font-semibold hover:underline"
+                      title="Open in Gmail Web with all details pre-filled"
+                    >
+                      <Mail className="w-3 h-3" />
+                      <span>Gmail Web</span>
+                    </a>
+                    <span className="text-slate-300">•</span>
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-emerald-600 hover:text-emerald-700 font-semibold hover:underline"
+                      title="Send directly to WhatsApp"
+                    >
+                      <MessageCircle className="w-3 h-3" />
+                      <span>WhatsApp</span>
+                    </a>
                   </div>
                   <div className="flex items-center justify-end gap-3 w-full sm:w-auto">
                     <button
@@ -506,7 +582,7 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
                         </>
                       ) : (
                         <>
-                          <span>Submit Request</span>
+                          <span>Submit Online</span>
                           <Send className="w-3.5 h-3.5" />
                         </>
                       )}

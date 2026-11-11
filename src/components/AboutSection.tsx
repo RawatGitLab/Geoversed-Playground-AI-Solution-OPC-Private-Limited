@@ -587,7 +587,7 @@ export const AboutSection: React.FC = () => {
                           <UserCheck className="w-4 h-4" />
                         </div>
                         <div>
-                          <strong className="text-white text-xs font-['Poppins']">Varun Rawat</strong>
+                          <strong className="text-white text-xs font-['Poppins']">Mr. Varun Rawat</strong>
                           <span className="text-slate-300 text-[10px] block">Director &amp; Chief Geospatial Architect</span>
                         </div>
                       </div>
@@ -907,7 +907,7 @@ export const AboutSection: React.FC = () => {
                 </div>
                 <div className="flex justify-between border-b border-slate-200/60 pb-1.5">
                   <span className="text-slate-500">Founder &amp; Director:</span>
-                  <span className="font-semibold text-[#0F2042]">Varun Rawat</span>
+                  <span className="font-semibold text-[#0F2042]">Mr. Varun Rawat</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Statutory Charters:</span>

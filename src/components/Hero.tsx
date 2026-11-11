@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ChevronRight, Layers, MapPin, Sparkles, ShieldCheck, ExternalLink } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import heroBgWebp from '../assets/images/himalayan_peaks_sharp_1789732575223.webp';
@@ -12,21 +12,92 @@ interface HeroProps {
 export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects }) => {
   const { t } = useLanguage();
   const [isLoaded, setIsLoaded] = useState(false);
+  const cloudsRef = useRef<HTMLDivElement>(null);
+  const vantaCloudsRef = useRef<{ destroy: () => void } | null>(null);
+
+  // Initialize Vanta.Clouds 3D atmospheric animation
+  useEffect(() => {
+    let isMounted = true;
+
+    const initClouds = () => {
+      if (!isMounted || !cloudsRef.current || vantaCloudsRef.current) return;
+      const win = window as unknown as {
+        VANTA?: {
+          CLOUDS: (options: Record<string, unknown>) => { destroy: () => void };
+        };
+      };
+
+      if (win.VANTA && typeof win.VANTA.CLOUDS === 'function') {
+        try {
+          vantaCloudsRef.current = win.VANTA.CLOUDS({
+            el: cloudsRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            skyColor: 0x0e2238,
+            cloudColor: 0xffffff,
+            cloudShadowColor: 0x19324a,
+            sunColor: 0xffa020,
+            speed: 1.1,
+          });
+        } catch (err) {
+          console.warn('Vanta Clouds initialization note:', err);
+        }
+      }
+    };
+
+    const win = window as unknown as { VANTA?: { CLOUDS?: unknown } };
+    if (win.VANTA?.CLOUDS) {
+      initClouds();
+    } else {
+      const interval = setInterval(() => {
+        const currentWin = window as unknown as { VANTA?: { CLOUDS?: unknown } };
+        if (currentWin.VANTA?.CLOUDS) {
+          clearInterval(interval);
+          initClouds();
+        }
+      }, 100);
+
+      const timeout = setTimeout(() => {
+        clearInterval(interval);
+      }, 6000);
+
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+        clearTimeout(timeout);
+        if (vantaCloudsRef.current) {
+          vantaCloudsRef.current.destroy();
+          vantaCloudsRef.current = null;
+        }
+      };
+    }
+
+    return () => {
+      isMounted = false;
+      if (vantaCloudsRef.current) {
+        vantaCloudsRef.current.destroy();
+        vantaCloudsRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <section
       id="home"
       className="relative min-h-[600px] md:min-h-[680px] lg:min-h-[740px] flex flex-col justify-between overflow-hidden"
     >
-      {/* Background Image: Snow-capped Himalayan Mountain Peaks */}
-      <div className="absolute inset-0 z-0">
-        <picture>
+      {/* 3D Vanta Clouds Layered Over Himalayan Mountain Peaks Photo */}
+      <div ref={cloudsRef} className="absolute inset-0 z-0 overflow-hidden">
+        <picture className="absolute inset-0 z-0 block w-full h-full">
           <source srcSet={heroBgWebp} type="image/webp" />
           <source srcSet={heroBgJpg} type="image/jpeg" />
           <img
             src={heroBgWebp}
             alt="Snow-capped Himalayan mountain peaks with pine trees"
-            className={`w-full h-full object-cover object-center brightness-[0.82] transition-opacity duration-700 ${
+            className={`w-full h-full object-cover object-center brightness-[0.85] transition-opacity duration-700 ${
               isLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             loading="eager"
@@ -37,7 +108,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           />
         </picture>
         {/* Subtle Darkening Scrim */}
-        <div className="absolute inset-0 bg-black/25 pointer-events-none" />
+        <div className="absolute inset-0 bg-slate-950/20 pointer-events-none z-[2]" />
       </div>
 
       {/* Main Hero Content Container */}

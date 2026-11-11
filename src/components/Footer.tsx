@@ -35,6 +35,8 @@ export const Footer: React.FC<FooterProps> = ({ onOpenPrivacy, onOpenTerms, onOp
         return t('nav.home');
       case 'About':
         return t('nav.about');
+      case 'Director':
+        return t('nav.director');
       case 'Services':
         return t('nav.services');
       case 'Projects':

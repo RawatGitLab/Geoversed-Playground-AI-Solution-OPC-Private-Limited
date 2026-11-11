@@ -2,6 +2,7 @@ export type TranslationKey =
   // Navigation
   | 'nav.home'
   | 'nav.about'
+  | 'nav.director'
   | 'nav.services'
   | 'nav.projects'
   | 'nav.insights'
@@ -146,6 +147,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Navigation
     'nav.home': 'Home',
     'nav.about': 'About',
+    'nav.director': 'Director',
     'nav.services': 'Services',
     'nav.projects': 'Projects',
     'nav.insights': 'Insights',
@@ -290,6 +292,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Navigation
     'nav.home': 'मुख्य पृष्ठ',
     'nav.about': 'हमारे बारे में',
+    'nav.director': 'निदेशक',
     'nav.services': 'सेवाएँ',
     'nav.projects': 'परियोजनाएँ',
     'nav.insights': 'ज्ञान केंद्र',
@@ -434,6 +437,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Navigation
     'nav.home': 'హోమ్',
     'nav.about': 'మా గురించి',
+    'nav.director': 'డైరెక్టర్',
     'nav.services': 'సేవలు',
     'nav.projects': 'ప్రాజెక్టులు',
     'nav.insights': 'పరిజ్ఞాన కేంద్రం',
@@ -578,6 +582,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Navigation
     'nav.home': 'मुख्यपृष्ठ',
     'nav.about': 'आमच्याबद्दल',
+    'nav.director': 'संचालक',
     'nav.services': 'सेवा',
     'nav.projects': 'प्रकल्प',
     'nav.insights': 'ज्ञान केंद्र',
@@ -722,6 +727,7 @@ export const TRANSLATIONS: Record<'en' | 'hi' | 'te' | 'mr' | 'bn', Record<Trans
     // Navigation
     'nav.home': 'নীড়পাতা',
     'nav.about': 'আমাদের সম্পর্কে',
+    'nav.director': 'পরিচালক',
     'nav.services': 'সেবাসমূহ',
     'nav.projects': 'প্রকল্পসমূহ',
     'nav.insights': 'জ্ঞান কেন্দ্র',

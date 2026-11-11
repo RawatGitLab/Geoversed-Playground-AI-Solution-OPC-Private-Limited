@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   MapPin,
   Phone,
@@ -10,6 +10,7 @@ import {
   MessageCircle,
   AlertCircle,
   Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/servicesData';
 import { useLanguage } from '../i18n/LanguageContext';
@@ -19,6 +20,7 @@ const CC_MAILBOX = 'varunrawatmailbox2507@gmail.com';
 const WHATSAPP_NUMBER = '918273753398';
 
 export const ContactSection: React.FC = () => {
+  const hiddenContactFormRef = useRef<HTMLFormElement>(null);
   const { t } = useLanguage();
   const [sent, setSent] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -45,7 +47,8 @@ ${formData.message}
 --
 GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
 
-  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(PRIMARY_MAILBOX)}&cc=${encodeURIComponent(CC_MAILBOX)}&su=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
+  const allRecipients = `${PRIMARY_MAILBOX},${CC_MAILBOX}`;
+  const gmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(allRecipients)}&su=${encodeURIComponent(mailSubject)}&body=${encodeURIComponent(mailBody)}`;
   const whatsappText = `*GEOVERSED Contact Message*\n\n*Name:* ${formData.name}\n*Email:* ${formData.email}\n*Subject:* ${formData.subject}\n*Message:*\n${formData.message}`;
   const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(whatsappText)}`;
 
@@ -53,7 +56,16 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
     e.preventDefault();
     setLoading(true);
 
-    // 1. Netlify Forms Submission
+    // 1. Submit native HTML form to FormSubmit via hidden iframe
+    try {
+      if (hiddenContactFormRef.current) {
+        hiddenContactFormRef.current.submit();
+      }
+    } catch (err) {
+      console.warn('Native FormSubmit error:', err);
+    }
+
+    // 2. Netlify Forms Submission
     try {
       const netlifyParams = new URLSearchParams();
       netlifyParams.append('form-name', 'contact-inquiry');
@@ -62,6 +74,7 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
       netlifyParams.append('subject', formData.subject);
       netlifyParams.append('message', formData.message);
       netlifyParams.append('recipient_mailbox', PRIMARY_MAILBOX);
+      netlifyParams.append('recipient_secondary', CC_MAILBOX);
 
       await fetch('/', {
         method: 'POST',
@@ -72,8 +85,39 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
       // Ignored if local or non-Netlify
     }
 
-    // 2. FormSubmit Endpoint
+    // 2. FormSubmit Endpoints - direct transmission to both Varun Rawat and GEOVERSED Primary Mailbox
+    const payload = {
+      _subject: mailSubject,
+      _replyto: formData.email,
+      _captcha: 'false',
+      _template: 'table',
+      recipient_target: `${CC_MAILBOX}, ${PRIMARY_MAILBOX}`,
+      sender_name: formData.name,
+      sender_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+    };
+
     try {
+      // Primary direct send to Varun Rawat
+      await fetch(`https://formsubmit.co/ajax/${CC_MAILBOX}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          ...payload,
+          _cc: PRIMARY_MAILBOX,
+        }),
+      });
+    } catch (err) {
+      console.warn('Contact message dispatch to CC_MAILBOX error:', err);
+    }
+
+    try {
+      // Send to primary company mailbox
       await fetch(`https://formsubmit.co/ajax/${PRIMARY_MAILBOX}`, {
         method: 'POST',
         headers: {
@@ -81,22 +125,12 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          _subject: mailSubject,
-          _replyto: formData.email,
+          ...payload,
           _cc: CC_MAILBOX,
-          _captcha: 'false',
-          _template: 'table',
-          recipient_primary: PRIMARY_MAILBOX,
-          recipient_cc: CC_MAILBOX,
-          sender_name: formData.name,
-          sender_email: formData.email,
-          subject: formData.subject,
-          message: formData.message,
-          submitted_at: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
         }),
       });
     } catch (err) {
-      console.warn('Contact message dispatched with local backup:', err);
+      console.warn('Contact message dispatch to PRIMARY_MAILBOX error:', err);
     } finally {
       setLoading(false);
       setSent(true);
@@ -110,6 +144,31 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
 
   return (
     <section id="contact" className="py-20 lg:py-24 bg-[#F8FAFC] border-t border-slate-200/80">
+      {/* Hidden iframe & native form bridge for guaranteed FormSubmit delivery */}
+      <iframe
+        name="contact-formsubmit-hidden-frame"
+        id="contact-formsubmit-hidden-frame"
+        className="hidden"
+        title="Contact FormSubmit Frame"
+      />
+      <form
+        ref={hiddenContactFormRef}
+        action={`https://formsubmit.co/${CC_MAILBOX}`}
+        method="POST"
+        target="contact-formsubmit-hidden-frame"
+        className="hidden"
+      >
+        <input type="hidden" name="_subject" value={mailSubject} />
+        <input type="hidden" name="_replyto" value={formData.email} />
+        <input type="hidden" name="_cc" value={PRIMARY_MAILBOX} />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="Sender Name" value={formData.name} />
+        <input type="hidden" name="Sender Email" value={formData.email} />
+        <input type="hidden" name="Subject" value={formData.subject} />
+        <input type="hidden" name="Message" value={formData.message} />
+      </form>
+
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-600 text-xs font-semibold tracking-wider uppercase mb-3 font-['Poppins']">
@@ -256,10 +315,28 @@ GEOVERSED PLAYGROUND AI SOLUTION (OPC) PVT LTD`;
                   </div>
 
                   {/* Admin info banner */}
-                  <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-left flex items-start gap-2.5 text-[11px] text-amber-900">
+                  <div className="bg-amber-50 border border-amber-200/90 rounded-xl p-3.5 text-left flex items-start gap-2.5 text-[11px] text-amber-900 leading-relaxed">
                     <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
-                    <div>
-                      <strong>Notice for GEOVERSED Administration:</strong> If emails haven't arrived in your main inbox yet, please check your Gmail <em>Spam</em> or <em>Promotions</em> folder for FormSubmit's activation email. Submissions are also saved to Netlify Forms.
+                    <div className="space-y-1.5 w-full">
+                      <strong className="block text-amber-950 font-semibold">
+                        Dispatched to {CC_MAILBOX} &amp; {PRIMARY_MAILBOX}
+                      </strong>
+                      <ul className="list-disc pl-4 space-y-0.5 text-amber-900">
+                        <li><strong>Check Spam / Promotions folder:</strong> Look for an email from <code>FormSubmit</code>.</li>
+                        <li><strong>One-Time Activation:</strong> If this is your first message, click <strong>"Activate Form"</strong> in the FormSubmit email to enable direct inbox delivery.</li>
+                        <li><strong>Netlify Forms:</strong> Submissions are also permanently logged in your Netlify site dashboard under <strong>Forms &gt; contact-inquiry</strong>.</li>
+                      </ul>
+                      <div className="pt-1">
+                        <a
+                          href={`https://formsubmit.co/${CC_MAILBOX}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-xs font-semibold bg-amber-600 hover:bg-amber-700 text-white px-3 py-1.5 rounded-lg transition-colors shadow-2xs cursor-pointer"
+                        >
+                          <ExternalLink className="w-3.5 h-3.5" />
+                          <span>Trigger FormSubmit Activation to {CC_MAILBOX}</span>
+                        </a>
+                      </div>
                     </div>
                   </div>
 

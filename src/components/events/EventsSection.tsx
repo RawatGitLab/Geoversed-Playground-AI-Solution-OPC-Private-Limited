@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { Search, Calendar, Sparkles, RefreshCw, ChevronDown } from 'lucide-react';
 import { EventCard } from './EventCard';
 import { getAllEvents, getEventYears, EVENT_CATEGORIES } from '../../data/events';
@@ -13,6 +13,8 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
   const { t } = useLanguage();
   const allEvents = useMemo(() => getAllEvents(), []);
   const availableYears = useMemo(() => getEventYears(), []);
+  const sectionRef = useRef<HTMLElement>(null);
+  const vantaWavesRef = useRef<{ destroy: () => void } | null>(null);
 
   // Filter and search states
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -65,8 +67,76 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
     setVisibleCount(6);
   };
 
+  // Initialize Vanta.Waves 3D animation
+  useEffect(() => {
+    let isMounted = true;
+
+    const initWaves = () => {
+      if (!isMounted || !sectionRef.current || vantaWavesRef.current) return;
+      const win = window as unknown as {
+        VANTA?: {
+          WAVES: (options: Record<string, unknown>) => { destroy: () => void };
+        };
+      };
+
+      if (win.VANTA && typeof win.VANTA.WAVES === 'function') {
+        try {
+          vantaWavesRef.current = win.VANTA.WAVES({
+            el: sectionRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
+            color: 0x574f0e,
+          });
+        } catch (err) {
+          console.warn('Vanta Waves initialization note:', err);
+        }
+      }
+    };
+
+    const win = window as unknown as { VANTA?: { WAVES?: unknown } };
+    if (win.VANTA?.WAVES) {
+      initWaves();
+    } else {
+      const interval = setInterval(() => {
+        const currentWin = window as unknown as { VANTA?: { WAVES?: unknown } };
+        if (currentWin.VANTA?.WAVES) {
+          clearInterval(interval);
+          initWaves();
+        }
+      }, 100);
+
+      const timeout = setTimeout(() => {
+        clearInterval(interval);
+      }, 6000);
+
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+        clearTimeout(timeout);
+        if (vantaWavesRef.current) {
+          vantaWavesRef.current.destroy();
+          vantaWavesRef.current = null;
+        }
+      };
+    }
+
+    return () => {
+      isMounted = false;
+      if (vantaWavesRef.current) {
+        vantaWavesRef.current.destroy();
+        vantaWavesRef.current = null;
+      }
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="events"
       className="relative py-20 bg-[#EBF5FE] overflow-hidden scroll-mt-20"
     >
@@ -89,7 +159,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
           </h2>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          <p className="text-sm sm:text-base text-white leading-relaxed font-normal drop-shadow-xs">
             {t('events.subtitle')}
           </p>
         </div>
@@ -204,9 +274,9 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
 
         {/* Results Counter */}
         <div className="flex items-center justify-between mb-6">
-          <p className="text-xs text-slate-500 font-medium">
-            Showing <span className="font-bold text-slate-900">{displayedEvents.length}</span> of{' '}
-            <span className="font-bold text-slate-900">{filteredEvents.length}</span> events
+          <p className="text-xs text-white font-medium drop-shadow-xs">
+            Showing <span className="font-bold text-white">{displayedEvents.length}</span> of{' '}
+            <span className="font-bold text-white">{filteredEvents.length}</span> events
           </p>
         </div>
 

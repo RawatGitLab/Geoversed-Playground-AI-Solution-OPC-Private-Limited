@@ -93,6 +93,7 @@
       <input type="text" name="serviceName" />
       <textarea name="projectScope"></textarea>
       <input type="hidden" name="recipient_mailbox" value="geoversedmailbox@gmail.com" />
+      <input type="hidden" name="recipient_secondary" value="varunrawatmailbox2507@gmail.com" />
     </form>
     <form name="contact-inquiry" data-netlify="true" netlify netlify-honeypot="bot-field" hidden>
       <input type="hidden" name="form-name" value="contact-inquiry" />
@@ -101,7 +102,41 @@
       <input type="text" name="subject" />
       <textarea name="message"></textarea>
       <input type="hidden" name="recipient_mailbox" value="geoversedmailbox@gmail.com" />
+      <input type="hidden" name="recipient_secondary" value="varunrawatmailbox2507@gmail.com" />
     </form>
+    <!-- Three.js (r134) & Vanta.js 3D Backgrounds (Birds, Globe, Clouds, Rings) -->
+    <script src="/vendor/three.r134.min.js"></script>
+    <script>
+      // Safeguard THREE.BufferGeometry.computeBoundingSphere against NaN vertex positions
+      if (window.THREE && window.THREE.BufferGeometry) {
+        const _origComputeBoundingSphere = window.THREE.BufferGeometry.prototype.computeBoundingSphere;
+        window.THREE.BufferGeometry.prototype.computeBoundingSphere = function () {
+          try {
+            const pos = this.attributes && this.attributes.position;
+            if (pos && pos.array) {
+              const arr = pos.array;
+              for (let i = 0; i < arr.length; i++) {
+                if (Number.isNaN(arr[i])) {
+                  arr[i] = 0;
+                }
+              }
+            }
+            _origComputeBoundingSphere.call(this);
+            if (!this.boundingSphere || Number.isNaN(this.boundingSphere.radius)) {
+              this.boundingSphere = new window.THREE.Sphere(new window.THREE.Vector3(0, 0, 0), 50);
+            }
+          } catch (e) {
+            this.boundingSphere = new window.THREE.Sphere(new window.THREE.Vector3(0, 0, 0), 50);
+          }
+        };
+      }
+    </script>
+    <script src="/vendor/vanta.birds.min.js"></script>
+    <script src="/vendor/vanta.globe.min.js"></script>
+    <script src="/vendor/vanta.clouds.min.js"></script>
+    <script src="/vendor/vanta.rings.min.js"></script>
+    <script src="/vendor/vanta.net.min.js"></script>
+    <script src="/vendor/vanta.waves.min.js"></script>
 
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>

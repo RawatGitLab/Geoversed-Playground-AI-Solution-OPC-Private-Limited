@@ -51,3 +51,83 @@ export interface EventItem {
   videos: EventVideo[]; // array of YouTube videos
 }
 
+// ==========================================
+// Director Section Interfaces
+// ==========================================
+
+export interface DirectorProfile {
+  name: string;
+  designation: string;
+  company: string;
+  roles: string[];
+  bio: string[];
+  location: string;
+  avatarUrl: string;
+  avatarFallbackInitials: string;
+  cvUrl: string;
+  email: string;
+  linkedinUrl: string;
+  githubUrl: string;
+}
+
+export interface DirectorStat {
+  id: string;
+  label: string;
+  value: number;
+  suffix: string;
+  description?: string;
+}
+
+export interface SkillCategory {
+  id: string;
+  title: string;
+  iconName: string;
+  skills: string[];
+}
+
+export interface TimelineEntry {
+  id: string;
+  role: string;
+  organization: string;
+  period: string;
+  location?: string;
+  type: 'experience' | 'education';
+  points: string[];
+}
+
+export interface FeaturedWorkDetails {
+  overview?: string;
+  keyFeatures?: string[];
+  technicalArchitecture?: string[];
+  roleAndImpact?: string;
+}
+
+export interface FeaturedWorkItem {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  linkUrl?: string;
+  metrics?: string;
+  period?: string;
+  verified?: boolean;
+  demoUrl?: string;
+  githubUrl?: string;
+  image?: string;
+  details?: FeaturedWorkDetails;
+}
+
+export interface CertificationItem {
+  id: string;
+  title: string;
+  issuer: string;
+  year: string;
+  image: string;
+  credentialUrl?: string;
+  credentialId?: string;
+  skillsValidated?: string[];
+  description?: string;
+}
+
+

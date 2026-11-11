@@ -32,6 +32,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
     switch (label) {
       case 'Home': return t('nav.home');
       case 'About': return t('nav.about');
+      case 'Director': return t('nav.director');
       case 'Services': return t('nav.services');
       case 'Projects': return t('nav.projects');
       case 'Insights': return t('nav.insights');
