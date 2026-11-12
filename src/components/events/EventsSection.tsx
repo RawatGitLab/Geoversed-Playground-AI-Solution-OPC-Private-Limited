@@ -73,6 +73,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
 
     const initWaves = () => {
       if (!isMounted || !sectionRef.current || vantaWavesRef.current) return;
+      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
       const win = window as unknown as {
         VANTA?: {
           WAVES: (options: Record<string, unknown>) => { destroy: () => void };
@@ -141,8 +142,8 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
       className="relative py-20 bg-[#EBF5FE] overflow-hidden scroll-mt-20"
     >
       {/* Ambient background decoration */}
-      <div className="absolute top-1/3 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden md:block absolute top-1/3 left-0 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="hidden md:block absolute bottom-1/4 right-0 w-96 h-96 bg-sky-400/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -165,7 +166,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
         </div>
 
         {/* Floating Filter & Search Bar */}
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-lg border border-slate-200/80 mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5">
+        <div className="bg-white/95 md:backdrop-blur-md rounded-2xl p-4 sm:p-5 shadow-lg border border-slate-200/80 mb-6 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3.5">
           {/* Search Box */}
           <div className="relative flex-1 min-w-[220px]">
             <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />

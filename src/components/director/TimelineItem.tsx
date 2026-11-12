@@ -44,7 +44,7 @@ export const TimelineItem: React.FC<TimelineItemProps> = ({ entry, index }) => {
           isEven ? 'md:mr-auto md:text-right' : 'md:ml-auto md:text-left'
         }`}
       >
-        <div className="bg-slate-900/80 hover:bg-slate-900/95 backdrop-blur-md border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-cyan-500/10 group-hover:-translate-y-1 text-left">
+        <div className="bg-slate-900/80 hover:bg-slate-900/95 md:backdrop-blur-md border border-slate-800 hover:border-cyan-500/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-cyan-500/10 group-hover:-translate-y-1 text-left">
           {/* Header Row: Period Pill & Location */}
           <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/25 text-cyan-300 text-xs font-semibold font-mono">

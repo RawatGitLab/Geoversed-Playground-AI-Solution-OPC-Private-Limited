@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Play } from 'lucide-react';
+import { registerVideo } from '../../utils/videoManager';
 
 interface YouTubeFacadeProps {
   youtubeId?: string;
@@ -28,6 +29,7 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const activeVideoRef = useRef<HTMLVideoElement>(null);
 
   // Determine if this is a YouTube video or a direct video file
   const extractedId = extractYouTubeId(videoUrl) || extractYouTubeId(youtubeId);
@@ -36,6 +38,10 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
   // If it's a YouTube video, effectiveVideoUrl must be undefined so it doesn't render HTML5 video
   const isYouTube = Boolean(effectiveYoutubeId);
   const effectiveVideoUrl = isYouTube ? undefined : videoUrl;
+
+  useEffect(() => {
+    return registerVideo(activeVideoRef.current);
+  }, [isPlaying, effectiveVideoUrl]);
 
   // If playing, render YouTube iframe or local HTML5 video
   if (isPlaying) {
@@ -58,10 +64,12 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
       return (
         <div className={`relative aspect-video w-full rounded-2xl overflow-hidden bg-black shadow-lg border border-slate-700/50 ${className}`}>
           <video
+            ref={activeVideoRef}
             src={effectiveVideoUrl}
             controls
             autoPlay
             playsInline
+            preload="none"
             className="w-full h-full object-contain"
           >
             Your browser does not support the video tag.
@@ -99,6 +107,8 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
           <img
             src={thumbnailUrl}
             alt={title}
+            width="480"
+            height="360"
             loading="lazy"
             decoding="async"
             onLoad={() => setIsLoaded(true)}
@@ -110,7 +120,9 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
       ) : effectiveVideoUrl ? (
         <video
           src={effectiveVideoUrl}
-          preload="metadata"
+          muted
+          playsInline
+          preload="none"
           className="w-full h-full object-cover opacity-60 group-hover:opacity-75 transition-opacity"
         />
       ) : (
@@ -122,7 +134,7 @@ export const YouTubeFacade: React.FC<YouTubeFacadeProps> = ({
 
       {/* Liquid glassmorphism Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl shadow-red-600/40 backdrop-blur-md border border-white/40 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600">
+        <div className="w-16 h-16 sm:w-18 sm:h-18 rounded-full bg-red-600/90 text-white flex items-center justify-center shadow-xl shadow-red-600/40 md:backdrop-blur-md border border-white/40 transform transition-all duration-300 group-hover:scale-110 group-hover:bg-red-600">
           <Play className="w-7 h-7 sm:w-8 sm:h-8 fill-white translate-x-0.5" />
         </div>
       </div>

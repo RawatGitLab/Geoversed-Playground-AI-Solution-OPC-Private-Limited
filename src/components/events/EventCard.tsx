@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Calendar, MapPin, Image as ImageIcon, Video, ArrowUpRight } from 'lucide-react';
 import { EventItem, EventCategory } from '../../types';
 import { resolveImageUrl, isVideoUrl } from '../../data/events';
+import { registerVideo } from '../../utils/videoManager';
 
 interface EventCardProps {
   event: EventItem;
@@ -84,12 +85,17 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelectEvent }) =>
 
   const photoCount = event.photos?.length || 0;
   const videoCount = event.videos?.length || 0;
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    return registerVideo(videoRef.current);
+  }, [thumbnailUrl]);
 
   return (
     <a
       href={`#events/${event.id}`}
       onClick={handleClick}
-      className="group relative flex flex-col bg-white/80 hover:bg-white backdrop-blur-md rounded-2xl border border-slate-200/80 hover:border-blue-400/50 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+      className="group relative flex flex-col bg-white/80 hover:bg-white md:backdrop-blur-md rounded-2xl border border-slate-200/80 hover:border-blue-400/50 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
       aria-label={`View details for ${event.title}`}
     >
       {/* Cover Image Container */}
@@ -101,12 +107,13 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelectEvent }) =>
 
         {isVideoUrl(thumbnailUrl) ? (
           <video
+            ref={videoRef}
             src={thumbnailUrl}
-            autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
+            poster={event.photos?.[0] ? resolveImageUrl(event.photos[0], 'thumb') : undefined}
             onLoadedData={() => setIsImgLoaded(true)}
             onCanPlay={() => setIsImgLoaded(true)}
             className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
@@ -117,6 +124,8 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelectEvent }) =>
           <img
             src={thumbnailUrl}
             alt={event.title}
+            width="400"
+            height="250"
             loading="lazy"
             decoding="async"
             onLoad={() => setIsImgLoaded(true)}
@@ -133,14 +142,14 @@ export const EventCard: React.FC<EventCardProps> = ({ event, onSelectEvent }) =>
         <div className="absolute top-3.5 inset-x-3.5 flex items-center justify-between pointer-events-none">
           {/* Category Chip */}
           <span
-            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md border shadow-xs ${colors.bg} ${colors.text} ${colors.border} bg-white/90`}
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold md:backdrop-blur-md border shadow-xs ${colors.bg} ${colors.text} ${colors.border} bg-white/90`}
           >
             <span className={`w-1.5 h-1.5 rounded-full ${colors.dot}`} />
             {event.category}
           </span>
 
           {/* Media Count Pill (Liquid Glass) */}
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-950/70 backdrop-blur-md text-white text-[11px] font-medium border border-white/20 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-950/70 md:backdrop-blur-md text-white text-[11px] font-medium border border-white/20 shadow-xs">
             {photoCount > 0 && (
               <span className="flex items-center gap-1">
                 <ImageIcon className="w-3 h-3 text-sky-400" />

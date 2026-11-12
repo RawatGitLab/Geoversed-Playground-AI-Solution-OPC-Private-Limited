@@ -38,6 +38,7 @@ export const DirectorSection: React.FC = () => {
 
     const initVanta = () => {
       if (!isMounted || !sectionRef.current || vantaEffectRef.current) return;
+      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
       const win = window as unknown as {
         VANTA?: {
           BIRDS: (options: Record<string, unknown>) => VantaEffect;
@@ -125,9 +126,9 @@ export const DirectorSection: React.FC = () => {
       className="relative py-20 sm:py-28 bg-white text-slate-900 overflow-hidden scroll-mt-20 border-t border-slate-200"
     >
       {/* Ambient background glows matching design system */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-cyan-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
-      <div className="absolute top-2/3 right-[-100px] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
-      <div className="absolute bottom-10 left-[-100px] w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="hidden md:block absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-cyan-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="hidden md:block absolute top-2/3 right-[-100px] w-[500px] h-[500px] bg-blue-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
+      <div className="hidden md:block absolute bottom-10 left-[-100px] w-[500px] h-[500px] bg-indigo-100/40 rounded-full blur-[140px] pointer-events-none z-[1]" />
 
       {/* Subtle geospatial grid background */}
       <div
@@ -191,9 +192,9 @@ export const DirectorSection: React.FC = () => {
         </div>
 
         {/* 7. CLOSING CALL-TO-ACTION */}
-        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-cyan-950/60 via-slate-900/90 to-indigo-950/60 border border-cyan-500/30 p-8 sm:p-12 text-center backdrop-blur-xl shadow-2xl">
+        <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-cyan-950/60 via-slate-900/90 to-indigo-950/60 border border-cyan-500/30 p-8 sm:p-12 text-center md:backdrop-blur-xl shadow-2xl">
           {/* Subtle glow orb */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+          <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
 
           <div className="relative z-10 max-w-2xl mx-auto space-y-4">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-cyan-400/15 border border-cyan-400/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider font-['Poppins']">

@@ -158,7 +158,7 @@ export const ServiceDetailModal: React.FC<ServiceDetailModalProps> = ({
   return (
     <div
       id="service-detail-modal-overlay"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-900/70 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-900/70 md:backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div

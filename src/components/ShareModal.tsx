@@ -74,7 +74,7 @@ export const ShareModal: React.FC<ShareModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="share-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 md:backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto"
       onClick={onClose}
     >
       <div
@@ -158,6 +158,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({
                         src={bannerImage}
                         alt="GEOVERSED Logo with Company Name"
                         className="w-full h-full object-contain"
+                        loading="lazy"
+                        decoding="async"
+                        width={480}
+                        height={270}
                       />
                     </div>
                     <div className="p-2.5 bg-slate-50/90">
@@ -205,6 +209,10 @@ export const ShareModal: React.FC<ShareModalProps> = ({
                     src={bannerImage}
                     alt="GEOVERSED Playground AI Solution OPC Pvt Ltd Logo"
                     className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                    width={600}
+                    height={314}
                   />
                 </div>
 

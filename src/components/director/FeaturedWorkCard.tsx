@@ -13,7 +13,7 @@ export const FeaturedWorkCard: React.FC<FeaturedWorkCardProps> = ({ item, index 
 
   return (
     <div
-      className="group relative flex flex-col justify-between w-[275px] xs:w-[320px] sm:w-[380px] md:w-[430px] max-w-[85vw] min-h-[460px] flex-shrink-0 bg-[#23153c]/95 hover:bg-[#23153c] backdrop-blur-xl border border-[#3b2361]/70 hover:border-fuchsia-500/50 rounded-3xl p-5 sm:p-7 transition-colors duration-200 shadow-xl hover:shadow-2xl hover:shadow-fuchsia-500/15 overflow-hidden select-none"
+      className="group relative flex flex-col justify-between w-[275px] xs:w-[320px] sm:w-[380px] md:w-[430px] max-w-[85vw] min-h-[460px] flex-shrink-0 bg-[#23153c]/95 hover:bg-[#23153c] md:backdrop-blur-xl border border-[#3b2361]/70 hover:border-fuchsia-500/50 rounded-3xl p-5 sm:p-7 transition-colors duration-200 shadow-xl hover:shadow-2xl hover:shadow-fuchsia-500/15 overflow-hidden select-none"
     >
       {/* Cyan Top Edge Accent */}
       <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
@@ -63,10 +63,13 @@ export const FeaturedWorkCard: React.FC<FeaturedWorkCardProps> = ({ item, index 
               onError={() => setImgError(true)}
               className="w-full h-full object-cover object-top group-hover/img:scale-105 transition-transform duration-500"
               loading="lazy"
+              decoding="async"
+              width={430}
+              height={192}
             />
             {/* Subtle glass reflection gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/80 backdrop-blur-xs text-[10px] font-mono text-cyan-300 border border-cyan-500/30">
+            <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-md bg-slate-950/80 md:backdrop-blur-xs text-[10px] font-mono text-cyan-300 border border-cyan-500/30">
               Live Preview
             </div>
           </div>

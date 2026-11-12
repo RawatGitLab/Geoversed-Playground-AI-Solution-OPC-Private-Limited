@@ -21,6 +21,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
 
     const initClouds = () => {
       if (!isMounted || !cloudsRef.current || vantaCloudsRef.current) return;
+      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
       const win = window as unknown as {
         VANTA?: {
           CLOUDS: (options: Record<string, unknown>) => { destroy: () => void };
@@ -114,7 +115,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
       {/* Main Hero Content Container */}
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 text-center flex flex-col items-center flex-1 justify-center">
         {/* Subtle Pill Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-medium mb-5 tracking-wide shadow-xs">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 md:backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-medium mb-5 tracking-wide shadow-xs">
           <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse" />
           <span>{t('hero.badge')}</span>
         </div>
@@ -151,7 +152,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           <button
             id="hero-view-projects-btn"
             onClick={onViewProjects}
-            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium text-sm sm:text-base px-8 py-3 rounded-full border border-white/30 backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:-translate-y-0.5 cursor-pointer font-['Poppins']"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white font-medium text-sm sm:text-base px-8 py-3 rounded-full border border-white/30 md:backdrop-blur-sm transition-all duration-300 hover:border-white/60 hover:-translate-y-0.5 cursor-pointer font-['Poppins']"
           >
             <span>{t('hero.viewProjects')}</span>
           </button>
@@ -165,7 +166,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
             target="_blank"
             rel="noopener noreferrer"
             title="Open Uttarakhand Geo Portal (External Link)"
-            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-sky-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5 cursor-pointer"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 md:backdrop-blur-md border border-white/20 hover:border-sky-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-sky-500/10 hover:-translate-y-0.5 cursor-pointer"
           >
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">
@@ -188,7 +189,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
               onExploreServices();
             }}
             title="Explore 12 Core Capabilities & Services"
-            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-indigo-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 cursor-pointer"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 md:backdrop-blur-md border border-white/20 hover:border-indigo-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-indigo-500/10 hover:-translate-y-0.5 cursor-pointer"
           >
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">
@@ -209,7 +210,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
             target="_blank"
             rel="noopener noreferrer"
             title="View Official MCA Form INC-33 e-MOA Document (PDF)"
-            className="group block bg-slate-900/40 hover:bg-slate-900/60 backdrop-blur-md border border-white/20 hover:border-emerald-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-0.5 cursor-pointer"
+            className="group block bg-slate-900/40 hover:bg-slate-900/60 md:backdrop-blur-md border border-white/20 hover:border-emerald-400/50 rounded-2xl p-4 sm:p-4.5 transition-all duration-300 shadow-lg hover:shadow-emerald-500/10 hover:-translate-y-0.5 cursor-pointer"
           >
             <div className="flex items-center justify-between mb-1">
               <div className="flex items-center gap-2.5">

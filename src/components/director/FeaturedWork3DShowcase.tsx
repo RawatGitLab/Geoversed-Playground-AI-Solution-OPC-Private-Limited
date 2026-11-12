@@ -139,7 +139,7 @@ export const FeaturedWork3DShowcase: React.FC<FeaturedWork3DShowcaseProps> = ({ 
             e.stopPropagation();
             handleStep('left');
           }}
-          className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white hover:text-cyan-400 border border-slate-700/80 hover:border-cyan-400 shadow-2xl shadow-black/50 backdrop-blur-md flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 active:scale-95 group focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
+          className="absolute left-2 sm:left-4 lg:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white hover:text-cyan-400 border border-slate-700/80 hover:border-cyan-400 shadow-2xl shadow-black/50 md:backdrop-blur-md flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 active:scale-95 group focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
           aria-label="Previous card (scroll right)"
           title="Previous Project (Left)"
         >
@@ -153,7 +153,7 @@ export const FeaturedWork3DShowcase: React.FC<FeaturedWork3DShowcaseProps> = ({ 
             e.stopPropagation();
             handleStep('right');
           }}
-          className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white hover:text-cyan-400 border border-slate-700/80 hover:border-cyan-400 shadow-2xl shadow-black/50 backdrop-blur-md flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 active:scale-95 group focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
+          className="absolute right-2 sm:right-4 lg:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-slate-900/90 hover:bg-slate-950 text-white hover:text-cyan-400 border border-slate-700/80 hover:border-cyan-400 shadow-2xl shadow-black/50 md:backdrop-blur-md flex items-center justify-center transition-all duration-200 cursor-pointer hover:scale-110 active:scale-95 group focus:outline-hidden focus:ring-2 focus:ring-cyan-400"
           aria-label="Next card (scroll left)"
           title="Next Project (Right)"
         >
@@ -163,10 +163,10 @@ export const FeaturedWork3DShowcase: React.FC<FeaturedWork3DShowcaseProps> = ({ 
         {/* 3D Stage tilted subtly on X-axis for genuine spatial depth */}
         <div
           ref={scrollContainerRef}
-          className="marquee-accessible-scroll overflow-x-hidden flex preserve-3d"
+          className="marquee-accessible-scroll overflow-x-hidden flex md:preserve-3d"
           style={{
-            transform: 'rotateX(3deg)',
-            transformStyle: 'preserve-3d',
+            transform: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'rotateX(3deg)' : 'none',
+            transformStyle: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'preserve-3d' : 'flat',
           }}
           tabIndex={0}
           onKeyDown={(e) => {
@@ -182,10 +182,10 @@ export const FeaturedWork3DShowcase: React.FC<FeaturedWork3DShowcaseProps> = ({ 
         >
           {/* Manual Shift Wrapper */}
           <div
-            className="transition-transform duration-500 ease-out preserve-3d"
+            className="transition-transform duration-500 ease-out md:preserve-3d"
             style={{
               transform: `translate3d(${manualShift}px, 0, 0)`,
-              transformStyle: 'preserve-3d',
+              transformStyle: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'preserve-3d' : 'flat',
             }}
           >
             <div
@@ -194,7 +194,7 @@ export const FeaturedWork3DShowcase: React.FC<FeaturedWork3DShowcaseProps> = ({ 
               style={{
                 animationDuration: `${speed}s`,
                 animationPlayState: isMotionPaused ? 'paused' : 'running',
-                transformStyle: 'preserve-3d',
+                transformStyle: typeof window !== 'undefined' && window.innerWidth >= 768 ? 'preserve-3d' : 'flat',
               }}
             >
               {duplicatedItems.map((item, idx) => (

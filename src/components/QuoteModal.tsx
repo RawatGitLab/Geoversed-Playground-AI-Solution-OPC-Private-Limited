@@ -211,7 +211,7 @@ Website: https://geoversed-playground-ai-solution-opc.netlify.app/`;
   return (
     <div
       id="quote-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-900/60 md:backdrop-blur-sm animate-in fade-in duration-200 overflow-y-auto"
       onClick={onClose}
     >
       {/* Invisible iframe and native HTML form bridge for guaranteed FormSubmit delivery */}

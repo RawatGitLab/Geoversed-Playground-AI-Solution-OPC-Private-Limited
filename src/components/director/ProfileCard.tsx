@@ -27,12 +27,12 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
     return () => clearInterval(interval);
   }, [profile.roles]);
 
-  // Initialize Vanta.Globe 3D geospatial animation
+  // Initialize Vanta.Globe 3D geospatial animation (Desktop only for GPU memory safety)
   useEffect(() => {
     let isMounted = true;
 
     const initGlobe = () => {
-      if (!isMounted || !cardRef.current || vantaGlobeRef.current) return;
+      if (!isMounted || !cardRef.current || vantaGlobeRef.current || window.innerWidth < 768) return;
       const win = window as unknown as {
         VANTA?: {
           GLOBE: (options: Record<string, unknown>) => { destroy: () => void };
@@ -99,11 +99,11 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   return (
     <div
       ref={cardRef}
-      className="relative w-full bg-[#051f15]/95 backdrop-blur-xl border border-emerald-950/80 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl overflow-hidden group"
+      className="relative w-full bg-[#051f15]/95 md:backdrop-blur-xl border border-emerald-950/80 rounded-3xl p-6 sm:p-8 lg:p-10 shadow-2xl overflow-hidden group"
     >
-      {/* Background ambient lighting blobs */}
-      <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none z-[1]" />
-      <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-800/20 rounded-full blur-3xl pointer-events-none z-[1]" />
+      {/* Background ambient lighting blobs (Desktop only) */}
+      <div className="hidden md:block absolute top-0 right-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none z-[1]" />
+      <div className="hidden md:block absolute bottom-0 left-0 w-80 h-80 bg-emerald-800/20 rounded-full blur-3xl pointer-events-none z-[1]" />
 
       <div className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-10 lg:gap-12 items-center">
         {/* Left Column on Desktop: Content (Name, Designation, Roles, Bio, Location, Buttons) */}
@@ -199,7 +199,10 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
                       : profile.avatarUrl
                   }
                   alt={profile.name}
-                  loading="eager"
+                  width="288"
+                  height="320"
+                  loading="lazy"
+                  decoding="async"
                   onError={() => setImageFailed(true)}
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -223,7 +226,7 @@ export const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
             </div>
 
             {/* Floating Glass Badge */}
-            <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap bg-emerald-950/90 backdrop-blur-md border border-emerald-400/40 px-4 py-1.5 rounded-full shadow-lg shadow-emerald-900/30 flex items-center gap-1.5 z-20">
+            <div className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 whitespace-nowrap bg-emerald-950/90 md:backdrop-blur-md border border-emerald-400/40 px-4 py-1.5 rounded-full shadow-lg shadow-emerald-900/30 flex items-center gap-1.5 z-20">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-xs font-bold text-white font-['Poppins'] tracking-wide">
                 Founder &amp; Director

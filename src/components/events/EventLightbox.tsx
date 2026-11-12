@@ -99,7 +99,7 @@ export const EventLightbox: React.FC<EventLightboxProps> = ({
       role="dialog"
       aria-modal="true"
       aria-label={`${eventTitle} Photo Gallery`}
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 backdrop-blur-md select-none transition-opacity duration-300 animate-in fade-in"
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/92 md:backdrop-blur-md select-none transition-opacity duration-300 animate-in fade-in"
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
       onClick={(e) => {
@@ -162,7 +162,9 @@ export const EventLightbox: React.FC<EventLightboxProps> = ({
           key={fullSizeUrl}
           src={fullSizeUrl}
           alt={`${eventTitle} - Photo ${currentIndex + 1}`}
-          loading="eager"
+          width="1600"
+          height="1000"
+          loading="lazy"
           decoding="async"
           onLoad={() => setIsLoaded(true)}
           className={`max-w-full max-h-[82vh] object-contain rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300 ${
@@ -177,7 +179,7 @@ export const EventLightbox: React.FC<EventLightboxProps> = ({
           type="button"
           onClick={goToPrevious}
           aria-label="Previous photo"
-          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 hover:bg-white/25 text-white transition-all backdrop-blur-md border border-white/20 shadow-xl cursor-pointer hover:scale-110 active:scale-95 group"
+          className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 hover:bg-white/25 text-white transition-all md:backdrop-blur-md border border-white/20 shadow-xl cursor-pointer hover:scale-110 active:scale-95 group"
         >
           <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 group-hover:-translate-x-0.5 transition-transform" />
         </button>
@@ -189,7 +191,7 @@ export const EventLightbox: React.FC<EventLightboxProps> = ({
           type="button"
           onClick={goToNext}
           aria-label="Next photo"
-          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 hover:bg-white/25 text-white transition-all backdrop-blur-md border border-white/20 shadow-xl cursor-pointer hover:scale-110 active:scale-95 group"
+          className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/40 hover:bg-white/25 text-white transition-all md:backdrop-blur-md border border-white/20 shadow-xl cursor-pointer hover:scale-110 active:scale-95 group"
         >
           <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 group-hover:translate-x-0.5 transition-transform" />
         </button>
@@ -214,6 +216,8 @@ export const EventLightbox: React.FC<EventLightboxProps> = ({
               <img
                 src={thumbUrl}
                 alt={`Thumbnail ${idx + 1}`}
+                width="64"
+                height="40"
                 loading="lazy"
                 decoding="async"
                 className="w-full h-full object-cover"

@@ -188,6 +188,27 @@ a, button, .transition-smooth {
   }
 }
 
+/* Mobile memory & GPU optimization (<768px) - disable infinite marquee animations and 3D compositing */
+@media (max-width: 767px) {
+  .animate-marquee-left,
+  .animate-marquee-right,
+  .animate-marquee-3d-left {
+    animation: none !important;
+  }
+  .marquee-accessible-scroll {
+    overflow-x: auto !important;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  .perspective-1000,
+  .perspective-1200 {
+    perspective: none !important;
+  }
+  .preserve-3d {
+    transform-style: flat !important;
+  }
+}
+
 /* Vanta 3D canvas styling */
 #home .vanta-canvas {
   position: absolute !important;

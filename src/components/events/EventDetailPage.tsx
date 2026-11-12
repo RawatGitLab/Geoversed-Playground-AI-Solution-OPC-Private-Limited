@@ -18,6 +18,7 @@ import { getAllEvents, resolveImageUrl, isVideoUrl } from '../../data/events';
 import { YouTubeFacade } from './YouTubeFacade';
 import { EventLightbox } from './EventLightbox';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { registerVideo } from '../../utils/videoManager';
 
 interface EventDetailPageProps {
   eventId: string;
@@ -181,11 +182,16 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
 
   const photos = event.photos || [];
   const videos = event.videos || [];
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    return registerVideo(videoRef.current);
+  }, [event.cover]);
 
   return (
     <div className="w-full min-h-screen bg-slate-50/50 pb-24 text-slate-900">
       {/* 1. Top Sub-Navigation Bar */}
-      <div className="bg-white border-b border-slate-200/80 sticky top-[72px] z-30 shadow-2xs backdrop-blur-md">
+      <div className="bg-white border-b border-slate-200/80 sticky top-[72px] z-30 shadow-2xs md:backdrop-blur-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           {/* Back Button */}
           <button
@@ -249,12 +255,13 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
         )}
         {isVideoUrl(event.cover) ? (
           <video
+            ref={videoRef}
             src={event.cover}
-            autoPlay
             muted
             loop
             playsInline
-            preload="auto"
+            preload="none"
+            poster={event.photos?.[0] ? resolveImageUrl(event.photos[0], 'thumb') : undefined}
             onLoadedData={() => setBannerLoaded(true)}
             onCanPlay={() => setBannerLoaded(true)}
             className={`w-full h-full object-cover transition-all duration-700 ${
@@ -265,7 +272,9 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
           <img
             src={event.cover}
             alt={event.title}
-            loading="eager"
+            width="1200"
+            height="420"
+            loading="lazy"
             decoding="async"
             onLoad={() => setBannerLoaded(true)}
             className={`w-full h-full object-cover transition-all duration-700 ${
@@ -281,14 +290,14 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
           <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
             {/* Category Badge */}
             <span
-              className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md shadow-xs bg-white text-slate-900 border border-white/40`}
+              className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold md:backdrop-blur-md shadow-xs bg-white text-slate-900 border border-white/40`}
             >
               <span className={`w-2 h-2 rounded-full ${categoryStyle.dot}`} />
               {event.category}
             </span>
 
             {/* Media Count Badge */}
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md text-white text-xs font-medium border border-white/20">
+            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950/70 md:backdrop-blur-md text-white text-xs font-medium border border-white/20">
               <span className="flex items-center gap-1">
                 <ImageIcon className="w-3.5 h-3.5 text-sky-400" />
                 {photos.length} Photos
@@ -327,7 +336,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
       {/* 3. Main Detail Body */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-8 relative z-20">
         {/* Description Glass Container */}
-        <div className="bg-white/95 backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90 mb-12">
+        <div className="bg-white/95 md:backdrop-blur-md rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-200/90 mb-12">
           <div className="prose prose-slate max-w-none">
             <h2 className="text-xs uppercase tracking-wider font-bold text-blue-600 mb-2 font-['Poppins']">
               Executive Summary &amp; Overview
@@ -427,7 +436,9 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                 key={activePhotoIndex}
                 src={resolveImageUrl(photos[activePhotoIndex], 'full')}
                 alt={`${event.title} - Slide ${activePhotoIndex + 1}`}
-                loading="eager"
+                width="1200"
+                height="675"
+                loading="lazy"
                 decoding="async"
                 onClick={() => setLightboxOpen(true)}
                 className="w-full h-full object-contain cursor-zoom-in transition-all duration-300 animate-in fade-in zoom-in-95"
@@ -439,7 +450,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
 
               {/* Top overlay information */}
               <div className="absolute top-4 inset-x-4 flex items-center justify-between pointer-events-none">
-                <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md text-white text-xs font-medium border border-white/15">
+                <span className="px-3 py-1 rounded-full bg-black/60 md:backdrop-blur-md text-white text-xs font-medium border border-white/15">
                   Photo {activePhotoIndex + 1} / {photos.length}
                 </span>
 
@@ -449,7 +460,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     e.stopPropagation();
                     setLightboxOpen(true);
                   }}
-                  className="pointer-events-auto p-2 rounded-full bg-black/50 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-105 cursor-pointer shadow-lg"
+                  className="pointer-events-auto p-2 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-105 cursor-pointer shadow-lg"
                   title="Expand to Fullscreen Lightbox"
                   aria-label="Expand image to fullscreen"
                 >
@@ -466,7 +477,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     handlePrevSlide();
                   }}
                   aria-label="Previous photo in sliding gallery"
-                  className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/45 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                  className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
                 >
                   <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
@@ -481,7 +492,7 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                     handleNextSlide();
                   }}
                   aria-label="Next photo in sliding gallery"
-                  className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/45 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                  className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
                 >
                   <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                 </button>
@@ -551,6 +562,8 @@ export const EventDetailPage: React.FC<EventDetailPageProps> = ({
                       <img
                         src={thumbUrl}
                         alt={`${event.title} - Photo ${idx + 1}`}
+                        width="400"
+                        height="300"
                         loading="lazy"
                         decoding="async"
                         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

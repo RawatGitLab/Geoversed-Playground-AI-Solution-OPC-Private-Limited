@@ -16,6 +16,7 @@ import { getAllEvents, resolveImageUrl, isVideoUrl } from '../../data/events';
 import { YouTubeFacade } from './YouTubeFacade';
 import { EventLightbox } from './EventLightbox';
 import { useLanguage } from '../../i18n/LanguageContext';
+import { registerVideo } from '../../utils/videoManager';
 
 interface EventDetailModalProps {
   event: EventItem;
@@ -182,13 +183,18 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
   const photos = event.photos || [];
   const videos = event.videos || [];
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    return registerVideo(videoRef.current);
+  }, [event.cover]);
 
   return (
     <div
       role="dialog"
       aria-modal="true"
       aria-label={event.title}
-      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-start justify-center animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/75 md:backdrop-blur-md p-3 sm:p-6 lg:p-10 flex items-start justify-center animate-in fade-in duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) {
           onClose();
@@ -198,7 +204,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
       {/* Modal Dialog Box */}
       <div className="relative w-full max-w-5xl bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden my-auto text-left">
         {/* Sticky Header with Close Button */}
-        <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-slate-100 px-5 sm:px-8 py-3.5 flex items-center justify-between">
+        <div className="sticky top-0 z-30 bg-white/95 md:backdrop-blur-md border-b border-slate-100 px-5 sm:px-8 py-3.5 flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-semibold text-slate-500 uppercase tracking-wider font-['Poppins']">
             <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
             <span>GEOVERSED Event Dossier</span>
@@ -244,12 +250,13 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
           )}
           {isVideoUrl(event.cover) ? (
             <video
+              ref={videoRef}
               src={event.cover}
-              autoPlay
               muted
               loop
               playsInline
-              preload="auto"
+              preload="none"
+              poster={event.photos?.[0] ? resolveImageUrl(event.photos[0], 'thumb') : undefined}
               onLoadedData={() => setBannerLoaded(true)}
               onCanPlay={() => setBannerLoaded(true)}
               className={`w-full h-full object-cover transition-all duration-700 ${
@@ -260,7 +267,9 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
             <img
               src={resolveImageUrl(event.cover, 'full')}
               alt={event.title}
-              loading="eager"
+              width="1200"
+              height="420"
+              loading="lazy"
               decoding="async"
               onLoad={() => setBannerLoaded(true)}
               className={`w-full h-full object-cover transition-all duration-700 ${
@@ -275,13 +284,13 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
           <div className="absolute bottom-0 inset-x-0 p-5 sm:p-8 lg:p-10 text-white">
             <div className="flex flex-wrap items-center gap-2.5 mb-3">
               {/* Category Badge */}
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-white text-slate-900 border border-white/40 shadow-xs">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold md:backdrop-blur-md bg-white text-slate-900 border border-white/40 shadow-xs">
                 <span className={`w-2 h-2 rounded-full ${categoryStyle.dot}`} />
                 {event.category}
               </span>
 
               {/* Media Count Badge */}
-              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900/60 backdrop-blur-md text-white text-xs font-medium border border-white/20">
+              <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-950/70 md:backdrop-blur-md text-white text-xs font-medium border border-white/20">
                 <span className="flex items-center gap-1">
                   <ImageIcon className="w-3.5 h-3.5 text-sky-400" />
                   {photos.length} Photos
@@ -420,7 +429,9 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                   key={activePhotoIndex}
                   src={resolveImageUrl(photos[activePhotoIndex], 'full')}
                   alt={`${event.title} - Slide ${activePhotoIndex + 1}`}
-                  loading="eager"
+                  width="1200"
+                  height="675"
+                  loading="lazy"
                   decoding="async"
                   onClick={() => setLightboxOpen(true)}
                   className="w-full h-full object-contain cursor-zoom-in transition-all duration-300 animate-in fade-in zoom-in-95"
@@ -432,7 +443,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
 
                 {/* Top overlay information */}
                 <div className="absolute top-4 inset-x-4 flex items-center justify-between pointer-events-none">
-                  <span className="px-3 py-1 rounded-full bg-black/50 backdrop-blur-md text-white text-xs font-medium border border-white/15">
+                  <span className="px-3 py-1 rounded-full bg-black/60 md:backdrop-blur-md text-white text-xs font-medium border border-white/15">
                     Photo {activePhotoIndex + 1} / {photos.length}
                   </span>
 
@@ -442,7 +453,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                       e.stopPropagation();
                       setLightboxOpen(true);
                     }}
-                    className="pointer-events-auto p-2 rounded-full bg-black/50 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-105 cursor-pointer shadow-lg"
+                    className="pointer-events-auto p-2 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-105 cursor-pointer shadow-lg"
                     title="Expand to Fullscreen Lightbox"
                     aria-label="Expand image to fullscreen"
                   >
@@ -459,7 +470,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                       handlePrevSlide();
                     }}
                     aria-label="Previous photo in sliding gallery"
-                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/45 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                    className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
                   >
                     <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
@@ -474,7 +485,7 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                       handleNextSlide();
                     }}
                     aria-label="Next photo in sliding gallery"
-                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/45 hover:bg-black/75 text-white backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
+                    className="absolute right-3 sm:right-4 top-1/2 -translate-y-1/2 p-2.5 sm:p-3 rounded-full bg-black/60 hover:bg-black/80 text-white md:backdrop-blur-md border border-white/20 transition-all hover:scale-110 active:scale-95 shadow-xl cursor-pointer"
                   >
                     <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
                   </button>
@@ -544,6 +555,8 @@ export const EventDetailModal: React.FC<EventDetailModalProps> = ({
                         <img
                           src={thumbUrl}
                           alt={`${event.title} - Photo ${idx + 1}`}
+                          width="400"
+                          height="300"
                           loading="lazy"
                           decoding="async"
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

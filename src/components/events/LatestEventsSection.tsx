@@ -25,8 +25,8 @@ export const LatestEventsSection: React.FC<LatestEventsSectionProps> = ({
       className="relative py-20 bg-gradient-to-b from-white via-slate-50/70 to-white overflow-hidden border-t border-slate-100"
     >
       {/* Ambient background decoration */}
-      <div className="absolute top-1/2 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
-      <div className="absolute top-1/2 right-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+      <div className="hidden md:block absolute top-1/2 left-0 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
+      <div className="hidden md:block absolute top-1/2 right-0 w-80 h-80 bg-sky-400/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}

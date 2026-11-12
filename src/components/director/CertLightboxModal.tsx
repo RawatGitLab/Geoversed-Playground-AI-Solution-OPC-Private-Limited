@@ -36,7 +36,7 @@ export const CertLightboxModal: React.FC<CertLightboxModalProps> = ({
       role="dialog"
       aria-modal="true"
       aria-labelledby="cert-lightbox-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 bg-slate-950/80 md:backdrop-blur-md animate-in fade-in duration-200 overflow-y-auto"
       onClick={onClose}
     >
       <div
@@ -44,8 +44,8 @@ export const CertLightboxModal: React.FC<CertLightboxModalProps> = ({
         onClick={(e) => e.stopPropagation()}
       >
         {/* Glow ambient background accents */}
-        <div className="absolute -top-20 -right-20 w-56 h-56 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-20 -left-20 w-56 h-56 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="hidden md:block absolute -top-20 -right-20 w-56 h-56 bg-cyan-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="hidden md:block absolute -bottom-20 -left-20 w-56 h-56 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
 
         {/* Modal Top Bar */}
         <div className="relative z-10 px-6 py-5 border-b border-slate-800 flex items-center justify-between">

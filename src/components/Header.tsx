@@ -128,7 +128,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
       id="main-header"
       className={`sticky top-0 z-50 w-full transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#0A0F1D]/95 backdrop-blur-md shadow-xs py-3 border-b border-slate-800/80'
+          ? 'bg-[#0A0F1D]/95 md:backdrop-blur-md shadow-xs py-3 border-b border-slate-800/80'
           : 'bg-[#0A0F1D] py-4 border-b border-slate-800/80'
       }`}
     >
@@ -659,7 +659,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
       {/* Mobile & Tablet / iPad Navigation Drawer */}
       <div
         id="mobile-nav-drawer"
-        className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out border-b border-slate-800 bg-[#0A0F1D]/98 backdrop-blur-xl text-white ${
+        className={`xl:hidden overflow-hidden transition-all duration-300 ease-in-out border-b border-slate-800 bg-[#0A0F1D]/98 md:backdrop-blur-xl text-white ${
           isMobileMenuOpen ? 'max-h-[85vh] opacity-100 shadow-2xl' : 'max-h-0 opacity-0'
         }`}
       >

@@ -1,18 +1,41 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
+import { MotionConfig } from 'motion/react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { CoreServices } from './components/CoreServices';
-import { AboutSection } from './components/AboutSection';
-import { DirectorSection } from './components/DirectorSection';
-import { ProjectsSection } from './components/ProjectsSection';
-import { InsightsSection } from './components/InsightsSection';
-import { EventsSection } from './components/events/EventsSection';
-import { ContactSection } from './components/ContactSection';
-import { Footer } from './components/Footer';
-import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 import { ServiceItem, EventItem } from './types';
 import { CORE_SERVICES } from './data/servicesData';
 import { getEventById } from './data/events';
+
+// Lazy-load below-the-fold sections to optimize initial bundle and mobile memory
+const DirectorSection = lazy(() =>
+  import('./components/DirectorSection').then((m) => ({ default: m.DirectorSection }))
+);
+const EventsSection = lazy(() =>
+  import('./components/events/EventsSection').then((m) => ({ default: m.EventsSection }))
+);
+const CoreServices = lazy(() =>
+  import('./components/CoreServices').then((m) => ({ default: m.CoreServices }))
+);
+const AboutSection = lazy(() =>
+  import('./components/AboutSection').then((m) => ({ default: m.AboutSection }))
+);
+const ProjectsSection = lazy(() =>
+  import('./components/ProjectsSection').then((m) => ({ default: m.ProjectsSection }))
+);
+const InsightsSection = lazy(() =>
+  import('./components/InsightsSection').then((m) => ({ default: m.InsightsSection }))
+);
+const ContactSection = lazy(() =>
+  import('./components/ContactSection').then((m) => ({ default: m.ContactSection }))
+);
+const Footer = lazy(() =>
+  import('./components/Footer').then((m) => ({ default: m.Footer }))
+);
+const WhatsAppFloatingButton = lazy(() =>
+  import('./components/WhatsAppFloatingButton').then((m) => ({
+    default: m.WhatsAppFloatingButton,
+  }))
+);
 
 // Lazy load modals so heavy assets and videos don't block the initial page render
 const QuoteModal = lazy(() =>
@@ -126,62 +149,68 @@ export default function App() {
   };
 
   return (
-    <div className="w-full min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
-      {/* 1. Header / Navigation Bar */}
-      <Header
-        onOpenQuote={() => handleOpenQuote()}
-        onOpenSitemap={() => setIsSitemapOpen(true)}
-        onOpenShare={() => setIsShareOpen(true)}
-      />
-
-      {/* Main Single Page Content Area - Fully Scrollable */}
-      <main className="w-full flex-1 overflow-x-hidden">
-        {/* 1. Hero Section */}
-        <Hero
-          onExploreServices={handleExploreServices}
-          onViewProjects={handleViewProjects}
-        />
-
-        {/* 2. Director Section (Second from top) */}
-        <DirectorSection />
-
-        {/* 3. Events Section */}
-        <EventsSection
-          onSelectEvent={handleSelectEvent}
-        />
-
-        {/* 4. Core Services Grid Section */}
-        <CoreServices
-          onSelectServiceForQuote={(srv) => handleOpenQuote(srv)}
-          onOpenDetails={handleOpenDetails}
-        />
-
-        {/* 5. About Section */}
-        <AboutSection />
-
-        {/* 6. Projects Section */}
-        <ProjectsSection
+    <MotionConfig reducedMotion="user">
+      <div className="w-full min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+        {/* 1. Header / Navigation Bar */}
+        <Header
           onOpenQuote={() => handleOpenQuote()}
+          onOpenSitemap={() => setIsSitemapOpen(true)}
+          onOpenShare={() => setIsShareOpen(true)}
         />
 
-        {/* 7. Insights Section */}
-        <InsightsSection
-          onOpenQuote={() => handleOpenQuote()}
-          onReadInsight={() => {
-            handleOpenDetails(CORE_SERVICES[0]);
-          }}
-        />
+        {/* Main Single Page Content Area - Fully Scrollable */}
+        <main className="w-full flex-1 overflow-x-hidden">
+          {/* 1. Hero Section (Above the fold - eager) */}
+          <Hero
+            onExploreServices={handleExploreServices}
+            onViewProjects={handleViewProjects}
+          />
 
-        {/* 8. Contact Section */}
-        <ContactSection />
-      </main>
+          {/* Lazy-loaded below-the-fold sections */}
+          <Suspense fallback={<div className="w-full min-h-[300px]" />}>
+            {/* 2. Director Section (Second from top) */}
+            <DirectorSection />
 
-      {/* 9. Footer Section */}
-      <Footer
-        onOpenPrivacy={() => setIsPrivacyOpen(true)}
-        onOpenTerms={() => setIsTermsOpen(true)}
-        onOpenSitemap={() => setIsSitemapOpen(true)}
-      />
+            {/* 3. Events Section */}
+            <EventsSection
+              onSelectEvent={handleSelectEvent}
+            />
+
+            {/* 4. Core Services Grid Section */}
+            <CoreServices
+              onSelectServiceForQuote={(srv) => handleOpenQuote(srv)}
+              onOpenDetails={handleOpenDetails}
+            />
+
+            {/* 5. About Section */}
+            <AboutSection />
+
+            {/* 6. Projects Section */}
+            <ProjectsSection
+              onOpenQuote={() => handleOpenQuote()}
+            />
+
+            {/* 7. Insights Section */}
+            <InsightsSection
+              onOpenQuote={() => handleOpenQuote()}
+              onReadInsight={() => {
+                handleOpenDetails(CORE_SERVICES[0]);
+              }}
+            />
+
+            {/* 8. Contact Section */}
+            <ContactSection />
+          </Suspense>
+        </main>
+
+        {/* 9. Footer Section */}
+        <Suspense fallback={null}>
+          <Footer
+            onOpenPrivacy={() => setIsPrivacyOpen(true)}
+            onOpenTerms={() => setIsTermsOpen(true)}
+            onOpenSitemap={() => setIsSitemapOpen(true)}
+          />
+        </Suspense>
 
       {/* Event Detail Modal (Single-page modal with photos, videos, & lightbox) */}
       {selectedEvent && (
@@ -262,7 +291,10 @@ export default function App() {
       )}
 
       {/* Floating WhatsApp Quick Contact & Preview Widget */}
-      <WhatsAppFloatingButton onOpenShare={() => setIsShareOpen(true)} />
+      <Suspense fallback={null}>
+        <WhatsAppFloatingButton onOpenShare={() => setIsShareOpen(true)} />
+      </Suspense>
     </div>
-  );
+  </MotionConfig>
+);
 }

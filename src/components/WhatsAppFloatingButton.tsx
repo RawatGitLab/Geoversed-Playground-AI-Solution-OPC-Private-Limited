@@ -130,7 +130,7 @@ export const WhatsAppFloatingButton: React.FC<WhatsAppFloatingButtonProps> = ({ 
           <button
             type="button"
             onClick={() => setIsOpen(true)}
-            className="hidden sm:inline-flex items-center gap-1.5 bg-white/95 backdrop-blur-sm border border-slate-200/80 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-800 shadow-md hover:bg-slate-50 transition-colors cursor-pointer font-['Poppins']"
+            className="hidden sm:inline-flex items-center gap-1.5 bg-white/95 md:backdrop-blur-sm border border-slate-200/80 px-3 py-1.5 rounded-full text-xs font-semibold text-slate-800 shadow-md hover:bg-slate-50 transition-colors cursor-pointer font-['Poppins']"
           >
             <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse" />
             <span>WhatsApp Support</span>

@@ -43,10 +43,10 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({ categories }) => {
         {categories.map((cat) => (
           <div
             key={cat.id}
-            className="group relative bg-[#23153c]/95 hover:bg-[#23153c] backdrop-blur-md border border-[#3b2361]/70 hover:border-fuchsia-500/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl hover:shadow-fuchsia-500/15 flex flex-col justify-between"
+            className="group relative bg-[#23153c]/95 hover:bg-[#23153c] md:backdrop-blur-md border border-[#3b2361]/70 hover:border-fuchsia-500/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl hover:shadow-fuchsia-500/15 flex flex-col justify-between"
           >
             {/* Ambient hover glow */}
-            <div className="absolute -top-12 -right-12 w-28 h-28 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all pointer-events-none" />
+            <div className="hidden md:block absolute -top-12 -right-12 w-28 h-28 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all pointer-events-none" />
 
             <div>
               {/* Header: Icon & Category Title */}

@@ -71,8 +71,8 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onNavigat
       {/* 1. Hero Header with Liquid Glassmorphism Styling */}
       <section className="relative overflow-hidden bg-gradient-to-br from-[#0A1226] via-[#0F2042] to-[#1E3A8A] text-white pt-14 pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-800">
         {/* Ambient background glows */}
-        <div className="absolute top-0 right-1/4 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="hidden md:block absolute top-0 right-1/4 w-96 h-96 bg-blue-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="hidden md:block absolute bottom-0 left-1/4 w-80 h-80 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative max-w-5xl mx-auto text-center">
           {/* Breadcrumb back to Home */}
@@ -89,7 +89,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onNavigat
           </div>
 
           {/* Section Badge */}
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-4 shadow-xs">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 md:backdrop-blur-md border border-white/20 text-white text-xs sm:text-sm font-medium mb-4 shadow-xs">
             <Sparkles className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
             <span>{t('events.badge')}</span>
           </div>
@@ -108,7 +108,7 @@ export const EventsPage: React.FC<EventsPageProps> = ({ onSelectEvent, onNavigat
 
       {/* 2. Floating Filter & Search Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-        <div className="bg-white/95 backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-xl border border-slate-200/90 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+        <div className="bg-white/95 md:backdrop-blur-md rounded-2xl p-4 sm:p-6 shadow-xl border border-slate-200/90 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
           
           {/* Search Box */}
           <div className="relative flex-1 min-w-[240px]">

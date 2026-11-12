@@ -49,10 +49,10 @@ export const StatsStrip: React.FC<StatsStripProps> = ({ stats }) => {
       {stats.map((stat) => (
         <div
           key={stat.id}
-          className="relative group bg-[#23153c]/95 hover:bg-[#23153c] backdrop-blur-md border border-[#3b2361]/70 hover:border-fuchsia-500/40 rounded-2xl p-4 sm:p-5 transition-all duration-300 shadow-md hover:shadow-fuchsia-500/15 text-center overflow-hidden"
+          className="relative group bg-[#23153c]/95 hover:bg-[#23153c] md:backdrop-blur-md border border-[#3b2361]/70 hover:border-fuchsia-500/40 rounded-2xl p-4 sm:p-5 transition-all duration-300 shadow-md hover:shadow-fuchsia-500/15 text-center overflow-hidden"
         >
           {/* Subtle top corner ambient glow */}
-          <div className="absolute -top-10 -right-10 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all pointer-events-none" />
+          <div className="hidden md:block absolute -top-10 -right-10 w-24 h-24 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all pointer-events-none" />
 
           <div className="text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight mb-1">
             <StatCounter value={stat.value} suffix={stat.suffix} />
