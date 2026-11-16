@@ -4,7 +4,7 @@
 
 **Enterprise AI • GIS • SaaS • Geoscience Intelligence** 🧭🗺️🤖
 
-🔗 **Live Website:** [geoversed-playground-ai-solution-opc.netlify.app](https://geoversed-playground-ai-solution-opc.netlify.app/) 🚀
+🔗 **Live Website:** (https://geoversed-playground-ai-solution-op.vercel.app/) 🚀
 
 ![Netlify Status](https://img.shields.io/badge/deployed%20on-Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -111,7 +111,7 @@ npm run preview
 
 This project is deployed on **Netlify** 🚀
 
-🔗 Live: [geoversed-playground-ai-solution-opc.netlify.app](https://geoversed-playground-ai-solution-opc.netlify.app/)
+🔗 Live: (https://geoversed-playground-ai-solution-op.vercel.app/)
 
 ---
 
