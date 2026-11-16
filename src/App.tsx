@@ -174,15 +174,15 @@ export default function App() {
 
           {/* Lazy-loaded below-the-fold sections */}
           <Suspense fallback={<div className="w-full min-h-[300px]" />}>
-            {/* 2. Events Section */}
-            <EventsSection
-              onSelectEvent={handleSelectEvent}
-            />
-
-            {/* 3. Core Services Grid Section */}
+            {/* 2. Core Services Grid Section (Second from top) */}
             <CoreServices
               onSelectServiceForQuote={(srv) => handleOpenQuote(srv)}
               onOpenDetails={handleOpenDetails}
+            />
+
+            {/* 3. Events Section */}
+            <EventsSection
+              onSelectEvent={handleSelectEvent}
             />
 
             {/* 4. About Section */}
