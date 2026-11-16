@@ -125,10 +125,10 @@ export const Hero: React.FC<HeroProps> = ({ onExploreServices, onViewProjects })
           id="hero-main-heading"
           className="text-white font-bold text-xl sm:text-2xl md:text-3xl lg:text-[38px] xl:text-[42px] tracking-tight leading-[1.25] sm:leading-[1.28] w-full max-w-5xl mb-8 font-['Poppins'] text-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] break-words px-2"
         >
-          <span className="block mb-1">
+          <span className="block mb-1 whitespace-nowrap text-[clamp(0.65rem,2.95vw,2.25rem)]">
             {t('hero.heading1')}
           </span>
-          <span className="block text-white font-extrabold">
+          <span className="block text-white font-extrabold whitespace-nowrap text-[clamp(0.63rem,2.85vw,2.2rem)]">
             {t('hero.heading2')}
           </span>
         </h1>

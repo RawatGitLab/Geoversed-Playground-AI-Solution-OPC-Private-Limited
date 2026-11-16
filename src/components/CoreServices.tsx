@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import { ArrowUpRight, CheckCircle2, Layers } from 'lucide-react';
 import { ServiceItem } from '../types';
 import { CORE_SERVICES } from '../data/servicesData';
@@ -9,20 +10,95 @@ interface CoreServicesProps {
   onOpenDetails: (service: ServiceItem) => void;
 }
 
-// Distinct colorful badge styling per service id matching the reference design
-const SERVICE_THEMES: Record<string, { badgeBg: string; pillBg: string; borderHover: string }> = {
-  '01': { badgeBg: 'bg-cyan-600', pillBg: 'bg-cyan-50 text-cyan-700 border-cyan-200/80', borderHover: 'hover:border-cyan-300' },
-  '02': { badgeBg: 'bg-sky-600', pillBg: 'bg-sky-50 text-sky-700 border-sky-200/80', borderHover: 'hover:border-sky-300' },
-  '03': { badgeBg: 'bg-indigo-600', pillBg: 'bg-indigo-50 text-indigo-700 border-indigo-200/80', borderHover: 'hover:border-indigo-300' },
-  '04': { badgeBg: 'bg-blue-600', pillBg: 'bg-blue-50 text-blue-700 border-blue-200/80', borderHover: 'hover:border-blue-300' },
-  '05': { badgeBg: 'bg-teal-600', pillBg: 'bg-teal-50 text-teal-700 border-teal-200/80', borderHover: 'hover:border-teal-300' },
-  '06': { badgeBg: 'bg-emerald-600', pillBg: 'bg-emerald-50 text-emerald-700 border-emerald-200/80', borderHover: 'hover:border-emerald-300' },
-  '07': { badgeBg: 'bg-amber-600', pillBg: 'bg-amber-50 text-amber-800 border-amber-200/80', borderHover: 'hover:border-amber-300' },
-  '08': { badgeBg: 'bg-orange-600', pillBg: 'bg-orange-50 text-orange-700 border-orange-200/80', borderHover: 'hover:border-orange-300' },
-  '09': { badgeBg: 'bg-rose-600', pillBg: 'bg-rose-50 text-rose-700 border-rose-200/80', borderHover: 'hover:border-rose-300' },
-  '10': { badgeBg: 'bg-purple-600', pillBg: 'bg-purple-50 text-purple-700 border-purple-200/80', borderHover: 'hover:border-purple-300' },
-  '11': { badgeBg: 'bg-fuchsia-600', pillBg: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200/80', borderHover: 'hover:border-fuchsia-300' },
-  '12': { badgeBg: 'bg-blue-700', pillBg: 'bg-blue-50 text-blue-700 border-blue-200/80', borderHover: 'hover:border-blue-300' },
+// Distinct colorful badge, left-accent border, and soft gradient styling per service id
+const SERVICE_THEMES: Record<
+  string,
+  { badgeBg: string; pillBg: string; borderHover: string; leftBorder: string; gradientTint: string }
+> = {
+  '01': {
+    badgeBg: 'bg-cyan-600',
+    pillBg: 'bg-cyan-50 text-cyan-700 border-cyan-200/80',
+    borderHover: 'hover:border-y-cyan-300 hover:border-r-cyan-300',
+    leftBorder: 'border-l-cyan-600',
+    gradientTint: 'from-cyan-50/50 via-white to-white',
+  },
+  '02': {
+    badgeBg: 'bg-sky-600',
+    pillBg: 'bg-sky-50 text-sky-700 border-sky-200/80',
+    borderHover: 'hover:border-y-sky-300 hover:border-r-sky-300',
+    leftBorder: 'border-l-sky-600',
+    gradientTint: 'from-sky-50/50 via-white to-white',
+  },
+  '03': {
+    badgeBg: 'bg-indigo-600',
+    pillBg: 'bg-indigo-50 text-indigo-700 border-indigo-200/80',
+    borderHover: 'hover:border-y-indigo-300 hover:border-r-indigo-300',
+    leftBorder: 'border-l-indigo-600',
+    gradientTint: 'from-indigo-50/50 via-white to-white',
+  },
+  '04': {
+    badgeBg: 'bg-blue-600',
+    pillBg: 'bg-blue-50 text-blue-700 border-blue-200/80',
+    borderHover: 'hover:border-y-blue-300 hover:border-r-blue-300',
+    leftBorder: 'border-l-blue-600',
+    gradientTint: 'from-blue-50/50 via-white to-white',
+  },
+  '05': {
+    badgeBg: 'bg-teal-600',
+    pillBg: 'bg-teal-50 text-teal-700 border-teal-200/80',
+    borderHover: 'hover:border-y-teal-300 hover:border-r-teal-300',
+    leftBorder: 'border-l-teal-600',
+    gradientTint: 'from-teal-50/50 via-white to-white',
+  },
+  '06': {
+    badgeBg: 'bg-emerald-600',
+    pillBg: 'bg-emerald-50 text-emerald-700 border-emerald-200/80',
+    borderHover: 'hover:border-y-emerald-300 hover:border-r-emerald-300',
+    leftBorder: 'border-l-emerald-600',
+    gradientTint: 'from-emerald-50/50 via-white to-white',
+  },
+  '07': {
+    badgeBg: 'bg-amber-600',
+    pillBg: 'bg-amber-50 text-amber-800 border-amber-200/80',
+    borderHover: 'hover:border-y-amber-300 hover:border-r-amber-300',
+    leftBorder: 'border-l-amber-600',
+    gradientTint: 'from-amber-50/50 via-white to-white',
+  },
+  '08': {
+    badgeBg: 'bg-orange-600',
+    pillBg: 'bg-orange-50 text-orange-700 border-orange-200/80',
+    borderHover: 'hover:border-y-orange-300 hover:border-r-orange-300',
+    leftBorder: 'border-l-orange-600',
+    gradientTint: 'from-orange-50/50 via-white to-white',
+  },
+  '09': {
+    badgeBg: 'bg-rose-600',
+    pillBg: 'bg-rose-50 text-rose-700 border-rose-200/80',
+    borderHover: 'hover:border-y-rose-300 hover:border-r-rose-300',
+    leftBorder: 'border-l-rose-600',
+    gradientTint: 'from-rose-50/50 via-white to-white',
+  },
+  '10': {
+    badgeBg: 'bg-purple-600',
+    pillBg: 'bg-purple-50 text-purple-700 border-purple-200/80',
+    borderHover: 'hover:border-y-purple-300 hover:border-r-purple-300',
+    leftBorder: 'border-l-purple-600',
+    gradientTint: 'from-purple-50/50 via-white to-white',
+  },
+  '11': {
+    badgeBg: 'bg-fuchsia-600',
+    pillBg: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200/80',
+    borderHover: 'hover:border-y-fuchsia-300 hover:border-r-fuchsia-300',
+    leftBorder: 'border-l-fuchsia-600',
+    gradientTint: 'from-fuchsia-50/50 via-white to-white',
+  },
+  '12': {
+    badgeBg: 'bg-blue-700',
+    pillBg: 'bg-blue-50 text-blue-700 border-blue-200/80',
+    borderHover: 'hover:border-y-blue-300 hover:border-r-blue-300',
+    leftBorder: 'border-l-blue-700',
+    gradientTint: 'from-blue-50/50 via-white to-white',
+  },
 };
 
 export const CoreServices: React.FC<CoreServicesProps> = ({
@@ -70,7 +146,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
         hi: 'जल विज्ञान व पर्यावरण',
         te: 'హైడ్రాలజీ & పర్యావరణం',
         mr: 'जलविज्ञान व पर्यावरण',
-      bn: 'জলবিজ্ঞান ও পরিবেশ',
+        bn: 'জলবিজ্ঞান ও পরিবেশ',
       },
     },
     {
@@ -140,7 +216,7 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
         </div>
 
         {/* Category Badges Toolbar */}
-        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto w-full py-1 mb-12 pb-2 px-2 scrollbar-none">
+        <div className="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto w-full py-1 mb-10 sm:mb-12 pb-2 px-2 scrollbar-none">
           {categories.map((cat) => (
             <button
               key={cat.key}
@@ -156,82 +232,87 @@ export const CoreServices: React.FC<CoreServicesProps> = ({
           ))}
         </div>
 
-        {/* Grid Layout: Responsive 3-column CSS Grid matching the reference design */}
+        {/* Single-Column Full-Width Vertical Banner Stack */}
         <div
           id="services-grid"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+          className="flex flex-col gap-6"
         >
-          {filteredServices.map((service) => {
+          {filteredServices.map((service, index) => {
             const theme = SERVICE_THEMES[service.id] || {
               badgeBg: 'bg-blue-600',
               pillBg: 'bg-blue-50 text-blue-700 border-blue-200',
-              borderHover: 'hover:border-blue-300',
+              borderHover: 'hover:border-y-blue-300 hover:border-r-blue-300',
+              leftBorder: 'border-l-blue-600',
+              gradientTint: 'from-blue-50/50 via-white to-white',
             };
 
             return (
-              <div
+              <motion.article
                 key={service.id}
                 id={`service-card-${service.id}`}
-                className={`group bg-white rounded-2xl p-7 border border-slate-200/80 ${theme.borderHover} shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between relative overflow-hidden scroll-mt-28`}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.35, delay: Math.min(index * 0.03, 0.18), ease: 'easeOut' }}
+                className={`group w-full bg-gradient-to-r ${theme.gradientTint} rounded-2xl p-5 sm:p-6 lg:px-8 lg:py-6 border-y border-r border-slate-200/80 border-l-4 ${theme.leftBorder} ${theme.borderHover} shadow-sm hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col lg:flex-row lg:items-center justify-between gap-5 lg:gap-8 relative overflow-hidden scroll-mt-28`}
               >
-                <div>
-                  {/* Top Badge: Number and Category Pill */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-2.5">
-                      <div
-                        id={`badge-service-${service.id}`}
-                        className={`inline-flex items-center justify-center ${theme.badgeBg} text-white font-bold text-xs tracking-wider px-2.5 py-1 rounded-md shadow-2xs font-['Poppins']`}
-                      >
-                        {service.id}
-                      </div>
-
-                      {service.category && (
-                        <span
-                          className={`text-[11px] font-semibold px-2.5 py-0.5 rounded-full border ${theme.pillBg} uppercase tracking-wider`}
-                        >
-                          {service.category}
-                        </span>
-                      )}
-                    </div>
+                {/* Left Side: Number Badge (01–12) & Category Tag */}
+                <div className="flex flex-row lg:flex-col items-center lg:items-start gap-3 lg:gap-2.5 lg:w-52 shrink-0">
+                  <div
+                    id={`badge-service-${service.id}`}
+                    className={`inline-flex items-center justify-center ${theme.badgeBg} text-white font-bold text-xs sm:text-sm tracking-wider px-3 py-1.5 rounded-lg shadow-2xs font-['Poppins']`}
+                  >
+                    {service.id}
                   </div>
 
-                  {/* Bold Card Title */}
+                  {service.category && (
+                    <span
+                      className={`text-[11px] font-semibold px-2.5 py-1 rounded-full border ${theme.pillBg} uppercase tracking-wider leading-tight`}
+                    >
+                      {service.category}
+                    </span>
+                  )}
+                </div>
+
+                {/* Middle / Main: Title + Short Description */}
+                <div className="flex-1 min-w-0">
                   <h3
                     id={`service-title-${service.id}`}
-                    className="font-bold text-lg sm:text-xl text-slate-900 group-hover:text-blue-600 transition-colors mb-3 leading-snug font-['Poppins']"
+                    className="font-bold text-lg sm:text-xl text-slate-900 group-hover:text-blue-600 transition-colors mb-2 leading-snug font-['Poppins']"
                   >
                     {service.title}
                   </h3>
 
-                  {/* Short Text Description Block */}
                   <p
                     id={`service-desc-${service.id}`}
-                    className="text-slate-600 text-sm leading-relaxed mb-6 line-clamp-4"
+                    className="text-slate-600 text-sm sm:text-[15px] leading-relaxed max-w-3xl"
                   >
                     {service.description}
                   </p>
                 </div>
 
-                {/* Card Footer Actions */}
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto gap-2">
+                {/* Right Side (or Bottom on Mobile/Tablet): Action Buttons */}
+                <div className="pt-4 border-t border-slate-200/70 lg:pt-0 lg:border-t-0 flex flex-col sm:flex-row lg:flex-col xl:flex-row items-stretch sm:items-center gap-2.5 shrink-0">
                   <button
+                    type="button"
                     id={`service-about-btn-${service.id}`}
                     onClick={() => onOpenDetails(service)}
-                    className="text-xs font-semibold text-slate-700 hover:text-blue-600 bg-slate-50 hover:bg-slate-100 transition-colors cursor-pointer py-1.5 px-3 rounded-lg border border-slate-200/80 inline-flex items-center gap-1.5"
+                    className="w-full sm:w-auto justify-center text-xs sm:text-sm font-semibold text-slate-700 hover:text-blue-600 bg-white hover:bg-slate-50 transition-colors cursor-pointer py-2.5 px-4 rounded-xl border border-slate-200/90 shadow-2xs inline-flex items-center gap-1.5 whitespace-nowrap"
                   >
                     <span>{t('services.viewSpecifications')}</span>
                   </button>
 
                   <button
+                    type="button"
                     id={`service-quote-btn-${service.id}`}
                     onClick={() => onSelectServiceForQuote(service)}
-                    className="text-xs font-semibold text-blue-600 hover:text-blue-700 inline-flex items-center gap-1 group/btn cursor-pointer py-1.5 px-2"
+                    className="w-full sm:w-auto justify-center text-xs sm:text-sm font-semibold text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 border border-blue-200/80 hover:border-blue-600 inline-flex items-center gap-1.5 group/btn cursor-pointer py-2.5 px-4 rounded-xl transition-all duration-200 whitespace-nowrap"
                   >
                     <span>{t('services.requestQuote')}</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+                    <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
                   </button>
                 </div>
-              </div>
+              </motion.article>
             );
           })}
         </div>
