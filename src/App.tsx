@@ -25,6 +25,12 @@ const ProjectsSection = lazy(() =>
 const InsightsSection = lazy(() =>
   import('./components/InsightsSection').then((m) => ({ default: m.InsightsSection }))
 );
+const InitiativesSection = lazy(() =>
+  import('./components/InitiativesSection').then((m) => ({ default: m.InitiativesSection }))
+);
+const CertificationsSection = lazy(() =>
+  import('./components/CertificationsSection').then((m) => ({ default: m.CertificationsSection }))
+);
 const ContactSection = lazy(() =>
   import('./components/ContactSection').then((m) => ({ default: m.ContactSection }))
 );
@@ -168,29 +174,26 @@ export default function App() {
 
           {/* Lazy-loaded below-the-fold sections */}
           <Suspense fallback={<div className="w-full min-h-[300px]" />}>
-            {/* 2. Director Section (Second from top) */}
-            <DirectorSection />
-
-            {/* 3. Events Section */}
+            {/* 2. Events Section */}
             <EventsSection
               onSelectEvent={handleSelectEvent}
             />
 
-            {/* 4. Core Services Grid Section */}
+            {/* 3. Core Services Grid Section */}
             <CoreServices
               onSelectServiceForQuote={(srv) => handleOpenQuote(srv)}
               onOpenDetails={handleOpenDetails}
             />
 
-            {/* 5. About Section */}
+            {/* 4. About Section */}
             <AboutSection />
 
-            {/* 6. Projects Section */}
+            {/* 5. Projects Section */}
             <ProjectsSection
               onOpenQuote={() => handleOpenQuote()}
             />
 
-            {/* 7. Insights Section */}
+            {/* 6. Insights Section */}
             <InsightsSection
               onOpenQuote={() => handleOpenQuote()}
               onReadInsight={() => {
@@ -198,7 +201,16 @@ export default function App() {
               }}
             />
 
-            {/* 8. Contact Section */}
+            {/* 7. Director Section */}
+            <DirectorSection />
+
+            {/* 8. Notable Initiatives & Deployments Section */}
+            <InitiativesSection />
+
+            {/* 9. Certifications & Achievements Section */}
+            <CertificationsSection />
+
+            {/* 10. Contact Section */}
             <ContactSection />
           </Suspense>
         </main>

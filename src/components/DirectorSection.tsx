@@ -1,34 +1,22 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Sparkles,
   ArrowRight,
-  Mail,
-  GraduationCap,
-  Briefcase,
-  Layers,
 } from 'lucide-react';
 import {
   DIRECTOR_PROFILE,
   DIRECTOR_STATS,
   DIRECTOR_SKILLS,
-  DIRECTOR_FEATURED_WORK,
-  DIRECTOR_CERTIFICATIONS,
 } from '../data/directorData';
-import { CertificationItem } from '../types';
 import { ProfileCard } from './director/ProfileCard';
 import { StatsStrip } from './director/StatsStrip';
 import { SkillGroup } from './director/SkillGroup';
-import { FeaturedWorkCard } from './director/FeaturedWorkCard';
-import { FeaturedWork3DShowcase } from './director/FeaturedWork3DShowcase';
-import { CertificationMarquee } from './director/CertificationMarquee';
-import { CertLightboxModal } from './director/CertLightboxModal';
 
 interface VantaEffect {
   destroy: () => void;
 }
 
 export const DirectorSection: React.FC = () => {
-  const [selectedCert, setSelectedCert] = useState<CertificationItem | null>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const vantaEffectRef = useRef<VantaEffect | null>(null);
 
@@ -165,31 +153,7 @@ export const DirectorSection: React.FC = () => {
           <SkillGroup categories={DIRECTOR_SKILLS} />
         </div>
 
-        {/* 4. FEATURED WORK / HIGHLIGHTS (3D RIGHT TO LEFT CONVEYOR) */}
-        <div className="space-y-8">
-          <div className="text-center max-w-xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-2 font-['Poppins']">
-              <Layers className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Flagship Milestones</span>
-            </div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 font-['Poppins'] tracking-tight">
-              Notable Initiatives &amp; Deployments
-            </h3>
-            <p className="text-sm text-slate-600 mt-2">
-              Selected projects delivering measurable ecological, economic, and administrative outcomes for public institutions.
-            </p>
-          </div>
 
-          <FeaturedWork3DShowcase items={DIRECTOR_FEATURED_WORK} />
-        </div>
-
-        {/* 6. CERTIFICATIONS SHOWCASE (2 INFINITE MARQUEE ROWS) */}
-        <div>
-          <CertificationMarquee
-            certifications={DIRECTOR_CERTIFICATIONS}
-            onSelectCert={(cert) => setSelectedCert(cert)}
-          />
-        </div>
 
         {/* 7. CLOSING CALL-TO-ACTION */}
         <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-cyan-950/60 via-slate-900/90 to-indigo-950/60 border border-cyan-500/30 p-8 sm:p-12 text-center md:backdrop-blur-xl shadow-2xl">
@@ -224,14 +188,6 @@ export const DirectorSection: React.FC = () => {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
-      {selectedCert && (
-        <CertLightboxModal
-          cert={selectedCert}
-          isOpen={true}
-          onClose={() => setSelectedCert(null)}
-        />
-      )}
     </section>
   );
 };
