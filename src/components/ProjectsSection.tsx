@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
-import { ExternalLink, FileText, FolderKanban } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ExternalLink, FileText, FolderKanban, Layers } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
+import { DIRECTOR_FEATURED_WORK } from '../data/directorData';
+import { FeaturedWork3DShowcase } from './director/FeaturedWork3DShowcase';
 import { useLanguage } from '../i18n/LanguageContext';
 
 interface ProjectsSectionProps {
@@ -10,6 +12,76 @@ interface ProjectsSectionProps {
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote }) => {
   const { t, language } = useLanguage();
   const [activeFilter, setActiveFilter] = useState('All');
+  const sectionRef = useRef<HTMLElement>(null);
+  const vantaTopologyRef = useRef<{ destroy: () => void } | null>(null);
+
+  // Initialize Vanta.Topology background animation on tablet/desktop
+  useEffect(() => {
+    let isMounted = true;
+
+    const initTopology = () => {
+      if (!isMounted || !sectionRef.current || vantaTopologyRef.current) return;
+      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
+      const win = window as unknown as {
+        p5?: unknown;
+        VANTA?: {
+          TOPOLOGY: (options: Record<string, unknown>) => { destroy: () => void };
+        };
+      };
+
+      if (win.p5 && win.VANTA && typeof win.VANTA.TOPOLOGY === 'function') {
+        try {
+          vantaTopologyRef.current = win.VANTA.TOPOLOGY({
+            el: sectionRef.current,
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 200.0,
+            minWidth: 200.0,
+            scale: 1.0,
+            scaleMobile: 1.0,
+          });
+        } catch (err) {
+          console.warn('Vanta Topology initialization note:', err);
+        }
+      }
+    };
+
+    const win = window as unknown as { p5?: unknown; VANTA?: { TOPOLOGY?: unknown } };
+    if (win.p5 && win.VANTA?.TOPOLOGY) {
+      initTopology();
+    } else {
+      const interval = setInterval(() => {
+        const currentWin = window as unknown as { p5?: unknown; VANTA?: { TOPOLOGY?: unknown } };
+        if (currentWin.p5 && currentWin.VANTA?.TOPOLOGY) {
+          clearInterval(interval);
+          initTopology();
+        }
+      }, 100);
+
+      const timeout = setTimeout(() => {
+        clearInterval(interval);
+      }, 8000);
+
+      return () => {
+        isMounted = false;
+        clearInterval(interval);
+        clearTimeout(timeout);
+        if (vantaTopologyRef.current) {
+          vantaTopologyRef.current.destroy();
+          vantaTopologyRef.current = null;
+        }
+      };
+    }
+
+    return () => {
+      isMounted = false;
+      if (vantaTopologyRef.current) {
+        vantaTopologyRef.current.destroy();
+        vantaTopologyRef.current = null;
+      }
+    };
+  }, []);
 
   // The first three project divs were moved to section#insights (Knowledge Hub / Publications)
   const remainingProjects = PROJECTS_DATA.slice(3);
@@ -27,8 +99,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
   ];
 
   return (
-    <section id="projects" className="py-20 lg:py-24 bg-[#F5E4E4] border-t border-[#800000]/10">
-      <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section ref={sectionRef} id="projects" className="relative py-20 lg:py-24 bg-[#F5E4E4] md:bg-[#002222] border-t border-[#800000]/10 md:border-emerald-950 overflow-hidden">
+      <div className="relative z-10 max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
@@ -37,10 +109,10 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
               <FolderKanban className="w-3.5 h-3.5" />
               <span>{t('projects.badge')}</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 font-['Poppins'] tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 md:text-white font-['Poppins'] tracking-tight md:drop-shadow-md">
               {t('projects.title')}
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 max-w-xl">
+            <p className="text-slate-600 md:text-slate-200 text-sm sm:text-base mt-2 max-w-xl md:drop-shadow-xs">
               {t('projects.subtitle')}
             </p>
           </div>
@@ -119,6 +191,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ onOpenQuote })
           ))}
         </div>
 
+      </div>
+
+      {/* Notable Initiatives & Deployments (Merged into Projects Section) */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 sm:mt-20 pt-14 border-t border-[#800000]/10 md:border-white/15 space-y-10">
+        <div className="text-center max-w-2xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs font-semibold uppercase tracking-wider mb-3 font-['Poppins']">
+            <Layers className="w-3.5 h-3.5 text-emerald-600" />
+            <span>Flagship Milestones</span>
+          </div>
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 md:text-white font-['Poppins'] tracking-tight md:drop-shadow-md">
+            Notable Initiatives &amp; Deployments
+          </h3>
+          <p className="text-sm sm:text-base text-slate-600 md:text-slate-200 mt-2.5 leading-relaxed md:drop-shadow-xs">
+            Selected projects delivering measurable ecological, economic, and administrative outcomes for public institutions.
+          </p>
+        </div>
+
+        <FeaturedWork3DShowcase items={DIRECTOR_FEATURED_WORK} />
       </div>
     </section>
   );

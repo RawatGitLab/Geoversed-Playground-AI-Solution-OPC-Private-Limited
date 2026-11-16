@@ -91,7 +91,7 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
             minWidth: 200.0,
             scale: 1.0,
             scaleMobile: 1.0,
-            color: 0x574f0e,
+            color: 0xb4333,
           });
         } catch (err) {
           console.warn('Vanta Waves initialization note:', err);
@@ -155,12 +155,12 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
           </div>
 
           {/* Main Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight font-['Poppins'] mb-3 drop-shadow-md">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#FFD700] tracking-tight font-['Poppins'] mb-3 drop-shadow-md">
             {t('events.title')}
           </h2>
 
           {/* Subtitle */}
-          <p className="text-sm sm:text-base text-white leading-relaxed font-normal drop-shadow-xs">
+          <p className="text-sm sm:text-base text-[#FFD700] leading-relaxed font-normal drop-shadow-xs">
             {t('events.subtitle')}
           </p>
         </div>
@@ -275,9 +275,9 @@ export const EventsSection: React.FC<EventsSectionProps> = ({ onSelectEvent }) =
 
         {/* Results Counter */}
         <div className="flex items-center justify-between mb-6">
-          <p className="text-xs text-white font-medium drop-shadow-xs">
-            Showing <span className="font-bold text-white">{displayedEvents.length}</span> of{' '}
-            <span className="font-bold text-white">{filteredEvents.length}</span> events
+          <p className="text-xs text-[#FFD700] font-medium drop-shadow-xs">
+            Showing <span className="font-bold text-[#FFD700]">{displayedEvents.length}</span> of{' '}
+            <span className="font-bold text-[#FFD700]">{filteredEvents.length}</span> events
           </p>
         </div>
 

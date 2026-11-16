@@ -25,9 +25,6 @@ const ProjectsSection = lazy(() =>
 const InsightsSection = lazy(() =>
   import('./components/InsightsSection').then((m) => ({ default: m.InsightsSection }))
 );
-const InitiativesSection = lazy(() =>
-  import('./components/InitiativesSection').then((m) => ({ default: m.InitiativesSection }))
-);
 const CertificationsSection = lazy(() =>
   import('./components/CertificationsSection').then((m) => ({ default: m.CertificationsSection }))
 );
@@ -204,13 +201,10 @@ export default function App() {
             {/* 7. Director Section */}
             <DirectorSection />
 
-            {/* 8. Notable Initiatives & Deployments Section */}
-            <InitiativesSection />
-
-            {/* 9. Certifications & Achievements Section */}
+            {/* 8. Certifications & Achievements Section */}
             <CertificationsSection />
 
-            {/* 10. Contact Section */}
+            {/* 9. Contact Section */}
             <ContactSection />
           </Suspense>
         </main>

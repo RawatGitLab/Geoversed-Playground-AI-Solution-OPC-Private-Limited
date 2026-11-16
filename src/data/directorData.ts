@@ -166,9 +166,9 @@ export const DIRECTOR_FEATURED_WORK: FeaturedWorkItem[] = [
     tags: [
     ],
     description: 'Centralized, real-time geospatial data hub for District Almora Uttarakhand India planners with live Geo-Spatial data.',
-    demoUrl: 'https://district-almora-production.up.railway.app/',
+    demoUrl: 'https://district-almora.onrender.com/',
     githubUrl: 'https://github.com/RawatGitLab/District-Almora/',
-    linkUrl: 'https://district-almora-production.up.railway.app/',
+    linkUrl: 'https://district-almora.onrender.com/',
     metrics: '50+ Spatial Layers',
     details: {
       overview: 'District Almora is a live, real-time Geographic Information System (GIS) visualization platform built specifically for district planners and administrators of Almora, Uttarakhand India',
