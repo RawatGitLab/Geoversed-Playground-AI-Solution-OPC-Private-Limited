@@ -153,7 +153,7 @@ export default function App() {
 
   return (
     <MotionConfig reducedMotion="user">
-      <div className="w-full min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-hidden">
+      <div className="w-full min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-600 selection:text-white overflow-x-clip">
         {/* 1. Header / Navigation Bar */}
         <Header
           onOpenQuote={() => handleOpenQuote()}

@@ -2,6 +2,7 @@ import React from 'react';
 import { FileText, ExternalLink, BookOpen } from 'lucide-react';
 import { PROJECTS_DATA } from '../data/servicesData';
 import { useLanguage } from '../i18n/LanguageContext';
+import { LiquidMetalSurface } from './ui/liquid-metal';
 
 interface InsightsSectionProps {
   onReadInsight?: (title: string) => void;
@@ -51,17 +52,20 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {researchReports.map((item) => (
-              <div
+              <LiquidMetalSurface
                 key={item.id}
                 id={`project-card-${item.id}`}
-                className="bg-white rounded-2xl border border-slate-200/80 p-6 flex flex-col justify-between hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group hover:border-blue-300 scroll-mt-24 shadow-xs"
+                roundedClassName="rounded-2xl"
+                className="hover:-translate-y-1 transition-all duration-300 scroll-mt-24"
+                innerClassName="p-6 flex flex-col justify-between"
+                metalConfig={{ colorBack: '#3b82f6', colorTint: '#93c5fd' }}
               >
-                <div>
+                <div className="relative z-10">
                   <div className="flex items-center justify-between text-xs font-semibold mb-3">
-                    <span className="uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200/60 font-semibold">
+                    <span className="uppercase tracking-wider text-sky-300 bg-sky-500/15 px-2.5 py-0.5 rounded-full border border-sky-400/30 font-semibold">
                       {item.category}
                     </span>
-                    <span className="bg-slate-50 px-2 py-0.5 rounded border border-slate-200 text-slate-500 font-medium">
+                    <span className="bg-white/10 px-2 py-0.5 rounded border border-white/15 text-slate-200 font-medium">
                       {item.region}
                     </span>
                   </div>
@@ -73,37 +77,37 @@ export const InsightsSection: React.FC<InsightsSectionProps> = ({ onOpenQuote })
                         href={item.reportUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-600 text-blue-700 hover:text-white font-semibold text-xs transition-all duration-200 border border-blue-200 shadow-2xs cursor-pointer group/btn"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-blue-500/20 hover:bg-blue-500 text-sky-200 hover:text-white font-semibold text-xs transition-all duration-200 border border-sky-400/35 shadow-2xs cursor-pointer group/btn"
                         title="Open Technical Research Report (PDF)"
                       >
                         <FileText className="w-3.5 h-3.5" />
                         <span>{t('insights.openReport')}</span>
-                        <ExternalLink className="w-3 h-3 ml-0.5 opacity-70 group-hover/btn:opacity-100" />
+                        <ExternalLink className="w-3 h-3 ml-0.5 opacity-80 group-hover/btn:opacity-100" />
                       </a>
                     </div>
                   )}
 
-                  <h3 className="text-lg font-bold text-slate-900 font-['Poppins'] mb-3 group-hover:text-blue-600 transition-colors leading-snug">
+                  <h3 className="text-lg font-bold text-white font-['Poppins'] mb-3 group-hover:text-sky-200 transition-colors leading-snug">
                     {item.title}
                   </h3>
-                  <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-slate-200 text-xs sm:text-sm leading-relaxed mb-6">
                     {item.summary}
                   </p>
                 </div>
 
-                <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-2.5 text-xs">
-                  <span className="text-slate-400 font-medium">{item.tag}</span>
+                <div className="relative z-10 pt-4 border-t border-white/15 flex flex-wrap items-center justify-between gap-2.5 text-xs">
+                  <span className="text-slate-300 font-medium">{item.tag}</span>
                   {onOpenQuote && (
                     <button
                       onClick={onOpenQuote}
-                      className="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center gap-1 cursor-pointer transition-colors ml-auto"
+                      className="text-sky-300 font-semibold hover:text-white inline-flex items-center gap-1 cursor-pointer transition-colors ml-auto"
                     >
                       <span>{t('projects.inquireBtn')}</span>
                       <ExternalLink className="w-3.5 h-3.5" />
                     </button>
                   )}
                 </div>
-              </div>
+              </LiquidMetalSurface>
             ))}
           </div>
         </div>

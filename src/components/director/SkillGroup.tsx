@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, Layout, Database, Sparkles, Layers, Cpu, Compass } from 'lucide-react';
 import { SkillCategory } from '../../types';
+import { LiquidMetalSurface } from '../ui/liquid-metal';
 
 interface SkillGroupProps {
   categories: SkillCategory[];
@@ -41,20 +42,20 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({ categories }) => {
       {/* 4-Card Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
         {categories.map((cat) => (
-          <div
+          <LiquidMetalSurface
             key={cat.id}
-            className="group relative bg-[#23153c]/95 hover:bg-[#23153c] md:backdrop-blur-md border border-[#3b2361]/70 hover:border-fuchsia-500/40 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1.5 shadow-md hover:shadow-xl hover:shadow-fuchsia-500/15 flex flex-col justify-between"
+            roundedClassName="rounded-2xl"
+            className="transition-all duration-300 hover:-translate-y-1.5"
+            innerClassName="p-5 sm:p-6 flex flex-col justify-between"
+            metalConfig={{ colorBack: '#3b82f6', colorTint: '#93c5fd' }}
           >
-            {/* Ambient hover glow */}
-            <div className="hidden md:block absolute -top-12 -right-12 w-28 h-28 bg-cyan-500/10 rounded-full blur-2xl group-hover:bg-cyan-500/20 transition-all pointer-events-none" />
-
-            <div>
+            <div className="relative z-10">
               {/* Header: Icon & Category Title */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400/40 transition-all shrink-0">
+                <div className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center group-hover:scale-105 group-hover:border-sky-300/50 transition-all shrink-0">
                   {getCategoryIcon(cat.iconName)}
                 </div>
-                <h4 className="text-base font-bold text-white font-['Poppins'] tracking-tight group-hover:text-cyan-300 transition-colors">
+                <h4 className="text-base font-bold text-white font-['Poppins'] tracking-tight group-hover:text-sky-200 transition-colors">
                   {cat.title}
                 </h4>
               </div>
@@ -64,7 +65,7 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({ categories }) => {
                 {cat.skills.map((skill, sIdx) => (
                   <span
                     key={sIdx}
-                    className="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/5 hover:bg-cyan-500/15 border border-white/10 hover:border-cyan-400/40 text-slate-300 hover:text-cyan-200 transition-colors cursor-default"
+                    className="text-xs font-medium px-2.5 py-1 rounded-lg bg-white/8 hover:bg-sky-500/20 border border-white/15 hover:border-sky-300/50 text-slate-200 hover:text-white transition-colors cursor-default"
                   >
                     {skill}
                   </span>
@@ -72,15 +73,15 @@ export const SkillGroup: React.FC<SkillGroupProps> = ({ categories }) => {
               </div>
             </div>
 
-            <div className="pt-4 mt-4 border-t border-slate-800/80 flex items-center justify-between text-[11px] text-slate-400">
-              <span className="font-mono text-[10px] text-slate-400">
+            <div className="relative z-10 pt-4 mt-4 border-t border-white/15 flex items-center justify-between text-[11px] text-slate-300">
+              <span className="font-mono text-[10px] text-slate-300">
                 {cat.skills.length} core proficiencies
               </span>
-              <span className="text-cyan-400/80 text-[10px] uppercase font-semibold tracking-wider">
+              <span className="text-sky-300 text-[10px] uppercase font-semibold tracking-wider">
                 Production-Ready
               </span>
             </div>
-          </div>
+          </LiquidMetalSurface>
         ))}
       </div>
     </div>

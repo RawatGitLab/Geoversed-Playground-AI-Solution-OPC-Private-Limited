@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
   Building2,
   ShieldCheck,
@@ -27,83 +27,12 @@ import {
 } from 'lucide-react';
 
 import { useLanguage } from '../i18n/LanguageContext';
+import { PerspectiveGrid } from './ui/perspective-grid';
 
 export const AboutSection: React.FC = () => {
   const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'profile' | 'objects' | 'missions' | 'governance'>('profile');
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
-  const vantaTopologyRef = useRef<{ destroy: () => void } | null>(null);
-
-  // Initialize Vanta.Topology background animation on tablet/desktop
-  useEffect(() => {
-    let isMounted = true;
-
-    const initTopology = () => {
-      if (!isMounted || !sectionRef.current || vantaTopologyRef.current) return;
-      if (typeof window !== 'undefined' && window.innerWidth < 768) return;
-      const win = window as unknown as {
-        p5?: unknown;
-        VANTA?: {
-          TOPOLOGY: (options: Record<string, unknown>) => { destroy: () => void };
-        };
-      };
-
-      if (win.p5 && win.VANTA && typeof win.VANTA.TOPOLOGY === 'function') {
-        try {
-          vantaTopologyRef.current = win.VANTA.TOPOLOGY({
-            el: sectionRef.current,
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.0,
-            minWidth: 200.0,
-            scale: 1.0,
-            scaleMobile: 1.0,
-            color: 0x4e965e,
-            backgroundColor: 0x550a0a,
-          });
-        } catch (err) {
-          console.warn('Vanta Topology initialization note:', err);
-        }
-      }
-    };
-
-    const win = window as unknown as { p5?: unknown; VANTA?: { TOPOLOGY?: unknown } };
-    if (win.p5 && win.VANTA?.TOPOLOGY) {
-      initTopology();
-    } else {
-      const interval = setInterval(() => {
-        const currentWin = window as unknown as { p5?: unknown; VANTA?: { TOPOLOGY?: unknown } };
-        if (currentWin.p5 && currentWin.VANTA?.TOPOLOGY) {
-          clearInterval(interval);
-          initTopology();
-        }
-      }, 100);
-
-      const timeout = setTimeout(() => {
-        clearInterval(interval);
-      }, 8000);
-
-      return () => {
-        isMounted = false;
-        clearInterval(interval);
-        clearTimeout(timeout);
-        if (vantaTopologyRef.current) {
-          vantaTopologyRef.current.destroy();
-          vantaTopologyRef.current = null;
-        }
-      };
-    }
-
-    return () => {
-      isMounted = false;
-      if (vantaTopologyRef.current) {
-        vantaTopologyRef.current.destroy();
-        vantaTopologyRef.current = null;
-      }
-    };
-  }, []);
 
   // National Flagship Programs from Clause 3(a)(10) of INC-33
   const nationalMissions = [
@@ -286,10 +215,12 @@ export const AboutSection: React.FC = () => {
 
   return (
     <section
-      ref={sectionRef}
       id="about"
-      className="relative py-20 lg:py-24 bg-[#E6F8F6] md:bg-[#550a0a] border-y border-teal-200/70 md:border-red-950 overflow-hidden"
+      className="relative py-20 lg:py-24 bg-[#F4F8FF] border-y border-blue-200/70 overflow-hidden"
     >
+      {/* 3D Perspective Grid Background */}
+      <PerspectiveGrid rows={20} cols={20} className="z-0" />
+
       <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Mission, Vision & 5. Object Section */}
@@ -485,10 +416,10 @@ export const AboutSection: React.FC = () => {
             <Sparkles className="w-3.5 h-3.5" />
             <span>{t('about.badge')}</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-bold text-slate-900 md:text-white font-['Poppins'] tracking-tight mb-4 leading-tight md:drop-shadow-md">
+          <h2 className="text-3xl sm:text-4xl md:text-[40px] font-bold text-slate-900 font-['Poppins'] tracking-tight mb-4 leading-tight">
             {t('about.title')}
           </h2>
-          <p className="text-slate-600 md:text-slate-200 text-sm sm:text-base leading-relaxed md:drop-shadow-xs">
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
             {t('about.description')}
           </p>
         </div>

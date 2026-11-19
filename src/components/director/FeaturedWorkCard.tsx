@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Layers, ArrowUpRight, CheckCircle, Github, ExternalLink, Calendar, ShieldCheck } from 'lucide-react';
 import { FeaturedWorkItem } from '../../types';
+import { LiquidMetalSurface } from '../ui/liquid-metal';
 
 interface FeaturedWorkCardProps {
   item: FeaturedWorkItem;
@@ -12,14 +13,14 @@ export const FeaturedWorkCard: React.FC<FeaturedWorkCardProps> = ({ item, index 
   const primaryUrl = item.demoUrl || item.linkUrl;
 
   return (
-    <div
-      className="group relative flex flex-col justify-between w-[275px] xs:w-[320px] sm:w-[380px] md:w-[430px] max-w-[85vw] min-h-[460px] flex-shrink-0 bg-[#23153c]/95 hover:bg-[#23153c] md:backdrop-blur-xl border border-[#3b2361]/70 hover:border-fuchsia-500/50 rounded-3xl p-5 sm:p-7 transition-colors duration-200 shadow-xl hover:shadow-2xl hover:shadow-fuchsia-500/15 overflow-hidden select-none"
+    <LiquidMetalSurface
+      roundedClassName="rounded-3xl"
+      className="w-[275px] xs:w-[320px] sm:w-[380px] md:w-[430px] max-w-[85vw] min-h-[460px] flex-shrink-0 transition-all duration-300 select-none"
+      innerClassName="flex flex-col justify-between p-5 sm:p-7"
+      metalConfig={{ colorBack: '#3b82f6', colorTint: '#93c5fd' }}
     >
-      {/* Cyan Top Edge Accent */}
-      <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400 to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-300" />
-
       {/* Content Header */}
-      <div>
+      <div className="relative z-10">
         {/* Category Pill, Period & Metrics Badge */}
         <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
           <div className="flex items-center gap-1.5 flex-wrap">
@@ -87,7 +88,7 @@ export const FeaturedWorkCard: React.FC<FeaturedWorkCardProps> = ({ item, index 
       </div>
 
       {/* Content Footer */}
-      <div className="mt-6 pt-4 border-t border-[#3b2361]/70">
+      <div className="relative z-10 mt-6 pt-4 border-t border-white/15">
         {/* Tech tags */}
         <div className="flex flex-wrap gap-1.5 mb-4 max-h-16 overflow-hidden">
           {item.tags.slice(0, 6).map((tag) => (
@@ -145,6 +146,6 @@ export const FeaturedWorkCard: React.FC<FeaturedWorkCardProps> = ({ item, index 
           )}
         </div>
       </div>
-    </div>
+    </LiquidMetalSurface>
   );
 };

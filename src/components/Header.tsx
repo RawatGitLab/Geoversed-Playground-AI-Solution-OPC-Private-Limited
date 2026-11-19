@@ -4,6 +4,7 @@ import { Logo } from './Logo';
 import { NAV_LINKS, CORE_SERVICES, PROJECTS_DATA, INSIGHTS_ARTICLES, PUBLISHED_REPORTS } from '../data/servicesData';
 import { useLanguage } from '../i18n/LanguageContext';
 import { LanguageSelector } from './LanguageSelector';
+import { NotchNavbar, NotchNavItem } from './ui/notch-navbar';
 
 interface HeaderProps {
   onOpenQuote: () => void;
@@ -142,45 +143,34 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
           <Logo variant="light" size="md" subtitleColor="#D4A76A" />
         </a>
 
-        {/* Center Section: Horizontal Flex Navigation Menu (Centered in Header on xl+ screens) */}
-        <nav
+        {/* Center Section: NotchNavbar (Centered in Header on xl+ screens) */}
+        <NotchNavbar
           id="desktop-navigation-menu"
-          className="hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 items-center space-x-1 lg:space-x-3 px-5 lg:px-6 py-1.5 rounded-full border border-teal-300/60 bg-[#5EEAD4] z-10 shadow-sm shadow-teal-500/15"
-          aria-label="Main Navigation"
-        >
-          {NAV_LINKS.map((item) => {
-            if (item.label === 'About') {
-              return (
-                <div
-                  key={item.label}
-                  className="relative py-1"
-                  onMouseEnter={handleMouseEnter}
-                  onMouseLeave={handleMouseLeave}
-                >
-                  <a
-                    id={`nav-link-${item.label.toLowerCase()}`}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/about"
-                  >
-                    <span>{getNavLabel(item.label)}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/about:text-[#0F2042] ${
-                        isAboutDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
-                      }`}
-                    />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/about:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-                  </a>
+          className="hidden xl:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+          onItemClick={handleNavClick}
+          items={NAV_LINKS.map((item): NotchNavItem => {
+            const baseItem: NotchNavItem = {
+              id: item.label.toLowerCase(),
+              label: getNavLabel(item.label),
+              href: item.href,
+            };
 
-                  {/* Dropdown Menu for Vision, Mission and Objective */}
+            if (item.label === 'About') {
+              return {
+                ...baseItem,
+                hasDropdown: true,
+                isDropdownOpen: isAboutDropdownOpen,
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave,
+                dropdownContent: (
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-64 z-50 transition-all duration-200 ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-64 z-50 transition-all duration-200 ${
                       isAboutDropdownOpen
                         ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                         : 'opacity-0 invisible -translate-y-1 pointer-events-none'
                     }`}
                   >
-                    <div className="bg-white rounded-xl shadow-xl border border-slate-200/90 p-2 overflow-hidden">
+                    <div className="bg-white rounded-xl shadow-xl border border-slate-200/90 p-2 overflow-hidden text-left">
                       <div className="px-3 py-1.5 mb-1 border-b border-slate-100 flex items-center justify-between">
                         <span className="text-[10px] font-bold text-blue-600 uppercase tracking-wider font-['Poppins']">
                           Corporate Mandate
@@ -188,7 +178,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         <span className="text-[10px] font-medium text-slate-400">Clause 3(a)</span>
                       </div>
 
-                      {/* Vision Option */}
                       <a
                         href="#vision"
                         onClick={(e) => handleNavClick(e, '#vision')}
@@ -207,7 +196,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </div>
                       </a>
 
-                      {/* Mission Option */}
                       <a
                         href="#mission"
                         onClick={(e) => handleNavClick(e, '#mission')}
@@ -226,7 +214,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </div>
                       </a>
 
-                      {/* Objective Option */}
                       <a
                         href="#objective"
                         onClick={(e) => handleNavClick(e, '#objective')}
@@ -240,54 +227,37 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                             <span>Objective</span>
                           </div>
                           <div className="text-[11px] text-slate-500 leading-tight">
-                            Main Objects & matters for furtherance
+                            Main Objects &amp; matters for furtherance
                           </div>
                         </div>
                       </a>
 
-                      {/* View Complete About Section */}
                       <div className="mt-1 pt-1.5 border-t border-slate-100">
                         <a
                           href="#about"
                           onClick={(e) => handleNavClick(e, '#about')}
                           className="flex items-center justify-between px-2.5 py-1.5 text-xs font-semibold text-slate-600 hover:text-[#0F2042] hover:bg-slate-50 rounded-md transition-colors font-['Poppins']"
                         >
-                          <span>Overview & Profile</span>
+                          <span>Overview &amp; Profile</span>
                           <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
                         </a>
                       </div>
                     </div>
                   </div>
-                </div>
-              );
+                ),
+              };
             }
 
             if (item.label === 'Services') {
-              return (
-                <div
-                  key={item.label}
-                  className="relative py-1"
-                  onMouseEnter={handleServicesMouseEnter}
-                  onMouseLeave={handleServicesMouseLeave}
-                >
-                  <a
-                    id={`nav-link-${item.label.toLowerCase()}`}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/services"
-                  >
-                    <span>{getNavLabel(item.label)}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/services:text-[#0F2042] ${
-                        isServicesDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
-                      }`}
-                    />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/services:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-                  </a>
-
-                  {/* Mega Dropdown Menu for 12 Services */}
+              return {
+                ...baseItem,
+                hasDropdown: true,
+                isDropdownOpen: isServicesDropdownOpen,
+                onMouseEnter: handleServicesMouseEnter,
+                onMouseLeave: handleServicesMouseLeave,
+                dropdownContent: (
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[640px] lg:w-[720px] z-50 transition-all duration-200 ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[640px] lg:w-[720px] z-50 transition-all duration-200 ${
                       isServicesDropdownOpen
                         ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                         : 'opacity-0 invisible -translate-y-1 pointer-events-none'
@@ -306,7 +276,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </span>
                       </div>
 
-                      {/* 2-column grid of 12 services */}
                       <div className="grid grid-cols-2 gap-1 p-2.5 max-h-[420px] overflow-y-auto">
                         {CORE_SERVICES.map((srv) => (
                           <a
@@ -331,7 +300,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         ))}
                       </div>
 
-                      {/* Bottom Footer */}
                       <div className="px-4 py-2.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
                         <span className="text-xs text-slate-500">
                           Precision surveys, GIS platforms &amp; environmental studies
@@ -347,36 +315,20 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                       </div>
                     </div>
                   </div>
-                </div>
-              );
+                ),
+              };
             }
 
             if (item.label === 'Projects') {
-              return (
-                <div
-                  key={item.label}
-                  className="relative py-1"
-                  onMouseEnter={handleProjectsMouseEnter}
-                  onMouseLeave={handleProjectsMouseLeave}
-                >
-                  <a
-                    id={`nav-link-${item.label.toLowerCase()}`}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/projects"
-                  >
-                    <span>{getNavLabel(item.label)}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/projects:text-[#0F2042] ${
-                        isProjectsDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
-                      }`}
-                    />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/projects:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-                  </a>
-
-                  {/* Mega Dropdown Menu for Projects */}
+              return {
+                ...baseItem,
+                hasDropdown: true,
+                isDropdownOpen: isProjectsDropdownOpen,
+                onMouseEnter: handleProjectsMouseEnter,
+                onMouseLeave: handleProjectsMouseLeave,
+                dropdownContent: (
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[580px] lg:w-[640px] z-50 transition-all duration-200 ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[580px] lg:w-[640px] z-50 transition-all duration-200 ${
                       isProjectsDropdownOpen
                         ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                         : 'opacity-0 invisible -translate-y-1 pointer-events-none'
@@ -395,7 +347,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </span>
                       </div>
 
-                      {/* 2-column grid of projects */}
                       <div className="grid grid-cols-2 gap-1.5 p-3 max-h-[380px] overflow-y-auto">
                         {PROJECTS_DATA.map((proj) => (
                           <a
@@ -426,7 +377,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         ))}
                       </div>
 
-                      {/* Bottom Footer */}
                       <div className="px-4 py-2.5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
                         <span className="text-xs text-slate-500">
                           Custom DPRs, field surveys &amp; spatial analytics
@@ -442,43 +392,26 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                       </div>
                     </div>
                   </div>
-                </div>
-              );
+                ),
+              };
             }
 
             if (item.label === 'Insights') {
-              return (
-                <div
-                  key={item.label}
-                  className="relative py-1"
-                  onMouseEnter={handleInsightsMouseEnter}
-                  onMouseLeave={handleInsightsMouseLeave}
-                >
-                  <a
-                    id={`nav-link-${item.label.toLowerCase()}`}
-                    href={item.href}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                    className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative inline-flex items-center gap-1.5 tracking-normal cursor-pointer select-none group/insights"
-                  >
-                    <span>{getNavLabel(item.label)}</span>
-                    <ChevronDown
-                      className={`w-3.5 h-3.5 transition-transform duration-200 text-[#0F2042]/70 group-hover/insights:text-[#0F2042] ${
-                        isInsightsDropdownOpen ? 'rotate-180 text-[#0F2042]' : ''
-                      }`}
-                    />
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover/insights:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-                  </a>
-
-                  {/* Dropdown Menu for Insights & Publications */}
+              return {
+                ...baseItem,
+                hasDropdown: true,
+                isDropdownOpen: isInsightsDropdownOpen,
+                onMouseEnter: handleInsightsMouseEnter,
+                onMouseLeave: handleInsightsMouseLeave,
+                dropdownContent: (
                   <div
-                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-2.5 w-[520px] lg:w-[580px] z-50 transition-all duration-200 ${
+                    className={`absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[520px] lg:w-[580px] z-50 transition-all duration-200 ${
                       isInsightsDropdownOpen
                         ? 'opacity-100 visible translate-y-0 pointer-events-auto'
                         : 'opacity-0 invisible -translate-y-1 pointer-events-none'
                     }`}
                   >
                     <div className="bg-white rounded-xl shadow-2xl border border-slate-200/90 overflow-hidden text-left">
-                      {/* Dropdown Header */}
                       <div className="px-4 py-2.5 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <BookOpen className="w-4 h-4 text-blue-600" />
@@ -491,7 +424,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </span>
                       </div>
 
-                      {/* Research Articles & Papers */}
                       <div className="p-3 space-y-1.5 max-h-[300px] overflow-y-auto">
                         <div className="px-1 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">
                           Research Articles &amp; Whitepapers
@@ -523,7 +455,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         ))}
                       </div>
 
-                      {/* Published Technical Research Reports (PDF Direct Links) */}
                       <div className="px-3.5 py-2.5 bg-slate-50/80 border-t border-slate-100">
                         <div className="text-[10px] font-bold text-[#0F2042] uppercase tracking-wider mb-2 flex items-center justify-between">
                           <span className="flex items-center gap-1.5 text-slate-600">
@@ -556,7 +487,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                         </div>
                       </div>
 
-                      {/* Dropdown Footer */}
                       <div className="px-4 py-2.5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
                         <span className="text-xs text-slate-500">
                           Peer-reviewed publications &amp; watershed models
@@ -572,24 +502,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuote, onOpenSitemap, onOp
                       </div>
                     </div>
                   </div>
-                </div>
-              );
+                ),
+              };
             }
 
-            return (
-              <a
-                key={item.label}
-                id={`nav-link-${item.label.toLowerCase()}`}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-[#0F2042] hover:text-[#0F2042] hover:bg-white/40 font-['Poppins'] font-semibold text-sm lg:text-[15px] px-3 py-1.5 rounded-full transition-all duration-200 relative group tracking-normal cursor-pointer select-none"
-              >
-                {getNavLabel(item.label)}
-                <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#0F2042] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-center rounded-full" />
-              </a>
-            );
+            return baseItem;
           })}
-        </nav>
+        />
 
         {/* Right Section: Language Selector, Site Map Button, CTA Button & Mobile Menu Toggle */}
         <div className="relative z-10 flex items-center space-x-1.5 sm:space-x-2.5">

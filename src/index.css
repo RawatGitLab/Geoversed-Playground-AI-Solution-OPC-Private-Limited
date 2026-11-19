@@ -26,7 +26,7 @@ body {
   color: var(--text-dark);
   background-color: var(--bg-white);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   max-width: 100vw;
 }
 
@@ -237,4 +237,147 @@ a, button, .transition-smooth {
   pointer-events: none !important;
   z-index: 0 !important;
 }
+
+/* ==========================================================================
+   Liquid Metal Button Effect (GPU-accelerated conic chromatic chrome border)
+   ========================================================================== */
+@keyframes liquid-metal-spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes liquid-metal-counter {
+  0% {
+    transform: translate(-50%, -50%) rotate(360deg) scale(1.06);
+  }
+  50% {
+    transform: translate(-50%, -50%) rotate(180deg) scale(0.96);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg) scale(1.06);
+  }
+}
+
+.liquid-metal-btn {
+  --lm-back: #3b82f6;
+  --lm-tint: #93c5fd;
+  --lm-duration: 4.2s;
+  --lm-duration-alt: 6.4s;
+  box-shadow:
+    0 8px 26px -6px color-mix(in srgb, var(--lm-back) 65%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--lm-tint) 30%, transparent);
+}
+
+.liquid-metal-btn:hover {
+  box-shadow:
+    0 12px 32px -6px color-mix(in srgb, var(--lm-back) 80%, transparent),
+    0 0 20px -2px color-mix(in srgb, var(--lm-tint) 55%, transparent);
+}
+
+.liquid-metal-layer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 240%;
+  aspect-ratio: 1 / 1;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.liquid-metal-primary {
+  background: conic-gradient(
+    from 0deg,
+    #0b132b 0deg,
+    var(--lm-back) 42deg,
+    var(--lm-tint) 78deg,
+    #ffffff 98deg,
+    var(--lm-tint) 118deg,
+    var(--lm-back) 162deg,
+    #0f172a 205deg,
+    var(--lm-back) 248deg,
+    #e0f2fe 282deg,
+    #ffffff 296deg,
+    var(--lm-tint) 320deg,
+    #0b132b 360deg
+  );
+  animation: liquid-metal-spin var(--lm-duration) linear infinite;
+}
+
+.liquid-metal-secondary {
+  background: conic-gradient(
+    from 140deg,
+    transparent 0deg,
+    var(--lm-tint) 45deg,
+    #ffffff 65deg,
+    transparent 110deg,
+    var(--lm-back) 190deg,
+    #ffffff 225deg,
+    transparent 270deg,
+    var(--lm-tint) 325deg,
+    transparent 360deg
+  );
+  mix-blend-mode: screen;
+  opacity: 0.7;
+  animation: liquid-metal-counter var(--lm-duration-alt) linear infinite;
+}
+
+.liquid-metal-core {
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--lm-back) 38%, #0f172a) 0%,
+    color-mix(in srgb, var(--lm-back) 18%, #070d1d) 52%,
+    #050914 100%
+  );
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.42),
+    inset 0 -2px 6px color-mix(in srgb, var(--lm-tint) 28%, transparent);
+}
+
+.liquid-metal-btn:hover .liquid-metal-core {
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--lm-back) 52%, #0f172a) 0%,
+    color-mix(in srgb, var(--lm-back) 28%, #09132a) 52%,
+    #070e21 100%
+  );
+}
+
+.liquid-metal-sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 25%,
+    rgba(255, 255, 255, 0.28) 48%,
+    rgba(255, 255, 255, 0.05) 56%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+}
+
+.liquid-metal-btn:hover .liquid-metal-sheen {
+  transform: translateX(120%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .liquid-metal-primary,
+  .liquid-metal-secondary {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .liquid-metal-primary,
+  .liquid-metal-secondary {
+    animation: none !important;
+  }
+}
+
 
